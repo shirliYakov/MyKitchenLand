@@ -24,12 +24,18 @@
             android:name=".Registration"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainMenu" />
-        <activity android:name=".AdminRecipes" />
-        <activity android:name=".ShoppingList" />
         <activity android:name=".WeeklyMenu" />
         <activity
             android:name=".Inventory"
             android:label="@string/title_activity_inventory" />
+        <activity android:name=".MyRecipesActivity"></activity>
+        <activity android:name=".RecipesActivity"></activity>
+        <activity android:name=".ShopListActivity"></activity>
+        <activity android:name=".AddRecActivity"></activity>
+        <activity android:name=".AddShopListActivity"></activity>
+        <activity android:name=".SearchRecActivity"></activity>
+        <activity android:name=".ShowRecipActivity"></activity>
+
     </application>
 
 </manifest>
