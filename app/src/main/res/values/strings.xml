@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">My Kitchen Land</string>
     <string name="title_activity_inventory">Sign in</string>
+    <string name="add_shoplist">הוסף רשימת קניות</string>
+    <string name="search_recip">חפש מתכון</string>
+    <string name="add_recip">הוסף מתכון</string>
+
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

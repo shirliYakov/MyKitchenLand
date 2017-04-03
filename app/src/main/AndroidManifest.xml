@@ -24,7 +24,6 @@
             android:name=".Registration"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainMenu" />
-        <activity android:name=".MyBook" />
         <activity android:name=".AdminRecipes" />
         <activity android:name=".ShoppingList" />
         <activity android:name=".WeeklyMenu" />

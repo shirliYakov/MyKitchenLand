@@ -14,9 +14,9 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
     }
 
-    public void MyRecipesActivity(View view)
+    public void MyRecipesActivity_onClick(View view)
     {
-        Intent myBook = new Intent(this, MyBook.class);
+        Intent myBook = new Intent(MainMenu.this, MyRecipesActivity.class);
         startActivity(myBook);
     }
 
@@ -26,15 +26,15 @@ public class MainMenu extends AppCompatActivity {
         startActivity(logOut);
     }
 
-    public void AdminRecipesActivity(View view)
+    public void AdminRecipesActivity_onClick(View view)
     {
-        Intent adminRec = new Intent(this, AdminRecipes.class);
+        Intent adminRec = new Intent(this, RecipesActivity.class);
         startActivity(adminRec);
     }
 
-    public void ShoppingListActivity(View view)
+    public void ShoppingListActivity_onClick(View view)
     {
-        Intent shopping = new Intent(this, ShoppingList.class);
+        Intent shopping = new Intent(this, ShopListActivity.class);
         startActivity(shopping);
     }
 
