@@ -21,14 +21,14 @@
         android:textSize="22sp"
         android:textColor="@android:color/white"
         android:layout_marginStart="128dp"
-        android:id="@+id/textView3" />
+        android:id="@+id/titelTv" />
 
     <Button
         android:text="חזרה לתפריט הראשי"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="MenuLayout"
-        android:id="@+id/button10"
+        android:id="@+id/btnBack"
         android:textSize="22sp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />

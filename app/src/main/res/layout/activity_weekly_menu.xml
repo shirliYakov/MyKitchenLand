@@ -22,7 +22,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="112dp"
         android:layout_marginStart="112dp"
-        android:id="@+id/textView5" />
+        android:id="@+id/menuTv" />
 
     <Button
         android:text="חזרה לתפריט הראשי"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:textSize="22sp"
         android:onClick="MenuLayout"
-        android:id="@+id/button13"
+        android:id="@+id/backBtn"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

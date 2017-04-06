@@ -17,7 +17,7 @@
         android:text="הרשמה"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView15"
+        android:id="@+id/regTv"
         android:layout_weight="0.13"
         android:textSize="24sp"
         android:textColor="@android:color/white"
@@ -28,10 +28,10 @@
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:layout_alignTop="@+id/textView19"
+        android:layout_alignTop="@+id/emailEt"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/editText10" />
+        android:id="@+id/mailEt" />
 
     <TextView
         android:text="שם משתמש"
@@ -40,9 +40,9 @@
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView17"
+        android:id="@+id/userTv"
         android:layout_marginTop="39dp"
-        android:layout_below="@+id/textView15"
+        android:layout_below="@+id/regTv"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -51,8 +51,8 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText12"
-        android:layout_alignBottom="@+id/textView17"
+        android:id="@+id/nameEt"
+        android:layout_alignBottom="@+id/userTv"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -64,8 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="43dp"
-        android:id="@+id/textView18"
-        android:layout_below="@+id/textView17"
+        android:id="@+id/passTv"
+        android:layout_below="@+id/userTv"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="12dp"
@@ -77,8 +77,8 @@
         android:inputType="textPassword"
         android:ems="10"
         android:id="@+id/editText11"
-        android:layout_alignBaseline="@+id/textView18"
-        android:layout_alignBottom="@+id/textView18"
+        android:layout_alignBaseline="@+id/passTv"
+        android:layout_alignBottom="@+id/passTv"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -89,7 +89,7 @@
         android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView19"
+        android:id="@+id/emailEt"
         android:layout_marginTop="43dp"
         android:layout_below="@+id/editText11"
         android:layout_alignParentLeft="true"
@@ -99,19 +99,19 @@
         android:text="הרשמה"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
+        android:id="@+id/regBtn"
         android:textSize="18sp"
         android:textStyle="normal|bold"
         android:layout_marginTop="66dp"
-        android:layout_below="@+id/editText10"
-        android:layout_toRightOf="@+id/textView19"
-        android:layout_toEndOf="@+id/textView19" />
+        android:layout_below="@+id/mailEt"
+        android:layout_toRightOf="@+id/emailEt"
+        android:layout_toEndOf="@+id/emailEt" />
 
     <Button
         android:text="מעבר לתפריט"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button8"
+        android:id="@+id/backBtn"
         android:layout_alignParentBottom="true"
         android:onClick="MenuLayout"
         android:layout_alignParentLeft="true"
