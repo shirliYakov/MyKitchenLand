@@ -22,19 +22,43 @@
             android:text="הוספת מתכון"
             android:textSize="20dp"/>
 
-        <Button
-            android:id="@+id/btn_add_re_"
+    <Button
+        android:id="@+id/btn_add_re_"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:onClick="btn_add_re_On_Click"
+        android:text="הוסף למתכונים שלי"
+        android:textSize="10sp" />
+
+        <EditText
+            android:id="@+id/input_name"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:onClick="btn_add_re_On_Click"
-            android:text="הוסף למתכונים שלי"
-            android:textSize="10sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="שם המתכון"
+            android:layout_below="@+id/txt_head"
+            android:layout_alignLeft="@+id/txt_head"
+            android:layout_alignStart="@+id/txt_head" />
+
+    <TextView
+        android:id="@+id/txt_changeMe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btn_add_re_"
+        android:layout_alignEnd="@+id/txt_head"
+        android:layout_alignRight="@+id/txt_head"
+        android:layout_marginBottom="133dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginRight="13dp"
+        android:text="TextView" />
 
 
-    </RelativeLayout>
+</RelativeLayout>
 
 
 
