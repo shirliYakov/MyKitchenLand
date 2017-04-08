@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="המתכונים שלי"
             android:textSize="20sp" />
 
@@ -38,8 +38,20 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_head"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="42dp"
+            android:layout_marginTop="30dp"
+            android:textSize="15sp"
             android:text="מאגר " />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="btn_back_On_Click"
+            android:text="מחק את כל המאגר"
+            android:textSize="10sp" />
 
 
 </RelativeLayout>

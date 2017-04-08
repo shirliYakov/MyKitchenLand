@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class AddRecActivity extends AppCompatActivity {
 

@@ -11,9 +11,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import java.util.List;
 
 
@@ -28,6 +30,8 @@ public class MyRecipesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_recipes);
         db = new DBHandler(this);
         info = (TextView)findViewById(R.id.txt_info);
+
+
         String log ="";
         List<Recipes> recipesList = db.getAllRecipes();
 
@@ -39,6 +43,7 @@ public class MyRecipesActivity extends AppCompatActivity {
         }
 
     }
+
 
     public void btn_back_On_Click(View v){
         Intent Go = new Intent(MyRecipesActivity.this, MainMenu.class);

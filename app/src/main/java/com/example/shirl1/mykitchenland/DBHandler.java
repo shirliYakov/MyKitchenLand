@@ -57,6 +57,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //****here we start the funcs for ALL tables****
 
+
     //add new row to the table
     public void addRecipe(Recipes recipe){
 
