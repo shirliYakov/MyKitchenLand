@@ -6,19 +6,38 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.List;
 
 
 public class MyRecipesActivity extends AppCompatActivity {
+
+    TextView info;
+    DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
+        db = new DBHandler(this);
+        info = (TextView)findViewById(R.id.txt_info);
+        String log ="";
+        List<Recipes> recipesList = db.getAllRecipes();
+
+        for (Recipes recipes : recipesList) {
+            log = log + "Id: " + recipes.get_id() + " ,Name: "  + recipes.get_recipename() + "\n";
+// Writing shops to log
+            //Log.d("Recipes: : ", log);
+            info.setText(log);
+        }
+
     }
 
     public void btn_back_On_Click(View v){
