@@ -16,40 +16,38 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "MANAGER";
 
-    //private  static final String TAG = "noanachmias";
 
     //HERE we define the tables:
     private static final String TABLE_RECIPES = "Recipes";
 
     //and columns:
-    public static final String COLUMN_ID = "id";
-    public static final String COLUMN_RECIPENAME = "recipename";
+    private static final String COLUMN_ID = "recipeid";
+    private static final String COLUMN_RECIPENAME = "recipename";
 
-    //public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version)
+    /*private static final String CREATE_TABLE_RECIPES = "CREATE TABLE " + TABLE_RECIPES +
+            " (" + COLUMN_ID + " ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RECIPENAME + " TEXT" + ");";*/
+
 
     public DBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         //SQLiteDatabase db = this.getWritableDatabase();
     }
 
-
     public void onCreate(SQLiteDatabase db){
 
+        String q= "CREATE TABLE " + TABLE_RECIPES + "(" + COLUMN_ID +
+                  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RECIPENAME + " TEXT " + ");";
 
-        String CREATE_TABLE_RECIPES;
-        CREATE_TABLE_RECIPES = "CREATE TABLE " + TABLE_RECIPES
-                + "(" + COLUMN_ID + " ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RECIPENAME + " TEXT);";
+        db.execSQL(q);
 
-        db.execSQL(CREATE_TABLE_RECIPES);
-        //Log.d(TAG,"hii noa");
         //ADD ALLLL TABLES
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
-        db.execSQL("DROP TABLE IF EXIST " + TABLE_RECIPES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES);
         //DROP ALLLL TABLES
         onCreate(db);
     }
@@ -103,7 +101,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //get table of recipes
     public List <Recipes> getAllRecipes() {
-        List <Recipes> recip_all = new ArrayList <Recipes>();
+
+        List <Recipes> all_recipes = new ArrayList <Recipes>();
         String selectQuery = "SELECT * FROM " + TABLE_RECIPES;
 
         Log.e(LOG, selectQuery);
@@ -119,30 +118,14 @@ public class DBHandler extends SQLiteOpenHelper {
                 re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPENAME)));
 
                 // adding to tags list
-                recip_all.add(re);
+                all_recipes.add(re);
             } while (c.moveToNext());
         }
-        db.close();
-        return recip_all;
+
+        return all_recipes;
     }
 
-    //print the table
-    public String databaseToString(){
 
-        String dbString = "";
-        SQLiteDatabase db = getWritableDatabase();
-        String query  = "SELECT * FROM " + TABLE_RECIPES + " WHERE 1";
 
-        Cursor c = db.rawQuery(query, null);//location
-        c.moveToFirst();//move to first row in result
 
-        while(!c.isAfterLast()){//while its not the end
-            if(c.getString(c.getColumnIndex("recipename"))!=null){
-                dbString += c.getString(c.getColumnIndex("recipename"));
-                dbString += "\n";
-            }
-        }
-        db.close();
-        return dbString;
-    }
 }

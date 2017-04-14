@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,19 +25,20 @@ public class MyRecipesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
+
         db = new DBHandler(this);
         info = (TextView)findViewById(R.id.txt_info);
 
+        //db.addRecipe(new Recipes("RECIP1"));
+
 
         String log ="";
-        List<Recipes> recipesList = db.getAllRecipes();
-
+        List <Recipes> recipesList = db.getAllRecipes();
         for (Recipes recipes : recipesList) {
             log = log + "Id: " + recipes.get_id() + " ,Name: "  + recipes.get_recipename() + "\n";
-// Writing shops to log
-            //Log.d("Recipes: : ", log);
             info.setText(log);
         }
 
