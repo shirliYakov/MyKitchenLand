@@ -40,7 +40,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
             android:textSize="15sp"
-            android:text="מאגר " />
+            android:text="המאגר יופיע כאן לאחר שתוסיף מתכונים" />
 
         <Button
             android:id="@+id/btn_delete"

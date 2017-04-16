@@ -14,21 +14,37 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AddRecActivity extends AppCompatActivity {
 
-    EditText re_name;
+
     DBHandler db;
+    EditText re_name;
+    EditText re_instructions;
+    EditText re_ingrediant;
+    EditText re_amount;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rec);
-        re_name = (EditText) findViewById(R.id.input_name);
         db = new DBHandler(this);
+
+        re_name = (EditText) findViewById(R.id.input_name);
+        re_instructions = (EditText) findViewById(R.id.input_instructions);
+        re_ingrediant = (EditText) findViewById(R.id.input_ingre);
+        re_amount = (EditText) findViewById(R.id.input_amount);
 
         //db.addRecipe(new Recipes("RECIP1"));
         //db.addRecipe(new Recipes("RECIP2"));
         //db.addRecipe(new Recipes("RECIP3"));
 
+    }
+
+    public void btn_cancel_On_Click(View v){
+
+        Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
+        startActivity(Go);
     }
 
 

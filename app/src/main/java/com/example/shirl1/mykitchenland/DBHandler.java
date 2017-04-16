@@ -26,6 +26,7 @@ public class DBHandler extends SQLiteOpenHelper {
     //and columns:
     private static final String COLUMN_ID = "recipeid";
     private static final String COLUMN_RECIPENAME = "recipename";
+    private static final String COLUMN_RECIPEINSTRUCTIONS = "recipeinstructions";
 
     /*private static final String CREATE_TABLE_RECIPES = "CREATE TABLE " + TABLE_RECIPES +
             " (" + COLUMN_ID + " ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RECIPENAME + " TEXT" + ");";*/
@@ -38,10 +39,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db){
 
-        String q= "CREATE TABLE " + TABLE_RECIPES + "(" + COLUMN_ID +
-                  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RECIPENAME + " TEXT " + ");";
+        String CREATE_TABLE_RECIPE= "CREATE TABLE " + TABLE_RECIPES + "(" + COLUMN_ID +
+                  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RECIPENAME + " TEXT " +
+                COLUMN_RECIPEINSTRUCTIONS + " TEXT " + ");";
 
-        db.execSQL(q);
+        db.execSQL(CREATE_TABLE_RECIPE);
 
         //ADD ALLLL TABLES
     }
@@ -51,7 +53,6 @@ public class DBHandler extends SQLiteOpenHelper {
         //DROP ALLLL TABLES
         onCreate(db);
     }
-
 
     //****here we start the funcs for ALL tables****
 
@@ -63,6 +64,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_RECIPENAME, recipe.get_recipename());
+
 
         db.insert(TABLE_RECIPES, null, values);
         db.close();
