@@ -16,7 +16,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 2;
+    private static final int DATABASE_VERSION = 3;
     private static final String DATABASE_NAME = "MANAGER";
 
 
@@ -39,9 +39,10 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db){
 
-        String CREATE_TABLE_RECIPE= "CREATE TABLE " + TABLE_RECIPES + "(" + COLUMN_ID +
-                  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RECIPENAME + " TEXT " +
-                COLUMN_RECIPEINSTRUCTIONS + " TEXT " + ");";
+        String CREATE_TABLE_RECIPE= "CREATE TABLE " + TABLE_RECIPES + "("
+                + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_RECIPEINSTRUCTIONS+ " TEXT, "
+                + COLUMN_RECIPENAME + " TEXT )";
 
         db.execSQL(CREATE_TABLE_RECIPE);
 
@@ -64,7 +65,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_RECIPENAME, recipe.get_recipename());
-
+        values.put(COLUMN_RECIPEINSTRUCTIONS, recipe.get_recipeinstructions());
 
         db.insert(TABLE_RECIPES, null, values);
         db.close();
@@ -118,6 +119,8 @@ public class DBHandler extends SQLiteOpenHelper {
                 Recipes re = new Recipes();
                 re.set_id(c.getInt((c.getColumnIndex(COLUMN_ID))));
                 re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPENAME)));
+                re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPEINSTRUCTIONS)));
+
 
                 // adding to tags list
                 all_recipes.add(re);
@@ -126,8 +129,5 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return all_recipes;
     }
-
-
-
 
 }

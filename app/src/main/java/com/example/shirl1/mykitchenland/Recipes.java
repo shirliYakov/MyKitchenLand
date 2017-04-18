@@ -12,14 +12,19 @@ public class Recipes {
 
     }
 
-    public Recipes(String recipename) {
+    /*public Recipes(String recipename) {
         this.recipename = recipename;
+    }*/
+
+    public Recipes(String recipename, String recipeinstructions) {
+        this.recipename = recipename;
+        this.recipeinstructions = recipeinstructions;
     }
 
-    public Recipes(int id, String recipename) {
+    /*public Recipes(int id, String recipename) {
         this.id = id;
         this.recipename = recipename;
-    }
+    }*/
 
     public Recipes(int id, String recipename, String recipeinstructions) {
         this.id = id;

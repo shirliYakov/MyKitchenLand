@@ -50,7 +50,7 @@ public class AddRecActivity extends AppCompatActivity {
 
     public void btn_add_re_On_Click(View v){
 
-        Recipes recipe = new Recipes(re_name.getText().toString());
+        Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString());
         db.addRecipe(recipe);
 
         Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);

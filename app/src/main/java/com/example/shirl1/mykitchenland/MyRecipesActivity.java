@@ -32,13 +32,14 @@ public class MyRecipesActivity extends AppCompatActivity {
         db = new DBHandler(this);
         info = (TextView)findViewById(R.id.txt_info);
 
-        //db.addRecipe(new Recipes("RECIP1"));
+        //db.addRecipe(new Recipes("RECIP1", "FUN"));
 
 
         String log ="";
         List <Recipes> recipesList = db.getAllRecipes();
         for (Recipes recipes : recipesList) {
-            log = log + "Id: " + recipes.get_id() + " ,Name: "  + recipes.get_recipename() + "\n";
+            log = log + "Id: " + recipes.get_id() + " , Name: "  + recipes.get_recipename()
+                    + ", instructions: " + recipes.get_recipeinstructions() + "\n";
             info.setText(log);
         }
 
