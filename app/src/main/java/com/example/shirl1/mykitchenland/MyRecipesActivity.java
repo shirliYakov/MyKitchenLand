@@ -21,6 +21,7 @@ import java.util.List;
 public class MyRecipesActivity extends AppCompatActivity {
 
     TextView info;
+    TextView info2;
     DBHandler db;
 
     @Override
@@ -31,8 +32,11 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         db = new DBHandler(this);
         info = (TextView)findViewById(R.id.txt_info);
+        info2 = (TextView)findViewById(R.id.txt_info2);
 
         //db.addRecipe(new Recipes("RECIP1", "FUN"));
+        db.addIngredient(new Ingredient(1,"6","BANANA"));
+
 
 
         String log ="";
@@ -43,8 +47,15 @@ public class MyRecipesActivity extends AppCompatActivity {
             info.setText(log);
         }
 
-    }
+        String log2 ="";
+        List <Ingredient> ingredientsList = db.getAllIngredient();
+        for (Ingredient ingredient : ingredientsList) {
+            log2 = log2 + "Id: " + ingredient.get_id() + " , amount: "  + ingredient.get_recipeamount()
+                    + ", ingredient: " + ingredient.get_recipeingredient() + "\n";
+            info2.setText(log2);
+        }
 
+    }
 
     public void btn_back_On_Click(View v){
         Intent Go = new Intent(MyRecipesActivity.this, MainMenu.class);

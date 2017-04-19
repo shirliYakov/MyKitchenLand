@@ -18,7 +18,7 @@ public class AddRecActivity extends AppCompatActivity {
     DBHandler db;
     EditText re_name;
     EditText re_instructions;
-    EditText re_ingrediant;
+    EditText re_ingredient;
     EditText re_amount;
 
 
@@ -32,7 +32,7 @@ public class AddRecActivity extends AppCompatActivity {
 
         re_name = (EditText) findViewById(R.id.input_name);
         re_instructions = (EditText) findViewById(R.id.input_instructions);
-        re_ingrediant = (EditText) findViewById(R.id.input_ingre);
+        re_ingredient = (EditText) findViewById(R.id.input_ingre);
         re_amount = (EditText) findViewById(R.id.input_amount);
 
         //db.addRecipe(new Recipes("RECIP1"));
@@ -52,6 +52,9 @@ public class AddRecActivity extends AppCompatActivity {
 
         Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString());
         db.addRecipe(recipe);
+        Ingredient ingredient = new Ingredient(re_amount.getText().toString(), re_ingredient.getText().toString());
+        db.addIngredient(ingredient);
+
 
         Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
         startActivity(Go);
