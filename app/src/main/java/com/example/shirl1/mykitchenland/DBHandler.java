@@ -90,8 +90,8 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(COLUMN_RECIPE_AMOUNT, ingredient.get_recipeamount());
-        values.put(COLUMN_RECIPE_INGREDIENT, ingredient.get_recipeingredient());
+        values.put(COLUMN_RECIPE_AMOUNT, ingredient.get_amount());
+        values.put(COLUMN_RECIPE_INGREDIENT, ingredient.get_ingredient());
 
         db.insert(TABLE_INGREDIENT, null, values);
         db.close();
@@ -174,8 +174,8 @@ public class DBHandler extends SQLiteOpenHelper {
             do {
                 Ingredient ingre = new Ingredient();
                 ingre.set_id(c.getInt((c.getColumnIndex(COLUMN_ID))));
-                ingre.set_recipeamount(c.getString(c.getColumnIndex(COLUMN_RECIPE_AMOUNT)));
-                ingre.set_recipeingredient(c.getString(c.getColumnIndex(COLUMN_RECIPE_INGREDIENT)));
+                ingre.set_amount(c.getString(c.getColumnIndex(COLUMN_RECIPE_AMOUNT)));
+                ingre.set_ingredient(c.getString(c.getColumnIndex(COLUMN_RECIPE_INGREDIENT)));
 
 
                 // adding to tags list

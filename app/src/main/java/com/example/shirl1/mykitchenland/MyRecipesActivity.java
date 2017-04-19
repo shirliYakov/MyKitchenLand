@@ -50,8 +50,8 @@ public class MyRecipesActivity extends AppCompatActivity {
         String log2 ="";
         List <Ingredient> ingredientsList = db.getAllIngredient();
         for (Ingredient ingredient : ingredientsList) {
-            log2 = log2 + "Id: " + ingredient.get_id() + " , amount: "  + ingredient.get_recipeamount()
-                    + ", ingredient: " + ingredient.get_recipeingredient() + "\n";
+            log2 = log2 + "Id: " + ingredient.get_id() + " , amount: "  + ingredient.get_amount()
+                    + ", ingredient: " + ingredient.get_ingredient() + "\n";
             info2.setText(log2);
         }
 
