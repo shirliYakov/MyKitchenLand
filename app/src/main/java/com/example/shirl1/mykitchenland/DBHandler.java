@@ -37,6 +37,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
 
+
+
     public DBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -77,8 +79,15 @@ public class DBHandler extends SQLiteOpenHelper {
 
         values.put(COLUMN_RECIPE_NAME, recipe.get_recipename());
         values.put(COLUMN_RECIPE_INSTRUCTIONS, recipe.get_recipeinstructions());
-
         db.insert(TABLE_RECIPES, null, values);
+
+        //get id
+        final String MY_QUERY = "SELECT MAX(recipeid) FROM " + TABLE_RECIPES;
+        Cursor cur = db.rawQuery(MY_QUERY, null);
+        cur.moveToFirst();
+        MyId = cur.getInt(0);
+        cur.close();
+
         db.close();
     }
 
@@ -87,7 +96,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        //values.put(COLUMN_ID, ingredient.get_id());
+        values.put(COLUMN_ID, MyId);
         values.put(COLUMN_RECIPE_AMOUNT, ingredient.get_amount());
         values.put(COLUMN_RECIPE_INGREDIENT, ingredient.get_ingredient());
 

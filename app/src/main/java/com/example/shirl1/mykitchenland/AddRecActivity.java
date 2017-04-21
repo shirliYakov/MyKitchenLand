@@ -53,7 +53,9 @@ public class AddRecActivity extends AppCompatActivity {
     public void btn_add_re_On_Click(View v){
 
         Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString());
+
         db.addRecipe(recipe);
+
 
         Ingredient ingredient = new Ingredient(re_amount.getText().toString(), re_ingredient.getText().toString());
         db.addIngredient(ingredient);
