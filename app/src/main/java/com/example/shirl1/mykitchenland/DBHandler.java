@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
@@ -18,43 +19,39 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 4;
     private static final String DATABASE_NAME = "MANAGER";
 
+    int MyId;
 
-    //table
+
+    //table1
     private static final String TABLE_RECIPES = "Recipes";
-    //columns:
+    //columns1:
     private static final String COLUMN_ID = "recipeid";
     private static final String COLUMN_RECIPE_NAME = "recipe_name";
     private static final String COLUMN_RECIPE_INSTRUCTIONS = "recipe_instructions";
 
-    //table
+    //table2
     private static final String TABLE_INGREDIENT = "Ingredient";
-    //columns:
+    //columns2:
     private static final String COLUMN_RECIPE_AMOUNT = "recipe_amount";
     private static final String COLUMN_RECIPE_INGREDIENT = "recipe_ingredient";
 
 
-    /*private static final String CREATE_TABLE_RECIPES = "CREATE TABLE " + TABLE_RECIPES +
-            " (" + COLUMN_ID + " ID INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_RECIPENAME + " TEXT" + ");";*/
-
 
     public DBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        //SQLiteDatabase db = this.getWritableDatabase();
     }
 
     public void onCreate(SQLiteDatabase db){
 
         String CREATE_TABLE_RECIPE= "CREATE TABLE " + TABLE_RECIPES + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_RECIPE_INSTRUCTIONS+ " TEXT, "
+                + COLUMN_RECIPE_INSTRUCTIONS + " TEXT, "
                 + COLUMN_RECIPE_NAME + " TEXT )";
 
         String CREATE_TABLE_INGREDIENT= "CREATE TABLE " + TABLE_INGREDIENT + "("
                 + COLUMN_ID + " INTEGER, "
-                + COLUMN_RECIPE_AMOUNT+ " INTEGER, "
+                + COLUMN_RECIPE_AMOUNT + " INTEGER, "
                 + COLUMN_RECIPE_INGREDIENT + " TEXT )";
-
-
 
         db.execSQL(CREATE_TABLE_RECIPE);
         db.execSQL(CREATE_TABLE_INGREDIENT);
@@ -65,12 +62,12 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENT);
+
         //DROP ALLLL TABLES
         onCreate(db);
     }
 
     //**********************here we start the funcs for ALL tables********************
-
 
     //add new row to the table
     public void addRecipe(Recipes recipe){
@@ -90,12 +87,24 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
+        //values.put(COLUMN_ID, ingredient.get_id());
         values.put(COLUMN_RECIPE_AMOUNT, ingredient.get_amount());
         values.put(COLUMN_RECIPE_INGREDIENT, ingredient.get_ingredient());
 
         db.insert(TABLE_INGREDIENT, null, values);
         db.close();
     }
+
+
+
+    public void clearTable()   {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_RECIPES,null,null);
+        db.delete(TABLE_INGREDIENT,null,null);
+
+    }
+
 
 
 
@@ -130,6 +139,8 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }*/
 
+
+
     //get table of recipes
     public List <Recipes> getAllRecipes() {
 
@@ -141,7 +152,6 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (c.moveToFirst()) {
             do {
                 Recipes re = new Recipes();
@@ -149,8 +159,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
                 re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
 
-
-                // adding to tags list
                 all_recipes.add(re);
             } while (c.moveToNext());
         }

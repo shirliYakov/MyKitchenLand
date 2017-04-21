@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.util.Log;
@@ -14,14 +15,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class AddRecActivity extends AppCompatActivity {
 
-
     DBHandler db;
     EditText re_name;
     EditText re_instructions;
     EditText re_ingredient;
     EditText re_amount;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,10 @@ public class AddRecActivity extends AppCompatActivity {
         //db.addRecipe(new Recipes("RECIP1"));
         //db.addRecipe(new Recipes("RECIP2"));
         //db.addRecipe(new Recipes("RECIP3"));
+/*
+        TextView t1 = (TextView) findViewById(R.id.textView1);
+        t1.isClickable();*/
+
 
     }
 
@@ -52,6 +54,7 @@ public class AddRecActivity extends AppCompatActivity {
 
         Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString());
         db.addRecipe(recipe);
+
         Ingredient ingredient = new Ingredient(re_amount.getText().toString(), re_ingredient.getText().toString());
         db.addIngredient(ingredient);
 

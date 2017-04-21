@@ -35,9 +35,7 @@ public class MyRecipesActivity extends AppCompatActivity {
         info2 = (TextView)findViewById(R.id.txt_info2);
 
         //db.addRecipe(new Recipes("RECIP1", "FUN"));
-        db.addIngredient(new Ingredient(1,"6","BANANA"));
-
-
+        //db.addIngredient(new Ingredient(1,"6","BANANA"));
 
         String log ="";
         List <Recipes> recipesList = db.getAllRecipes();
@@ -55,6 +53,13 @@ public class MyRecipesActivity extends AppCompatActivity {
             info2.setText(log2);
         }
 
+    }
+
+    public void btn_delete_On_Click(View v){
+        db.clearTable();
+        Intent refresh = new Intent(this, MyRecipesActivity.class);
+        startActivity(refresh);
+        this.finish();
     }
 
     public void btn_back_On_Click(View v){
