@@ -13,24 +13,33 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity
+            android:name=".Registration"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".MainMenu" />
+        <activity android:name=".WeeklyMenu" />
+        <activity
+            android:name=".Inventory"
+            android:label="@string/title_activity_inventory" />
+        <activity android:name=".MyRecipesActivity" />
+        <activity android:name=".RecipesActivity" />
+        <activity android:name=".ShopListActivity" />
+        <activity
+            android:name=".AddRecActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".AddShopListActivity" />
+        <activity android:name=".SearchRecActivity" />
+        <activity android:name=".ShowRecipActivity" />
+        <activity android:name=".splash_welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Registration" android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainMenu" />
-        <activity android:name=".WeeklyMenu" />
-        <activity android:name=".Inventory" android:label="@string/title_activity_inventory" />
-        <activity android:name=".MyRecipesActivity"></activity>
-        <activity android:name=".RecipesActivity"></activity>
-        <activity android:name=".ShopListActivity"></activity>
-        <activity android:name=".AddRecActivity" android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".AddShopListActivity"></activity>
-        <activity android:name=".SearchRecActivity"></activity>
-        <activity android:name=".ShowRecipActivity"></activity>
-
     </application>
 
 </manifest>
