@@ -35,7 +35,6 @@
         <activity android:name=".AddShopListActivity" />
         <activity android:name=".SearchRecActivity" />
         <activity android:name=".ShowRecipActivity" />
-        <activity android:name=".newShoppingList"></activity>
     </application>
 
 </manifest>
