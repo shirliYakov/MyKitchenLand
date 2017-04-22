@@ -175,6 +175,13 @@ public class DBHandler extends SQLiteOpenHelper {
         return all_recipes;
     }
 
+    public Cursor getRecipeForList(){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECIPES, null);
+        return c;
+    }
+
 
     public List <Ingredient> getAllIngredient() {
 

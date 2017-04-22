@@ -2,6 +2,7 @@ package com.example.shirl1.mykitchenland;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,11 +11,17 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,12 +38,28 @@ public class MyRecipesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_recipes);
 
         db = new DBHandler(this);
-        info = (TextView)findViewById(R.id.txt_info);
-        info2 = (TextView)findViewById(R.id.txt_info2);
+        //info = (TextView)findViewById(R.id.txt_info);
+        //info2 = (TextView)findViewById(R.id.txt_info2);
+        ListView listView = (ListView) findViewById(R.id.listview_myrecipe);
+
+        ArrayList<String> LIST = new ArrayList<>();
+        Cursor data = db.getRecipeForList();
+
+        if(data.getCount()==0){
+            Toast.makeText(MyRecipesActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
+        }else{
+            while (data.moveToNext()){
+                LIST.add(data.getString(1));//column 1 is index of column-name
+                ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, LIST);
+                listView.setAdapter(listAdapter);
+            }
+        }
 
         //db.addRecipe(new Recipes("RECIP1", "FUN"));
         //db.addIngredient(new Ingredient(1,"6","BANANA"));
 
+        /*
+        //****ptint database*****
         String log ="";
         List <Recipes> recipesList = db.getAllRecipes();
         for (Recipes recipes : recipesList) {
@@ -51,7 +74,7 @@ public class MyRecipesActivity extends AppCompatActivity {
             log2 = log2 + "Id: " + ingredient.get_id() + " , amount: "  + ingredient.get_amount()
                     + ", ingredient: " + ingredient.get_ingredient() + "\n";
             info2.setText(log2);
-        }
+        }*/
 
     }
 

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 public class AddRecActivity extends AppCompatActivity {
 
@@ -53,13 +54,11 @@ public class AddRecActivity extends AppCompatActivity {
     public void btn_add_re_On_Click(View v){
 
         Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString());
-
         db.addRecipe(recipe);
-
-
         Ingredient ingredient = new Ingredient(re_amount.getText().toString(), re_ingredient.getText().toString());
         db.addIngredient(ingredient);
 
+        Toast.makeText(AddRecActivity.this, "נוסף למתכונים שלי", Toast.LENGTH_LONG).show();
 
         Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
         startActivity(Go);

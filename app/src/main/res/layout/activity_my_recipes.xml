@@ -21,51 +21,6 @@
             android:text="המתכונים שלי"
             android:textSize="20sp" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:id="@+id/scrollViewMR"
-            android:layout_below="@+id/txt_head"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-                <TextView
-                    android:id="@+id/txt_info"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txt_head"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="30dp"
-                    android:text="המאגר יופיע כאן לאחר שתוסיף מתכונים"
-                    android:textSize="15sp" />
-
-        </ScrollView>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:id="@+id/scrollViewMR2"
-            android:layout_above="@+id/btn_back"
-            android:layout_below="@+id/scrollViewMR"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-                <TextView
-                    android:id="@+id/txt_info2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txt_info"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="50dp"
-                    android:gravity="center"
-                    android:text="מאגר מצרכים" />
-
-
-       </ScrollView>
-
         <Button
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
@@ -87,5 +42,15 @@
             android:onClick="btn_back_On_Click"
             android:text="חזור לתפריט הראשי"
             android:textSize="10sp" />
+
+        <ListView
+            android:id="@+id/listview_myrecipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/scrollViewMR2"
+            android:layout_above="@+id/btn_back"
+            android:layout_marginTop="50dp" />
 
 </RelativeLayout>
