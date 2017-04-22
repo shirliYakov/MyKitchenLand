@@ -18,4 +18,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="productname">שם הפריט</string>
+    <string name="addmore">הוסף פריטים</string>
+    <string name="addnewlist">הוספת רשימת קניות חדשה</string>
+    <string name="list_name">שם הרשימה</string>
+    <string name="addtolist">הוסף לרשימת הקניות</string>
+    <string name="savelist">שמור</string>
+    <string name="amount">כמות</string>
+    <string name="prodctname1">שם הפריט</string>
+    <string name="amount1">כמות</string>
 </resources>

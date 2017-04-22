@@ -14,7 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".Registration"
@@ -27,19 +31,11 @@
         <activity android:name=".MyRecipesActivity" />
         <activity android:name=".RecipesActivity" />
         <activity android:name=".ShopListActivity" />
-        <activity
-            android:name=".AddRecActivity"
-            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".AddRecActivity" />
         <activity android:name=".AddShopListActivity" />
         <activity android:name=".SearchRecActivity" />
         <activity android:name=".ShowRecipActivity" />
-        <activity android:name=".splash_welcome">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".newShoppingList"></activity>
     </application>
 
 </manifest>

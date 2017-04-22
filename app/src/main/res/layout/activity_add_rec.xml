@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_add_rec"
         android:layout_width="match_parent"
@@ -9,9 +8,19 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:background="@drawable/img5"
+        android:background="@drawable/background1"
         tools:context="com.example.shirl1.mykitchenland.AddRecActivity">
 
+
+        <TextView
+            android:id="@+id/txt_head"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="הוספת מתכון"
+            android:textSize="20dp"/>
 
         <Button
             android:id="@+id/btn_add_re_"
@@ -24,125 +33,8 @@
             android:text="הוסף למתכונים שלי"
             android:textSize="10sp" />
 
-        <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:onClick="btn_cancel_On_Click"
-            android:textSize="10sp"
-            android:text="ביטול" />
 
-    <EditText
-        android:id="@+id/input_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="תן שם למתכון"
-        android:inputType="textPersonName"
-        android:textColorHint="@android:color/white"
-        android:textColorLink="@android:color/darker_gray" />
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
-            android:id="@+id/scrollView2"
-            android:layout_below="@+id/input_name"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true">
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_below="@+id/input_name"
-                android:layout_centerHorizontal="true"
-                android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/input_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="3"
-                    android:hint="כמות"
-                    android:textColorLink="@android:color/darker_gray"
-                    android:inputType="number"
-                    android:textColorHint="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/input_ingre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="שם המוצר"
-                    android:textColorLink="@android:color/darker_gray"
-                    android:inputType="textPersonName"
-                    android:textColorHint="@android:color/white" />
-
-            </LinearLayout>
-        </ScrollView>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:background="@null"
-            android:layout_marginLeft="5dp"
-            android:layout_below="@+id/scrollView2"
-            app:srcCompat="@drawable/icon_add1"
-            android:id="@+id/addingre_btn" />
-
-        <EditText
-            android:id="@+id/input_instructions"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="20"
-            android:inputType="textMultiLine"
-            android:lines="8"
-            android:gravity="top|right"
-            android:scrollbars="vertical"
-            android:textColorLink="@android:color/darker_gray"
-            android:layout_above="@+id/btn_add_re_"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
-
-
-    <TextView
-        android:id="@+id/txt_ingrediens"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/input_name"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
-        android:text="מצרכים"
-        android:textColor="@android:color/white"
-        android:textSize="20dp" />
-
-    <TextView
-        android:id="@+id/txt_instructions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addingre_btn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
-        android:text="אופן הכנה"
-        android:textColor="@android:color/white"
-        android:textSize="20dp" />
-
-
-</RelativeLayout>
+    </RelativeLayout>
 
 
 
