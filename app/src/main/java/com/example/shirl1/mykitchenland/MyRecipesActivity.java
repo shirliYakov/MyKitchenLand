@@ -41,14 +41,13 @@ public class MyRecipesActivity extends AppCompatActivity {
         //info = (TextView)findViewById(R.id.txt_info);
         //info2 = (TextView)findViewById(R.id.txt_info2);
         ListView listView = (ListView) findViewById(R.id.listview_myrecipe);
-
         ArrayList<String> LIST = new ArrayList<>();
         Cursor data = db.getRecipeForList();
 
         if(data.getCount()==0){
             Toast.makeText(MyRecipesActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
         }else{
-            while (data.moveToNext()){
+            while(data.moveToNext()){
                 LIST.add(data.getString(1));//column 1 is index of column-name
                 ListAdapter listAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, LIST);
                 listView.setAdapter(listAdapter);

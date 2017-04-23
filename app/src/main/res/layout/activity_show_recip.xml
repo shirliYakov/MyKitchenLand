@@ -8,20 +8,20 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background1"
+    android:background="@drawable/img14"
     tools:context="com.example.shirl1.mykitchenland.ShowRecipActivity">
 
 
 
     <TextView
-        android:id="@+id/txt_head"
+        android:id="@+id/recipe_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="21dp"
+        android:text="שם מתכון"
+        android:textSize="25dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="הצגת מתכון"
-        android:textSize="25dp"/>
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btn_back"
@@ -33,6 +33,55 @@
         android:onClick="btn_back_On_Click"
         android:text="חזור לתפריט הראשי"
         android:textSize="10sp" />
+
+    <Button
+        android:id="@+id/btn_myrecipe"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:onClick="btn_back_myrecpie_On_Click"
+        android:text="חזור למתכונים שלי"
+        android:textSize="10sp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="8dp"
+        android:layout_above="@+id/btn_back" />
+
+    <TextView
+        android:id="@+id/recipe_ingredient"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:text="מצרכים"
+        android:layout_below="@+id/recipe_name"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/recipe_instructions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="אופן הכנה"
+        android:layout_below="@+id/input_ingredient"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/input_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="פה יופיע אופן ההכנה"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/recipe_instructions" />
+
+    <TextView
+        android:id="@+id/input_ingredient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="פה יופיעו המצרכים"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="14dp"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/recipe_ingredient" />
 
 
 </RelativeLayout>

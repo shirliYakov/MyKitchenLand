@@ -4,11 +4,11 @@
     android:id="@+id/activity_main_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorAccent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background1"
 
     tools:context="com.example.shirl1.mykitchenland.MainMenu">
 
@@ -20,14 +20,14 @@
     </GridLayout>
 
     <TextView
-        android:text="תפריט ראשי"
+        android:id="@+id/menuTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/menuTv"
-        android:textSize="35sp"
-        android:textColor="@android:color/white"
         android:layout_below="@+id/gridLayout"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="תפריט ראשי"
+        android:textColor="@android:color/white"
+        android:textSize="35sp" />
 
     <Button
         android:id="@+id/bookBtn"
@@ -45,26 +45,26 @@
     </Button>
 
     <Button
-        android:text="המלאי הביתי "
-        android:textSize="22sp"
+        android:id="@+id/inventoryBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/inventoryBtn"
-        android:onClick="inventoryLayout"
-        android:layout_below="@+id/button5"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/button5"
+        android:onClick="inventoryLayout"
+        android:text="המלאי הביתי "
+        android:textSize="22sp" />
 
     <Button
-        android:text="רשימת קניות"
+        android:id="@+id/button5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:id="@+id/button5"
-        android:onClick="ShoppingListActivity_onClick"
-        android:layout_below="@+id/recipeBtn"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/recipeBtn"
+        android:onClick="ShoppingListActivity_onClick"
+        android:text="רשימת קניות"
+        android:textSize="22sp" />
 
     <Button
         android:id="@+id/recipeBtn"
@@ -79,26 +79,26 @@
         tools:onClick="AdminRecipesActivity_onClick" />
 
     <Button
-        android:text="תפריט שבועי"
+        android:id="@+id/weeklyBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:id="@+id/weeklyBtn"
-        android:onClick="WeeklyMenuLayout"
-        android:layout_below="@+id/inventoryBtn"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/inventoryBtn"
+        android:onClick="WeeklyMenuLayout"
+        android:text="תפריט שבועי"
+        android:textSize="22sp" />
 
     <Button
-        android:text="התנתקות"
+        android:id="@+id/logotBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/logotBtn"
-        android:textSize="22sp"
-        android:onClick="LogOut"
-        android:layout_marginTop="51dp"
-        android:layout_below="@+id/weeklyBtn"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/weeklyBtn"
+        android:layout_marginTop="51dp"
+        android:onClick="LogOut"
+        android:text="התנתקות"
+        android:textSize="22sp" />
 
 </RelativeLayout>

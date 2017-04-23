@@ -8,92 +8,10 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background1"
+    android:background="@drawable/register3"
     tools:context="com.example.shirl1.mykitchenland.Registration"
     android:weightSum="1"
     android:baselineAligned="false">
-
-    <TextView
-        android:text="הרשמה"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/regTv"
-        android:layout_weight="0.13"
-        android:textSize="24sp"
-        android:textColor="@android:color/white"
-        android:textStyle="normal|bold" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:layout_alignTop="@+id/emailEt"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/mailEt" />
-
-    <TextView
-        android:text="שם משתמש"
-        android:textColor="@android:color/black"
-        android:textStyle="normal|bold"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/userTv"
-        android:layout_marginTop="39dp"
-        android:layout_below="@+id/regTv"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/nameEt"
-        android:layout_alignBottom="@+id/userTv"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="סיסמא"
-        android:textColor="@android:color/black"
-        android:textStyle="normal|bold"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="43dp"
-        android:id="@+id/passTv"
-        android:layout_below="@+id/userTv"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:id="@+id/editText11"
-        android:layout_alignBaseline="@+id/passTv"
-        android:layout_alignBottom="@+id/passTv"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:text="דואר אלקטרוני"
-        android:textColor="@android:color/black"
-        android:textStyle="normal|bold"
-        android:textSize="18sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/emailEt"
-        android:layout_marginTop="43dp"
-        android:layout_below="@+id/editText11"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
     <Button
         android:text="הרשמה"
@@ -102,10 +20,9 @@
         android:id="@+id/regBtn"
         android:textSize="18sp"
         android:textStyle="normal|bold"
-        android:layout_marginTop="66dp"
-        android:layout_below="@+id/mailEt"
-        android:layout_toRightOf="@+id/emailEt"
-        android:layout_toEndOf="@+id/emailEt" />
+        android:layout_below="@+id/input_password"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
 
     <Button
         android:text="מעבר לתפריט"
@@ -116,5 +33,40 @@
         android:onClick="MenuLayout"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/input_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="138dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="דואר אלקטרוני" />
+
+    <EditText
+        android:id="@+id/input_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="שם משתמש"
+        android:layout_below="@+id/input_email"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/input_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="סיסמה"
+        android:layout_below="@+id/input_name"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>

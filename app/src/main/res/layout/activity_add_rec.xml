@@ -9,7 +9,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        android:background="@drawable/img5"
+        android:background="@drawable/img15"
         tools:context="com.example.shirl1.mykitchenland.AddRecActivity">
 
 
@@ -52,21 +52,32 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="52dp"
             android:id="@+id/scrollView2"
-            android:layout_below="@+id/input_name"
+            android:layout_below="@+id/txt_ingrediens"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true">
 
 
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:id="@+id/linearLayout"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_marginBottom="8dp"
                 android:layout_below="@+id/input_name"
                 android:layout_centerHorizontal="true"
                 android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/add_ingre_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_below="@+id/scrollView2"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    app:srcCompat="@drawable/icon_add1" />
 
                 <EditText
                     android:id="@+id/input_amount"
@@ -93,17 +104,7 @@
             </LinearLayout>
         </ScrollView>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:background="@null"
-            android:layout_marginLeft="5dp"
-            android:layout_below="@+id/scrollView2"
-            app:srcCompat="@drawable/icon_add1"
-            android:id="@+id/addingre_btn" />
-
-        <EditText
+    <EditText
             android:id="@+id/input_instructions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -133,13 +134,13 @@
         android:id="@+id/txt_instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/addingre_btn"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="5dp"
         android:text="אופן הכנה"
         android:textColor="@android:color/white"
-        android:textSize="20dp" />
+        android:textSize="20dp"
+        android:layout_above="@+id/input_instructions"
+        android:layout_alignRight="@+id/txt_ingrediens"
+        android:layout_alignEnd="@+id/txt_ingrediens"
+        android:layout_marginBottom="13dp" />
 
 
 </RelativeLayout>
