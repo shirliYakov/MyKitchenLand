@@ -12,6 +12,9 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    int x = 90 ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
