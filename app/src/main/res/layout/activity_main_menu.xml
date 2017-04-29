@@ -58,7 +58,7 @@
         android:drawableTop="@drawable/circul9"
         android:onClick="ShoppingListActivity_onClick"
         android:text="רשימת קניות"
-        android:layout_marginRight="21dp"
+        android:layout_marginRight="23dp"
         android:layout_marginEnd="21dp"
         android:layout_alignBottom="@+id/btn_myrecipe"
         android:layout_alignRight="@+id/menuTv"

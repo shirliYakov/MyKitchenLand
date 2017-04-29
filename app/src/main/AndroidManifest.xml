@@ -15,11 +15,6 @@
         android:largeHeap="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Registration"
@@ -29,6 +24,13 @@
         <activity
             android:name=".Inventory"
             android:label="@string/title_activity_inventory" />
+        <activity android:name=".splash_welcome" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".MyRecipesActivity" />
         <activity android:name=".RecipesActivity" />
         <activity android:name=".ShopListActivity" />

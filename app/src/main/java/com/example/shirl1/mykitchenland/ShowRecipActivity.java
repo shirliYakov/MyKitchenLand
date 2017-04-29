@@ -21,13 +21,12 @@ public class ShowRecipActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_recip);
 
-        name1 = (TextView) findViewById(R.id.input_name);
-        ingredient1 = (TextView) findViewById(R.id.input_ingredient);
-        instructions1 = (TextView) findViewById(R.id.input_instructions);
+        name1 = (TextView) findViewById(R.id.recipe_name);
+        /*ingredient1 = (TextView) findViewById(R.id.input_ingredient);
+        instructions1 = (TextView) findViewById(R.id.input_instructions);*/
 
-        Bundle extras = getIntent().getExtras();
-        String name = extras.getString("Info");
-
+        Bundle bundle = getIntent().getExtras();
+        String name = bundle.getString("Recipe");
         name1.setText(name);
 
     }

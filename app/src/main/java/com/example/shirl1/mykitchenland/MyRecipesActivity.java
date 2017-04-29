@@ -46,7 +46,6 @@ public class MyRecipesActivity extends AppCompatActivity {
         Cursor data = db.getRecipeForList();
 
         ListAdapter listAdapter = new ArrayAdapter<>(MyRecipesActivity.this, android.R.layout.simple_list_item_1, list);
-        listView.setAdapter(listAdapter);
 
         if(data.getCount()==0){
             Toast.makeText(MyRecipesActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
@@ -56,7 +55,6 @@ public class MyRecipesActivity extends AppCompatActivity {
             }
         }
 
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> adapterView , View view, int i, long l) {
                 Intent intent = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
@@ -64,6 +62,8 @@ public class MyRecipesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        listView.setAdapter(listAdapter);
 
         //db.addRecipe(new Recipes("RECIP1", "FUN"));
         //db.addIngredient(new Ingredient(1,"6","BANANA"));
