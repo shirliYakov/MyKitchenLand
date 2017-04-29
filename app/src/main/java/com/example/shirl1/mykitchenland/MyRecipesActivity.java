@@ -40,20 +40,14 @@ public class MyRecipesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_my_recipes);
 
         db = new DBHandler(this);
-        info = (TextView)findViewById(R.id.Info);
-        String log ="";
-        List <Recipes> recipesList = db.getAllRecipes();
-        for (Recipes recipes : recipesList) {
-            log = log + "Id: " + recipes.get_id() + " , Name: "  + recipes.get_recipename()
-                    + ", instructions: " + recipes.get_recipeinstructions() + "\n";
-            info.setText(log);
-        }
 
         listView = (ListView) findViewById(R.id.listview_myrecipe);
         ArrayList <String> list = new ArrayList<>();
         Cursor data = db.getRecipeForList();
 
         ListAdapter listAdapter = new ArrayAdapter<>(MyRecipesActivity.this, android.R.layout.simple_list_item_1, list);
+        listView.setAdapter(listAdapter);
+
         if(data.getCount()==0){
             Toast.makeText(MyRecipesActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
         }else{
@@ -61,16 +55,15 @@ public class MyRecipesActivity extends AppCompatActivity {
                 list.add(data.getString(2));//column 2 is index of column-name
             }
         }
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> adapterView , View view, int i, long l) {
-
-                Intent inte = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
-                inte.putExtra("name", listView.getItemAtPosition(i).toString());
-                startActivity(inte);
+                Intent intent = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
+                intent.putExtra("Recipe", listView.getItemAtPosition(i).toString());
+                startActivity(intent);
             }
         });
-
-        listView.setAdapter(listAdapter);
 
         //db.addRecipe(new Recipes("RECIP1", "FUN"));
         //db.addIngredient(new Ingredient(1,"6","BANANA"));

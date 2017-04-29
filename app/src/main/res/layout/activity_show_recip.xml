@@ -84,6 +84,6 @@
         android:layout_below="@+id/recipe_ingredient" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 
 
