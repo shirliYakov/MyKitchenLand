@@ -13,13 +13,12 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
 
 
-    int x = 90 ;
-
-    @Override
+        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+        setContentView(R.layout.activity_main);
+
 
     }
 

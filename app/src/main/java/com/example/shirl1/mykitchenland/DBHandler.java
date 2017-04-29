@@ -16,7 +16,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
@@ -104,8 +104,6 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-
-
     public void clearTable()   {
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -114,10 +112,6 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
-
-
-
-/*
     //get specific recipe
     public Recipes getRecipe(int re_id) {
 
@@ -140,15 +134,35 @@ public class DBHandler extends SQLiteOpenHelper {
         return re;
     }
 
+    public Recipes getRecipeByName(String re_name) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_RECIPES + " WHERE "
+                + COLUMN_RECIPE_NAME + " = " + re_name;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Recipes re = new Recipes();
+        re.set_id(c.getInt(c.getColumnIndex(COLUMN_ID)));
+        re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
+        re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
+        db.close();
+        return re;
+    }
+
 
     //delete from table
     public void deleteRecipe(String recipename){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_RECIPES + " WHERE" + COLUMN_RECIPE_NAME + "=\"" + recipename + "\";");
         db.close();
-    }*/
-
-
+    }
 
     //get table of recipes
     public List <Recipes> getAllRecipes() {

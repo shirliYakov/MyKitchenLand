@@ -46,11 +46,18 @@
         <ListView
             android:id="@+id/listview_myrecipe"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/scrollViewMR2"
-            android:layout_above="@+id/btn_back"
-            android:layout_marginTop="50dp" />
+            android:layout_height="300dp"
+            android:layout_below="@+id/txt_head"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/Info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/listview_myrecipe"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:text="TextView" />
 
 </RelativeLayout>
