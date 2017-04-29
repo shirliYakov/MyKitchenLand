@@ -16,7 +16,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
@@ -47,8 +47,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String CREATE_TABLE_RECIPE= "CREATE TABLE " + TABLE_RECIPES + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_RECIPE_INSTRUCTIONS + " TEXT, "
-                + COLUMN_RECIPE_NAME + " TEXT )";
+                + COLUMN_RECIPE_NAME + " TEXT, "
+                + COLUMN_RECIPE_INSTRUCTIONS + " TEXT )";
 
         String CREATE_TABLE_INGREDIENT= "CREATE TABLE " + TABLE_INGREDIENT + "("
                 + COLUMN_ID + " INTEGER, "
@@ -134,12 +134,13 @@ public class DBHandler extends SQLiteOpenHelper {
         return re;
     }
 
+
     public Recipes getRecipeByName(String re_name) {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String selectQuery = "SELECT * FROM " + TABLE_RECIPES + " WHERE "
-                + COLUMN_RECIPE_NAME + " = " + re_name;
+        String selectQuery = "SELECT  * FROM " + TABLE_RECIPES + " WHERE "
+                + COLUMN_RECIPE_NAME + " = '" + re_name + "'";
 
         Log.e(LOG, selectQuery);
 
@@ -153,6 +154,7 @@ public class DBHandler extends SQLiteOpenHelper {
         re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
         re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
         db.close();
+
         return re;
     }
 
@@ -188,6 +190,32 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return all_recipes;
     }
+/*
+    public List <Recipes> getListRecipeByName(String name) {
+
+        List <Recipes> all_recipes = new ArrayList <Recipes>();
+        String selectQuery = "SELECT * FROM " + TABLE_RECIPES + " A LEFT JOIN "+ TABLE_INGREDIENT +
+                " B ON A." + COLUMN_ID + " = B." + COLUMN_ID +
+                " WHERE A." + COLUMN_RECIPE_NAME + " = '" + name + "'";
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Recipes re = new Recipes();
+                re.set_id(c.getInt((c.getColumnIndex(COLUMN_ID))));
+                re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
+                re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
+
+                all_recipes.add(re);
+            } while (c.moveToNext());
+        }
+
+        return all_recipes;
+    }*/
 
     public Cursor getRecipeForList(){
 
@@ -195,12 +223,48 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECIPES, null);
         return c;
     }
+/*
+    public Cursor getRecipeByName(String Rname){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECIPES
+                + " WHERE" + COLUMN_RECIPE_NAME + " = " +  Rname , null);
+        return c;
+    }*/
 
 
     public List <Ingredient> getAllIngredient() {
 
         List <Ingredient> all_ingredient = new ArrayList <Ingredient>();
         String selectQuery = "SELECT * FROM " + TABLE_INGREDIENT;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Ingredient ingre = new Ingredient();
+                ingre.set_id(c.getInt((c.getColumnIndex(COLUMN_ID))));
+                ingre.set_amount(c.getString(c.getColumnIndex(COLUMN_RECIPE_AMOUNT)));
+                ingre.set_ingredient(c.getString(c.getColumnIndex(COLUMN_RECIPE_INGREDIENT)));
+
+
+                // adding to tags list
+                all_ingredient.add(ingre);
+            } while (c.moveToNext());
+        }
+
+        return all_ingredient;
+    }
+
+    public List <Ingredient> getIngredientById(int r_id) {
+
+        List <Ingredient> all_ingredient = new ArrayList <Ingredient>();
+        String selectQuery = "SELECT  * FROM " + TABLE_INGREDIENT + " WHERE "
+                + COLUMN_ID + " = " + r_id;
 
         Log.e(LOG, selectQuery);
 

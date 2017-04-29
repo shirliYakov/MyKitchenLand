@@ -1,6 +1,7 @@
 package com.example.shirl1.mykitchenland;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,21 +16,39 @@ public class ShowRecipActivity extends AppCompatActivity {
     TextView name1;
     TextView ingredient1;
     TextView instructions1;
-    int i;
+    DBHandler db;
+    String name;
+    String nameinput;
+    int id;
+    String instruct;
+    String in;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_recip);
+        db = new DBHandler(this);
 
         name1 = (TextView) findViewById(R.id.recipe_name);
-        /*ingredient1 = (TextView) findViewById(R.id.input_ingredient);
-        instructions1 = (TextView) findViewById(R.id.input_instructions);*/
+        ingredient1 = (TextView) findViewById(R.id.input_ingredient);
+        instructions1 = (TextView) findViewById(R.id.input_instructions);
 
+        //get name from list
         Bundle bundle = getIntent().getExtras();
-        String name = bundle.getString("Recipe");
-        name1.setText(name);
+        nameinput = bundle.getString("Name");
 
+        Recipes r = db.getRecipeByName(nameinput);
+        instructions1.setText(r.get_recipeinstructions());
+        name1.setText(r.get_recipename());
+        id =r.get_id();
+
+        String log="";
+        List <Ingredient> i = db.getIngredientById(id);
+        for (Ingredient ingre : i) {
+            log = log +  ingre.get_amount() + "  "  + ingre.get_ingredient() + "\n";
+            ingredient1.setText(log);
+        }
     }
 
     public void btn_back_On_Click(View v){

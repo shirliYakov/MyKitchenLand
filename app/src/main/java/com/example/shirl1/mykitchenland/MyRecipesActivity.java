@@ -42,6 +42,7 @@ public class MyRecipesActivity extends AppCompatActivity {
         db = new DBHandler(this);
 
         listView = (ListView) findViewById(R.id.listview_myrecipe);
+        info = (TextView) findViewById(R.id.showtable);
         ArrayList <String> list = new ArrayList<>();
         Cursor data = db.getRecipeForList();
 
@@ -51,25 +52,23 @@ public class MyRecipesActivity extends AppCompatActivity {
             Toast.makeText(MyRecipesActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
         }else{
             while(data.moveToNext()){
-                list.add(data.getString(2));//column 2 is index of column-name
+                list.add(data.getString(1));//column 2 is index of column-name
             }
         }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> adapterView , View view, int i, long l) {
+
                 Intent intent = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
-                intent.putExtra("Recipe", listView.getItemAtPosition(i).toString());
+                intent.putExtra("Name", listView.getItemAtPosition(i).toString());
                 startActivity(intent);
             }
         });
 
         listView.setAdapter(listAdapter);
 
-        //db.addRecipe(new Recipes("RECIP1", "FUN"));
-        //db.addIngredient(new Ingredient(1,"6","BANANA"));
 
-        /*
-        //****ptint database*****
+        //print table
         String log ="";
         List <Recipes> recipesList = db.getAllRecipes();
         for (Recipes recipes : recipesList) {
@@ -78,13 +77,10 @@ public class MyRecipesActivity extends AppCompatActivity {
             info.setText(log);
         }
 
-        String log2 ="";
-        List <Ingredient> ingredientsList = db.getAllIngredient();
-        for (Ingredient ingredient : ingredientsList) {
-            log2 = log2 + "Id: " + ingredient.get_id() + " , amount: "  + ingredient.get_amount()
-                    + ", ingredient: " + ingredient.get_ingredient() + "\n";
-            info2.setText(log2);
-        }*/
+        //db.addRecipe(new Recipes("RECIP1", "FUN"));
+        //db.addIngredient(new Ingredient(1,"6","BANANA"));
+
+
 
     }
 
