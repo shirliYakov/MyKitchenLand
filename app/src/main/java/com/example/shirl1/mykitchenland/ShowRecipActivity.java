@@ -15,6 +15,7 @@ public class ShowRecipActivity extends AppCompatActivity {
     TextView name1;
     TextView ingredient1;
     TextView instructions1;
+    int i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
