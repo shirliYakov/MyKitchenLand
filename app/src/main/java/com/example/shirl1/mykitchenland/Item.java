@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.content.Intent;
+
 
 /**
  * Created by shirl on 18/04/2017.
@@ -12,9 +14,14 @@ import android.widget.RelativeLayout;
 
 class Item
 {
+    int list_id;
     String itemName;
     String amount;
+    int item_id;
 
+    public void set_list_id(int list_id){
+        this.list_id = list_id;
+    }
 
     public void setItemName(String itemName)
     {
@@ -26,12 +33,28 @@ class Item
         this.amount = amount;
     }
 
-    public String getItemName()
+    public int getItemId()
         {
-        return itemName;
+        return item_id;
          }
+
+    public void setItemId(int item_id)
+    {
+        this.item_id = item_id;
+    }
+
+    public String getItemName()
+    {
+        return itemName;
+    }
+
 
     public String getAmount() {
         return amount;
     }
+
+    public int get_list_id(){
+        return this.list_id;
+    }
+
 }

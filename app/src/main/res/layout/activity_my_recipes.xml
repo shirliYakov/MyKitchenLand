@@ -8,10 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background1"
+    android:background="@drawable/img17"
     tools:context="com.example.shirl1.mykitchenland.MyRecipesActivity">
-
-
 
         <TextView
             android:id="@+id/txt_head"
@@ -19,10 +17,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:text="המתכונים שלי"
             android:textSize="20sp" />
 
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:onClick="btn_delete_On_Click"
+            android:text="מחק את כל המאגר"
+            android:textSize="10sp" />
 
         <Button
             android:id="@+id/btn_back"
@@ -35,9 +43,14 @@
             android:text="חזור לתפריט הראשי"
             android:textSize="10sp" />
 
+        <ListView
+            android:id="@+id/listview_myrecipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/scrollViewMR2"
+            android:layout_above="@+id/btn_back"
+            android:layout_marginTop="50dp" />
 
-    </RelativeLayout>
-
-
-
-
+</RelativeLayout>

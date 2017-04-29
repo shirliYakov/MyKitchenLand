@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background1"
+    android:background="@drawable/login3"
     android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
 
 
@@ -18,66 +18,27 @@
 
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_marginTop="11dp"
+        android:inputType="text"
+        android:hint="סיסמה"
         android:id="@+id/passEt"
-        android:layout_below="@+id/passTv"
-        android:layout_alignStart="@+id/passTv"
         android:textColorLink="?attr/actionMenuTextColor"
-        android:width="320dp"
-        android:layout_alignLeft="@+id/passTv" />
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/emailEt"
         android:textColorLink="?attr/actionMenuTextColor"
         android:width="320dp"
-        android:layout_below="@+id/emailTv"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="סיסמה"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/passTv"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        android:layout_marginTop="21dp"
-        android:layout_below="@+id/emailEt"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="התחברות"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/loginTv"
-        android:textSize="30sp"
-        tools:textStyle="bold"
-        android:textColor="@android:color/white"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp"
-        android:textColorLink="@android:color/black" />
-
-    <TextView
-        android:text="דואר אלקטרוני"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:id="@+id/emailTv"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/loginTv"
+        android:hint = "דואר אלקטרוני"
+        android:layout_marginBottom="31dp"
+        android:layout_above="@+id/passEt"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -87,13 +48,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnLogin"
         android:elevation="0dp"
-        android:minHeight="82dp"
+        android:minHeight="20dp"
         android:nestedScrollingEnabled="true"
-        android:layout_marginTop="33dp"
+        android:textSize="15sp"
+        android:textStyle="normal|bold"
         android:layout_below="@+id/passEt"
         android:layout_centerHorizontal="true"
-        android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:layout_marginTop="25dp" />
 
     <Button
         android:text="לחץ כאן להרשמה"
