@@ -17,9 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:text="המתכונים שלי"
-        android:textSize="20sp" />
+        android:textStyle="bold"
+        android:textSize="25sp" />
 
     <Button
         android:id="@+id/btn_delete"
@@ -50,14 +51,5 @@
         android:layout_below="@+id/txt_head"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/showtable"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/listview_myrecipe"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
-        android:text="TextView" />
 
 </RelativeLayout>
