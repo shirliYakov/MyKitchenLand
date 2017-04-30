@@ -17,7 +17,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
@@ -297,5 +297,24 @@ public class DBHandler extends SQLiteOpenHelper {
         db.delete(TABLE_ITEMS,null,null);
         db.delete(TABLE_SHOPLIST,null,null);
         db.close();
+    }
+
+
+    public List<Shopping_list> getListOfshoppingList() {
+
+        List <Shopping_list> all_lists = new ArrayList <Shopping_list>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_SHOPLIST, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Shopping_list shopl = new Shopping_list();
+                shopl.set_listId(c.getInt(c.getColumnIndex(COLUMN_LIST_NAME)));
+                shopl.set_listname(c.getString(c.getColumnIndex(COLUMN_LIST_NAME)));
+                all_lists.add(shopl);
+            } while (c.moveToNext());
+        }
+        c.moveToFirst();
+        return all_lists;
     }
 }

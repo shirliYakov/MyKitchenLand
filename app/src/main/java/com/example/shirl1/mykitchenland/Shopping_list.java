@@ -31,6 +31,10 @@ public class Shopping_list {
         this.list_name = list_name;
     }
 
+    public void set_listId(int list_id){
+        this.list_id = list_id;
+    }
+
 
     public int get_list_id(){
         return this.list_id;

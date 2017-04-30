@@ -5,27 +5,37 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShopListActivity extends AppCompatActivity {
     DBHandler db;
     TextView info;
-
+    EditText list_name;
+    private RecyclerView mRecyclerView;
+    private ShopListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_list);
+        mRecyclerView = (RecyclerView) findViewById(R.id.list_list);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+        mAdapter = new ShopListAdapter((ArrayList)db.getListOfshoppingList());
+        mRecyclerView.setAdapter(mAdapter);
 
     }
 
