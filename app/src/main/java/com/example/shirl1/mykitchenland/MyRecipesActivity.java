@@ -114,7 +114,7 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         if (id == R.id.search_rec) {
             View view = LayoutInflater.from(MyRecipesActivity.this).inflate(R.layout.activity_search_rec, null);
-            final EditText search = (EditText) view.findViewById(R.id.search_rec);
+            final EditText search = (EditText) view.findViewById(R.id.txt_search_re);
 
             AlertDialog.Builder builder= new AlertDialog.Builder(MyRecipesActivity.this);
             builder.setTitle("חיפוש מתכון");
@@ -125,7 +125,9 @@ public class MyRecipesActivity extends AppCompatActivity {
 
                 public void onClick(DialogInterface dialog, int which) {
 
-                    startActivity(new Intent(MyRecipesActivity.this, ShowRecipActivity.class));
+                    Intent intent = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
+                    intent.putExtra("Name", search.getText().toString());
+                    startActivity(intent);
                 }
 
             });

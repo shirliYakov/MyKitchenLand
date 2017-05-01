@@ -30,16 +30,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyRecipesActivity" />
-        <activity android:name=".RecipesActivity" />
+        <activity
+            android:name=".MyRecipesActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".RecipesActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".ShopListActivity" />
         <activity
             android:name=".AddRecActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".AddShopListActivity" />
-        <activity android:name=".SearchRecActivity" />
-        <activity android:name=".ShowRecipActivity" />
-        <activity android:name=".ShowManagerRecipActivity"></activity>
+        <activity
+            android:name=".SearchRecActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ShowRecipActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity
+            android:name=".ShowManagerRecipActivity"
+            android:windowSoftInputMode="adjustPan">
+
+        </activity>
     </application>
 
 </manifest>

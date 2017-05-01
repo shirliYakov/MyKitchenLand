@@ -33,6 +33,7 @@ public class AddRecActivity extends AppCompatActivity {
     ArrayList<Ingredient> arr_in;
     String in1;
     String in2;
+    String checkName;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -49,9 +50,13 @@ public class AddRecActivity extends AppCompatActivity {
         arr_in = new ArrayList<>();
         check = 0;
 
+
+
         //db.addRecipe(new Recipes("RECIP1"));
         //db.addRecipe(new Recipes("RECIP2"));
         //db.addRecipe(new Recipes("RECIP3"));
+
+
 
     }
 
@@ -104,20 +109,32 @@ public class AddRecActivity extends AppCompatActivity {
 
     public void btn_add_re_On_Click(View v){
 
-        getLastIngredient();
+        checkName = re_name.getText().toString();
 
-        Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString());
-        db.addRecipe(recipe);
+        Recipes c = db.getRecipeByName(checkName);
+        if (c != null){
 
-
-        for (int i = 0; i < arr_in.size(); i++) {
-            Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());
-            db.addIngredient(ing);
+            Toast.makeText(AddRecActivity.this, "שם מתכון כבר קיים", Toast.LENGTH_LONG).show();
+            re_name.setText(" ");
         }
-        Toast.makeText(AddRecActivity.this, "נוסף למתכונים שלי", Toast.LENGTH_LONG).show();
 
-        Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
-        startActivity(Go);
+        else {
+
+            getLastIngredient();
+
+            Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString());
+            db.addRecipe(recipe);
+
+
+            for (int i = 0; i < arr_in.size(); i++) {
+                Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());
+                db.addIngredient(ing);
+            }
+            Toast.makeText(AddRecActivity.this, "נוסף למתכונים שלי", Toast.LENGTH_LONG).show();
+
+            Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
+            startActivity(Go);
+        }
     }
 
 }

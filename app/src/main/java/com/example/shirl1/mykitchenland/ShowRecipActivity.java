@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -39,16 +40,28 @@ public class ShowRecipActivity extends AppCompatActivity {
         nameinput = bundle.getString("Name");
 
         Recipes r = db.getRecipeByName(nameinput);
-        instructions1.setText(r.get_recipeinstructions());
-        name1.setText(r.get_recipename());
-        id =r.get_id();
 
-        String log="";
-        List <Ingredient> i = db.getIngredientById(id);
-        for (Ingredient ingre : i) {
-            log = log +  ingre.get_amount() + "  "  + ingre.get_ingredient() + "\n";
-            ingredient1.setText(log);
+        if (r!= null) {
+            instructions1.setText(r.get_recipeinstructions());
+            name1.setText(r.get_recipename());
+            id =r.get_id();
+
+            String log="";
+            List <Ingredient> i = db.getIngredientById(id);
+            for (Ingredient ingre : i) {
+                log = log +  ingre.get_amount() + "  "  + ingre.get_ingredient() + "\n";
+                ingredient1.setText(log);
+            }
         }
+
+        else {
+            Toast.makeText(ShowRecipActivity.this, "מתכון לא קיים במאגר", Toast.LENGTH_LONG).show();
+            Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
+            startActivity(Go);
+        }
+
+
+
     }
 
     public void btn_back_On_Click(View v){

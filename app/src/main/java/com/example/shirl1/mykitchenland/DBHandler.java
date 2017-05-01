@@ -16,12 +16,11 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 9;
+    private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
     int MyId_m;
-
 
     //table1
     private static final String TABLE_RECIPES = "Recipes";
@@ -51,7 +50,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         String CREATE_TABLE_RECIPE= "CREATE TABLE " + TABLE_RECIPES + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + COLUMN_RECIPE_NAME + " TEXT, "
+                + COLUMN_RECIPE_NAME + " TEXT unique , "
                 + COLUMN_RECIPE_INSTRUCTIONS + " TEXT )";
 
         String CREATE_TABLE_INGREDIENT= "CREATE TABLE " + TABLE_INGREDIENT + "("
@@ -78,6 +77,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
+
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES_MANAGER);
@@ -181,6 +181,10 @@ public class DBHandler extends SQLiteOpenHelper {
         Log.e(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
+        if(c.getCount() <= 0){
+            c.close();
+            return null;
+        }
 
         if (c != null)
             c.moveToFirst();
@@ -204,6 +208,10 @@ public class DBHandler extends SQLiteOpenHelper {
         Log.e(LOG, selectQuery);
 
         Cursor c = db.rawQuery(selectQuery, null);
+        if(c.getCount() <= 0){
+            c.close();
+            return null;
+        }
 
         if (c != null)
             c.moveToFirst();
