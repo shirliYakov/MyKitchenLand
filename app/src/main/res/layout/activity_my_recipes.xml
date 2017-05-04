@@ -23,25 +23,17 @@
         android:textSize="25sp" />
 
     <Button
-        android:id="@+id/btn_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginLeft="10dp"
-        android:onClick="btn_delete_On_Click"
-        android:text="מחק את כל המאגר"
-        android:textSize="10sp" />
-
-    <Button
         android:id="@+id/btn_back"
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/home"
+        android:background="@android:color/transparent"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="10dp"
         android:onClick="btn_back_On_Click"
         android:text="חזור לתפריט הראשי"
+        android:textColor="@color/colorPrimary"
         android:textSize="10sp" />
 
     <ListView

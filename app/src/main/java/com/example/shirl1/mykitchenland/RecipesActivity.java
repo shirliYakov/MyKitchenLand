@@ -35,10 +35,13 @@ public class RecipesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
 
         db = new DBHandler(this);
-/*
-        Recipes recipe = new Recipes("פשטידה","לערבב");
+
+        //btn_delete_On_Click();
+
+        /*Recipes recipe = new Recipes("פשטידה","לערבב");
         db.addRecipe_manager(recipe);
         Ingredient ingredient = new Ingredient("5","בננות");
         db.addIngredient_manager(ingredient);
@@ -74,11 +77,8 @@ public class RecipesActivity extends AppCompatActivity {
 
     }
 
-    public void btn_delete_On_Click(View v){
+    public void btn_delete_On_Click(){
         db.clearTableManager();
-        Intent refresh = new Intent(this, RecipesActivity.class);
-        startActivity(refresh);
-        this.finish();
     }
 
     public void btn_back_On_Click(View v){

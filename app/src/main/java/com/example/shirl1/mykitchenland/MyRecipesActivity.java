@@ -38,6 +38,7 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
 
         db = new DBHandler(this);
 
@@ -84,12 +85,12 @@ public class MyRecipesActivity extends AppCompatActivity {
 
     }
 
-    public void btn_delete_On_Click(View v){
+    /*public void btn_delete_On_Click(View v){
         db.clearTable();
         Intent refresh = new Intent(this, MyRecipesActivity.class);
         startActivity(refresh);
         this.finish();
-    }
+    }*/
 
     public void btn_back_On_Click(View v){
         Intent Go = new Intent(MyRecipesActivity.this, MainMenu.class);

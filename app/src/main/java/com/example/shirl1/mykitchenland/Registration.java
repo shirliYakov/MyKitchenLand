@@ -15,33 +15,65 @@ public class Registration extends AppCompatActivity {
     EditText input_password;
     EditText input_lastname;
 
+    String email;
+    String password;
+    String name;
+    String lastname;
+    DBHandler db;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().hide();
+
         setContentView(R.layout.activity_registration);
 
         input_email = (EditText)findViewById(R.id.input_email);
         input_name = (EditText)findViewById(R.id.input_name);
         input_password = (EditText)findViewById(R.id.input_password);
         input_lastname = (EditText)findViewById(R.id.input_lastname);
+        db = new DBHandler(this);
+
     }
 
-    public void Register_on_click(View view)
-    {
+    public void Register_on_click(View view) {
 
-        if ((input_name!=null) & (input_lastname!=null) & (input_email!=null) & (input_password!=null)) {
+        String log= "";
+        email = input_email.getText().toString();
+        password = input_password.getText().toString();
+        name= input_name.getText().toString();
+        lastname = input_lastname.getText().toString();
 
-            String write = "נרשם בהצלחה";
-            Toast.makeText(Registration.this, write /*+username database*/, Toast.LENGTH_LONG).show();
+        if(email.isEmpty())
+            log = log + " הכנס דואר אקלטרוני " + "\n";
 
-            //error red at not filled places
+        if(password.isEmpty())
+            log = log + " הכנס סיסמא " + "\n";
+
+        if(name.isEmpty())
+            log = log + " הכנס שם פרטי " + "\n";
+
+        if(lastname.isEmpty())
+            log = log + " הכנס שם משפחה " + "\n";
+
+        if(log.isEmpty()) {
+
+            USERS user = new USERS(name, lastname, email, password);
+            db.addUser(user);
+            Toast.makeText(Registration.this, "נרשם בהצלחה", Toast.LENGTH_LONG).show();
+
+            String FullName = name + " " + lastname;
+
+            Intent intent = new Intent(Registration.this, MainMenu.class);
+            intent.putExtra("FullName", FullName);
+            startActivity(intent);
+
         }
 
-        Intent menu = new Intent(this, MainMenu.class);
-        startActivity(menu);
+        else
+            Toast.makeText(Registration.this, "שים לב" + "\n" + log, Toast.LENGTH_LONG).show();
 
     }
 }

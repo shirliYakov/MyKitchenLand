@@ -26,16 +26,18 @@
         android:layout_centerHorizontal="true" />
 
     <Button
-        android:id="@+id/btn_back"
+
         android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/home"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:id="@+id/btn_back"
         android:onClick="btn_back_On_Click"
-        android:background="@color/colorPrimary"
         android:text="חזור לתפריט הראשי"
-        android:textSize="10sp" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"  />
 
     <Button
         android:id="@+id/btn_myrecipe"
@@ -99,7 +101,20 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <Button
+        android:id="@+id/button"
+        android:onClick="DeleteRecipe_onClick"
+        android:text="מחק"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/delete"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true" />
 
-    </RelativeLayout>
+
+</RelativeLayout>
 
 

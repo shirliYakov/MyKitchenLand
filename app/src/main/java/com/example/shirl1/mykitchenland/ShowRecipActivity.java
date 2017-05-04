@@ -29,6 +29,7 @@ public class ShowRecipActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_recip);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
         db = new DBHandler(this);
 
         name1 = (TextView) findViewById(R.id.recipe_name);
@@ -49,7 +50,7 @@ public class ShowRecipActivity extends AppCompatActivity {
             String log="";
             List <Ingredient> i = db.getIngredientById(id);
             for (Ingredient ingre : i) {
-                log = log +  ingre.get_amount() + "  "  + ingre.get_ingredient() + "\n";
+                log = log +  ingre.get_ingredient() + "  "  + ingre.get_amount() + "\n";
                 ingredient1.setText(log);
             }
         }
@@ -70,6 +71,13 @@ public class ShowRecipActivity extends AppCompatActivity {
     }
 
     public void btn_back_myrecpie_On_Click(View v){
+        Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
+        startActivity(Go);
+    }
+
+    public void DeleteRecipe_onClick(View v){
+
+        db.deleteRecipe(nameinput);
         Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
         startActivity(Go);
     }

@@ -16,7 +16,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 13;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
@@ -37,6 +37,14 @@ public class DBHandler extends SQLiteOpenHelper {
 
     private static final String TABLE_RECIPES_MANAGER = "Recipes_manager";
     private static final String TABLE_INGREDIENT_MANAGER = "Ingredient_manager";
+
+    //table3
+    private static final String TABLE_USERS = "users";
+    //columns2:
+    private static final String COLUMN_NAME = "user_name";
+    private static final String COLUMN_LAST_NAME = "user_lastname";
+    private static final String COLUMN_EMAIL = "user_email";
+    private static final String COLUMN_PASSWORD = "user_password";
 
 
 
@@ -68,12 +76,19 @@ public class DBHandler extends SQLiteOpenHelper {
                 + COLUMN_RECIPE_AMOUNT + " INTEGER, "
                 + COLUMN_RECIPE_INGREDIENT + " TEXT )";
 
+        String CREATE_TABLE_USERS= "CREATE TABLE " + TABLE_USERS + "("
+                + COLUMN_EMAIL + " TEXT PRIMARY KEY , "
+                + COLUMN_PASSWORD + " TEXT , "
+                + COLUMN_NAME + " TEXT , "
+                + COLUMN_LAST_NAME + " TEXT )";
+
         db.execSQL(CREATE_TABLE_RECIPE);
         db.execSQL(CREATE_TABLE_INGREDIENT);
         db.execSQL(CREATE_TABLE_RECIPE_MANAGER);
         db.execSQL(CREATE_TABLE_INGREDIENT_MANAGER);
+        db.execSQL(CREATE_TABLE_USERS);
 
-        //ADD ALLLL TABLES
+
     }
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion){
@@ -82,8 +97,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENT);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES_MANAGER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENT_MANAGER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
 
-        //DROP ALLLL TABLES
+
         onCreate(db);
     }
 
@@ -103,6 +119,29 @@ public class DBHandler extends SQLiteOpenHelper {
         db.delete(TABLE_RECIPES_MANAGER,null,null);
         db.delete(TABLE_INGREDIENT_MANAGER,null,null);
 
+    }
+
+    public void clearTableUsers()   {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_USERS,null,null);
+
+    }
+
+
+    public void addUser(USERS user){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME, user.getName());
+        values.put(COLUMN_LAST_NAME, user.getLastname());
+        values.put(COLUMN_EMAIL, user.getEmail());
+        values.put(COLUMN_PASSWORD, user.getPassword());
+
+        db.insert(TABLE_USERS, null, values);
+
+        db.close();
     }
 
     //add new row to the table
@@ -170,6 +209,36 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public USERS getUserByEmail(String email) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_USERS + " WHERE "
+                + COLUMN_EMAIL + " = '" + email + "'";
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if(c.getCount() <= 0){
+            c.close();
+            return null;
+        }
+
+        if (c != null)
+            c.moveToFirst();
+
+        USERS u = new USERS();
+        u.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
+        u.setLastname(c.getString(c.getColumnIndex(COLUMN_LAST_NAME)));
+        u.setEmail(c.getString(c.getColumnIndex(COLUMN_EMAIL)));
+        u.setPassword(c.getString(c.getColumnIndex(COLUMN_PASSWORD)));
+        db.close();
+
+        return u;
+    }
+
+
+
 
     public Recipes getRecipeByName(String re_name) {
 
@@ -229,9 +298,51 @@ public class DBHandler extends SQLiteOpenHelper {
     //delete from table
     public void deleteRecipe(String recipename){
         SQLiteDatabase db = getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_RECIPES + " WHERE" + COLUMN_RECIPE_NAME + "=\"" + recipename + "\";");
+
+        db.execSQL("DELETE FROM " + TABLE_RECIPES + " WHERE " + COLUMN_RECIPE_NAME + " = '" + recipename + "'");
         db.close();
     }
+
+    public String getLastUser(){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_USERS ;
+        String log ="";
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if(c.getCount() <= 0){
+            c.close();
+            return null;
+        }
+
+        if (c != null)
+            c.moveToLast();
+
+        USERS u = new USERS();
+        u.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
+        u.setLastname(c.getString(c.getColumnIndex(COLUMN_LAST_NAME)));
+        log = log + u.getName() + " " + u.getLastname();
+        db.close();
+
+        return log;
+
+    }
+
+    public void changePosition(USERS user){
+
+        String name = user.getName();
+
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_USERS + " WHERE " + COLUMN_NAME + " = '" + name + "'");
+        addUser(user);
+        db.close();
+    }
+
+
+
 
     //get table of recipes
     public List <Recipes> getAllRecipes() {
@@ -256,6 +367,32 @@ public class DBHandler extends SQLiteOpenHelper {
         }
 
         return all_recipes;
+    }
+
+    public List <USERS> getAllusers() {
+
+        List <USERS> all_users = new ArrayList <USERS>();
+        String selectQuery = "SELECT * FROM " + TABLE_USERS;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c.moveToFirst()) {
+            do {
+                USERS u = new USERS();
+                u.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
+                u.setLastname(c.getString(c.getColumnIndex(COLUMN_LAST_NAME)));
+                u.setEmail(c.getString(c.getColumnIndex(COLUMN_EMAIL)));
+                u.setPassword(c.getString(c.getColumnIndex(COLUMN_PASSWORD)));
+                db.close();
+
+                all_users.add(u);
+            } while (c.moveToNext());
+        }
+
+        return all_users;
     }
 
 
