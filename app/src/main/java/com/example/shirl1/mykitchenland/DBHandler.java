@@ -6,7 +6,6 @@ import android.database.Cursor;
 import android.content.Context;
 import android.content.ContentValues;
 import android.util.Log;
-import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 13;
+    private static final int DATABASE_VERSION = 14;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
@@ -28,6 +27,8 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_ID = "recipeid";
     private static final String COLUMN_RECIPE_NAME = "recipe_name";
     private static final String COLUMN_RECIPE_INSTRUCTIONS = "recipe_instructions";
+    private static final String COLUMN_IMAGE = "img";
+    private static final String COLUMN_TIME = "preparation_time";
 
     //table2
     private static final String TABLE_INGREDIENT = "Ingredient";
@@ -46,9 +47,16 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String COLUMN_EMAIL = "user_email";
     private static final String COLUMN_PASSWORD = "user_password";
 
-
-
-
+    //table4
+    private static final String TABLE_WEEK = "week";
+    //columns4:
+    private static final String COLUMN_DAY1 = "day1";
+    private static final String COLUMN_DAY2 = "day2";
+    private static final String COLUMN_DAY3 = "day3";
+    private static final String COLUMN_DAY4 = "day4";
+    private static final String COLUMN_DAY5 = "day5";
+    private static final String COLUMN_DAY6 = "day6";
+    private static final String COLUMN_DAY7 = "day7";
 
     public DBHandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -59,7 +67,9 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_TABLE_RECIPE= "CREATE TABLE " + TABLE_RECIPES + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_RECIPE_NAME + " TEXT unique , "
-                + COLUMN_RECIPE_INSTRUCTIONS + " TEXT )";
+                + COLUMN_RECIPE_INSTRUCTIONS + " TEXT, "
+                + COLUMN_TIME + " TEXT, "
+                + COLUMN_IMAGE + " BLOB )";
 
         String CREATE_TABLE_INGREDIENT= "CREATE TABLE " + TABLE_INGREDIENT + "("
                 + COLUMN_ID + " INTEGER, "
@@ -69,7 +79,9 @@ public class DBHandler extends SQLiteOpenHelper {
         String CREATE_TABLE_RECIPE_MANAGER= "CREATE TABLE " + TABLE_RECIPES_MANAGER + "("
                 + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
                 + COLUMN_RECIPE_NAME + " TEXT, "
-                + COLUMN_RECIPE_INSTRUCTIONS + " TEXT )";
+                + COLUMN_RECIPE_INSTRUCTIONS + " TEXT,"
+                + COLUMN_TIME + " TEXT, "
+                + COLUMN_IMAGE + " BLOB )";
 
         String CREATE_TABLE_INGREDIENT_MANAGER= "CREATE TABLE " + TABLE_INGREDIENT_MANAGER + "("
                 + COLUMN_ID + " INTEGER, "
@@ -82,12 +94,21 @@ public class DBHandler extends SQLiteOpenHelper {
                 + COLUMN_NAME + " TEXT , "
                 + COLUMN_LAST_NAME + " TEXT )";
 
+        String CREATE_TABLE_WEEK= "CREATE TABLE " + TABLE_WEEK + "("
+                + COLUMN_DAY1 + " TEXT , "
+                + COLUMN_DAY2 + " TEXT , "
+                + COLUMN_DAY3 + " TEXT , "
+                + COLUMN_DAY4 + " TEXT , "
+                + COLUMN_DAY5 + " TEXT , "
+                + COLUMN_DAY6 + " TEXT , "
+                + COLUMN_DAY7 + " TEXT )";
+
         db.execSQL(CREATE_TABLE_RECIPE);
         db.execSQL(CREATE_TABLE_INGREDIENT);
         db.execSQL(CREATE_TABLE_RECIPE_MANAGER);
         db.execSQL(CREATE_TABLE_INGREDIENT_MANAGER);
         db.execSQL(CREATE_TABLE_USERS);
-
+        db.execSQL(CREATE_TABLE_WEEK);
 
     }
 
@@ -98,7 +119,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_RECIPES_MANAGER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_INGREDIENT_MANAGER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_WEEK);
 
         onCreate(db);
     }
@@ -128,6 +149,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
+    public void clearTableWeek()   {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_WEEK,null,null);
+
+    }
+
 
     public void addUser(USERS user){
 
@@ -144,6 +172,24 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void addWeek(Week week){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_DAY1, week.getDay1());
+        values.put(COLUMN_DAY2, week.getDay2());
+        values.put(COLUMN_DAY3, week.getDay3());
+        values.put(COLUMN_DAY4, week.getDay4());
+        values.put(COLUMN_DAY5, week.getDay5());
+        values.put(COLUMN_DAY6, week.getDay6());
+        values.put(COLUMN_DAY7, week.getDay7());
+
+        db.insert(TABLE_WEEK, null, values);
+
+        db.close();
+    }
+
     //add new row to the table
     public void addRecipe(Recipes recipe){
 
@@ -152,6 +198,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         values.put(COLUMN_RECIPE_NAME, recipe.get_recipename());
         values.put(COLUMN_RECIPE_INSTRUCTIONS, recipe.get_recipeinstructions());
+        values.put(COLUMN_TIME, recipe.getTime());
         db.insert(TABLE_RECIPES, null, values);
 
         //get id
@@ -237,9 +284,6 @@ public class DBHandler extends SQLiteOpenHelper {
         return u;
     }
 
-
-
-
     public Recipes getRecipeByName(String re_name) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -262,6 +306,7 @@ public class DBHandler extends SQLiteOpenHelper {
         re.set_id(c.getInt(c.getColumnIndex(COLUMN_ID)));
         re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
         re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
+        re.setTime(c.getString(c.getColumnIndex(COLUMN_TIME)));
         db.close();
 
         return re;
@@ -342,8 +387,6 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
 
-
-
     //get table of recipes
     public List <Recipes> getAllRecipes() {
 
@@ -361,6 +404,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 re.set_id(c.getInt((c.getColumnIndex(COLUMN_ID))));
                 re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
                 re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
+                re.setTime(c.getString(c.getColumnIndex(COLUMN_TIME)));
 
                 all_recipes.add(re);
             } while (c.moveToNext());
@@ -495,25 +539,4 @@ public class DBHandler extends SQLiteOpenHelper {
 
 }
 
-/*
-    //get specific recipe
-    public Recipes getRecipe(int re_id) {
 
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT * FROM " + TABLE_RECIPES + " WHERE "
-                + COLUMN_ID + " = " + re_id;
-
-        Log.e(LOG, selectQuery);
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        Recipes re = new Recipes();
-        re.set_id(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
-        db.close();
-        return re;
-    }*/

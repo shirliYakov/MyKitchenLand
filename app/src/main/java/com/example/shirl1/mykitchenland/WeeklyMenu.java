@@ -20,4 +20,10 @@ public class WeeklyMenu extends AppCompatActivity {
         Intent menu = new Intent(this, MainMenu.class);
         startActivity(menu);
     }
+
+    public void SetContent(View view){
+
+
+        //set to all edittext;
+    }
 }

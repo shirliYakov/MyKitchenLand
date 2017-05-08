@@ -2,8 +2,10 @@ package com.example.shirl1.mykitchenland;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -39,6 +41,32 @@ public class ShowRecipActivity extends AppCompatActivity {
         //get name from list
         Bundle bundle = getIntent().getExtras();
         nameinput = bundle.getString("Name");
+    /*public Recipes getRecipeByName(String re_name) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_RECIPES + " WHERE "
+                + COLUMN_RECIPE_NAME + " = '" + re_name + "'";
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if(c.getCount() <= 0){
+            c.close();
+            return null;
+        }
+
+        if (c != null)
+            c.moveToFirst();
+
+        Recipes re = new Recipes();
+        re.set_id(c.getInt(c.getColumnIndex(COLUMN_ID)));
+        re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
+        re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
+        db.close();
+
+        return re;
+    }*/
 
         Recipes r = db.getRecipeByName(nameinput);
 
