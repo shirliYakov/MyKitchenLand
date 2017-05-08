@@ -57,9 +57,8 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
        final Shopping_list shoplist = shopping_lists.get(index);
 
         holder.listName.setText(shoplist.list_name);
-       holder.listName.setClickable(true);
-
-       holder.delete.setOnClickListener(new View.OnClickListener() {
+        holder.listName.setClickable(true);
+        holder.delete.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
                shopping_lists.remove(shoplist);

@@ -45,7 +45,7 @@
         android:layout_height="30dp"
         android:background="@color/colorPrimary"
         android:onClick="btn_back_myrecpie_On_Click"
-        android:text="חזור למתכונים שלי"
+        android:text="חזור למאגר המתכונים"
         android:textSize="10sp"
         android:layout_marginRight="10dp"
         android:layout_alignParentBottom="true"
@@ -100,19 +100,6 @@
         android:layout_below="@+id/recipe_ingredient"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <Button
-        android:id="@+id/button"
-        android:onClick="DeleteRecipe_onClick"
-        android:text="מחק"
-        android:layout_width="40dp"
-        android:layout_height="wrap_content"
-        android:drawableTop="@drawable/delete"
-        android:background="@android:color/transparent"
-        android:textColor="@color/colorPrimary"
-        android:textSize="10sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
 
 
 </RelativeLayout>

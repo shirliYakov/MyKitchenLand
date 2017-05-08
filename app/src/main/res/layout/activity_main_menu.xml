@@ -12,14 +12,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.shirl1.mykitchenland.MainMenu">
 
-    <TextView
+    <ImageButton
         android:id="@+id/menuTv"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/gridLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
-        android:text="תפריט ראשי"
+        android:background="@drawable/logo"
         android:textStyle="bold"
         android:textColor="#A52A2A"
         android:textSize="50sp" />
@@ -43,12 +43,12 @@
         android:drawableTop="@drawable/circul2"
         android:text="המתכונים שלי"
         android:onClick="MyRecipesActivity_onClick"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginTop="56dp"
         android:layout_below="@+id/menuTv"
         android:layout_toLeftOf="@+id/btn_list"
-        android:layout_toStartOf="@+id/btn_list"
-        android:layout_marginTop="55dp" />
+        android:layout_toStartOf="@+id/btn_list" />
 
     <Button
         android:id="@+id/btn_list"
@@ -58,8 +58,7 @@
         android:drawableTop="@drawable/circul9"
         android:onClick="ShoppingListActivity_onClick"
         android:text="רשימת קניות"
-        android:layout_marginRight="23dp"
-        android:layout_marginEnd="21dp"
+        android:layout_marginRight="30dp"
         android:layout_alignBottom="@+id/btn_myrecipe"
         android:layout_alignRight="@+id/menuTv"
         android:layout_alignEnd="@+id/menuTv"

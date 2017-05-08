@@ -49,7 +49,6 @@ public class ShopListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shop_list);
         db = new DBHandler(this);
         listView = (ListView) findViewById(R.id.list_list);
-        info = (TextView) findViewById(R.id.showtable);
         ArrayList<String> list = new ArrayList<>();
         Cursor data = db.getListOfShopList();
 

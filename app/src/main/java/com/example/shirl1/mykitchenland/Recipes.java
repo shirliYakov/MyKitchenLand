@@ -5,6 +5,8 @@ public class Recipes {
     int id;
     String recipename;
     String recipeinstructions;
+    byte[] image;
+    String time;
 
     public Recipes() {
 
@@ -15,10 +17,18 @@ public class Recipes {
         this.recipeinstructions = recipeinstructions;
     }
 
-    public Recipes(int id, String recipename, String recipeinstructions) {
-        this.id = id;
+    public Recipes(String recipename, String recipeinstructions, String time) {
         this.recipename = recipename;
         this.recipeinstructions = recipeinstructions;
+        this.time = time;
+    }
+
+    public Recipes(String recipename, String recipeinstructions, byte[] image, String time) {
+
+        this.recipename = recipename;
+        this.recipeinstructions = recipeinstructions;
+        this.image = image;
+        this.time = time;
     }
 
     public void set_id(int id){
@@ -41,8 +51,24 @@ public class Recipes {
         return this.recipename;
     }
 
-    public String get_recipeinstructions(){
+    public String get_recipeinstructions() {
         return this.recipeinstructions;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     public String toString() {

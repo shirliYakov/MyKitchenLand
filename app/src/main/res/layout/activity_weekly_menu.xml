@@ -1,36 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_weekly_menu"
+    android:id="@+id/activity_add_rec"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/background1"
-    tools:context="com.example.shirl1.mykitchenland.WeeklyMenu">
+    android:background="@drawable/img16"
+    tools:context="com.example.shirl1.mykitchenland.AddRecActivity">
 
-    <TextView
-        android:text="תפריט שבועי"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="יום ראשון"
+            android:id="@+id/sunday"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:id="@+id/txt_sunday"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sunday"
+            android:background="#FFFFFF"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="5"
+            android:gravity="top|right"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="יום שני"
+            android:id="@+id/munday"
+            android:layout_below="@+id/txt_sunday"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:id="@+id/txt_munday"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/munday"
+            android:background="#FFFFFF"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="5"
+            android:gravity="top|right"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="יום שלישי"
+            android:id="@+id/thusday"
+            android:layout_below="@+id/txt_munday"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:id="@+id/txt_thusday"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thusday"
+            android:background="#FFFFFF"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="5"
+            android:gravity="top|right"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="יום רביעי"
+            android:layout_below="@+id/txt_thusday"
+            android:id="@+id/wedensday"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:id="@+id/txt_wedensday"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/wedensday"
+            android:background="#FFFFFF"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="5"
+            android:gravity="top|right"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="יום חמישי"
+            android:id="@+id/thursday"
+            android:layout_below="@+id/txt_wedensday"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:id="@+id/txt_thursday"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/thursday"
+            android:background="#FFFFFF"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="5"
+            android:gravity="top|right"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:textSize="25sp"
-        android:textColor="@android:color/white"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="112dp"
-        android:layout_marginStart="112dp"
-        android:id="@+id/menuTv" />
-
-    <Button
-        android:text="חזרה לתפריט הראשי"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:onClick="MenuLayout"
-        android:id="@+id/backBtn"
-        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:text="יום שישי"
+        android:id="@+id/friday"
+        android:layout_below="@+id/txt_thursday"
+        android:textColor="@color/colorAccent"
         android:layout_centerHorizontal="true" />
-</RelativeLayout>
+
+        <EditText
+            android:layout_width="250dp"
+            android:id="@+id/txt_friday"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/friday"
+            android:background="#FFFFFF"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="5"
+            android:gravity="top|right"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="יום שבת"
+            android:id="@+id/saterday"
+            android:layout_below="@+id/txt_friday"
+            android:textColor="@color/colorAccent"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="250dp"
+            android:id="@+id/txt_saterday"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/saterday"
+            android:background="#FFFFFF"
+            android:inputType="textMultiLine"
+            android:lines="5"
+            android:minLines="5"
+            android:gravity="top|right"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_saterday"
+            android:layout_marginTop="20dp"
+            android:text="שבוע חדש מחק תוכן"
+            android:textColor="@color/colorAccent"
+            android:onClick="SetContent"/>
+
+    </RelativeLayout>
+
+</ScrollView>
+
+
+
+

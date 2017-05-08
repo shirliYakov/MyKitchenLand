@@ -21,6 +21,7 @@
         android:textSize="18sp"
         android:layout_marginTop="46dp"
         android:onClick="Register_on_click"
+        android:background="@color/colorPrimary"
         android:layout_below="@+id/input_password"
         android:layout_centerHorizontal="true" />
 
@@ -31,7 +32,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="135dp"
+        android:layout_marginTop="150dp"
         android:ems="10"
         android:hint="דואר אלקטרוני"
         android:inputType="textEmailAddress"

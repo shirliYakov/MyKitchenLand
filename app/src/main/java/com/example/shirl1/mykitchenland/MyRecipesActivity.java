@@ -37,11 +37,12 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
 
         db = new DBHandler(this);
 
         listView = (ListView) findViewById(R.id.listview_myrecipe);
-        info = (TextView) findViewById(R.id.showtable);
+        //info = (TextView) findViewById(R.id.showtable);
         ArrayList <String> list = new ArrayList<>();
         Cursor data = db.getRecipeForList();
 
@@ -67,7 +68,7 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         listView.setAdapter(listAdapter);
 
-
+/*
         //print table
         String log ="";
         List <Recipes> recipesList = db.getAllRecipes();
@@ -75,19 +76,19 @@ public class MyRecipesActivity extends AppCompatActivity {
             log = log + "Id: " + recipes.get_id() + " , Name: "  + recipes.get_recipename()
                     + ", instructions: " + recipes.get_recipeinstructions() + "\n";
             info.setText(log);
-        }
+        }*/
 
         //db.addRecipe(new Recipes("RECIP1", "FUN"));
         //db.addIngredient(new Ingredient(1,"6","BANANA"));
 
     }
 
-    public void btn_delete_On_Click(View v){
+    /*public void btn_delete_On_Click(View v){
         db.clearTable();
         Intent refresh = new Intent(this, MyRecipesActivity.class);
         startActivity(refresh);
         this.finish();
-    }
+    }*/
 
     public void btn_back_On_Click(View v){
         Intent Go = new Intent(MyRecipesActivity.this, MainMenu.class);
@@ -112,7 +113,7 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         if (id == R.id.search_rec) {
             View view = LayoutInflater.from(MyRecipesActivity.this).inflate(R.layout.activity_search_rec, null);
-            final EditText search = (EditText) view.findViewById(R.id.search_rec);
+            final EditText search = (EditText) view.findViewById(R.id.txt_search_re);
 
             AlertDialog.Builder builder= new AlertDialog.Builder(MyRecipesActivity.this);
             builder.setTitle("חיפוש מתכון");
@@ -123,7 +124,9 @@ public class MyRecipesActivity extends AppCompatActivity {
 
                 public void onClick(DialogInterface dialog, int which) {
 
-                    startActivity(new Intent(MyRecipesActivity.this, ShowRecipActivity.class));
+                    Intent intent = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
+                    intent.putExtra("Name", search.getText().toString());
+                    startActivity(intent);
                 }
 
             });
