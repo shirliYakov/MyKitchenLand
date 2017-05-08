@@ -1,5 +1,7 @@
 package com.example.shirl1.mykitchenland;
 
+import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,32 +17,32 @@ import java.util.List;
  * Created by shirl on 29/04/2017.
  */
 
-public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHolder> {
+public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHolder>
+{
     private List<Shopping_list> shopping_lists;
-
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+    private Context context;
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        // each data item is just a string in this case
+
         public TextView listName;
         public ImageButton delete;
+        private Context context;
 
-        public ViewHolder(View v) {
+        public ViewHolder(View v)
+        {
             super(v);
-            listName = (TextView) v.findViewById(R.id.name);
-            delete = (ImageButton) v.findViewById(R.id.btn_delete);
+            context = v.getContext();
+            listName = (TextView) v.findViewById(R.id.listname);
+            delete = (ImageButton) v.findViewById(R.id.delete);
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
+
     public ShopListAdapter(List<Shopping_list> shopping_lists) {
         this.shopping_lists = shopping_lists;
     }
 
     public ViewHolder onCreateViewHolder(ViewGroup parent,
                                          int viewType) {
-        // create a new view
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.listof_shopping_list, parent, false);
 
@@ -48,27 +50,29 @@ public class ShopListAdapter extends RecyclerView.Adapter<ShopListAdapter.ViewHo
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        int index =holder.getAdapterPosition();
-        final Shopping_list shoplist = shopping_lists.get(index);
+   @Override
+    public void onBindViewHolder(ViewHolder holder, final int position)
+   {
+       int index = holder.getAdapterPosition();
+       final Shopping_list shoplist = shopping_lists.get(index);
 
         holder.listName.setText(shoplist.list_name);
-        holder.delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                shopping_lists.remove(shoplist);
-                notifyDataSetChanged();
-            }
-        });
-    }
+       holder.listName.setClickable(true);
 
-    // Return the size of your dataset (invoked by the layout manager)
+       holder.delete.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               shopping_lists.remove(shoplist);
+               ////add sql for remove shoplist from database
+               notifyDataSetChanged();
+           }
+       });
+   }
+
+
     @Override
-    public int getItemCount() {
+    public int getItemCount()
+       {
         return shopping_lists.size();
     }
 

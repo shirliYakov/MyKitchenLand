@@ -27,4 +27,8 @@
     <string name="amount">כמות</string>
     <string name="prodctname1">שם הפריט</string>
     <string name="amount1">כמות</string>
+    <string name="search_sl">חפש רשימת קניות</string>
+    <string name="title_activity_search_list">search_list</string>
+    <string name="action_settings">Settings</string>
+
 </resources>

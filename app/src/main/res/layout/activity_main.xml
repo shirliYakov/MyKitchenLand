@@ -20,8 +20,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="textPassword"
         android:hint="סיסמה"
+        android:gravity="right"
         android:id="@+id/passEt"
         android:textColorLink="?attr/actionMenuTextColor"
         android:layout_centerVertical="true"
@@ -34,10 +35,9 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:id="@+id/emailEt"
-        android:textColorLink="?attr/actionMenuTextColor"
         android:width="320dp"
         android:hint = "דואר אלקטרוני"
-        android:layout_marginBottom="31dp"
+        android:layout_marginBottom="32dp"
         android:layout_above="@+id/passEt"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -51,19 +51,20 @@
         android:minHeight="20dp"
         android:nestedScrollingEnabled="true"
         android:textSize="15sp"
-        android:textStyle="normal|bold"
         android:layout_below="@+id/passEt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp" />
 
     <Button
-        android:text="לחץ כאן להרשמה"
+        android:id="@+id/registrationBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/registrationBtn"
-        android:onClick="Registration"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:background="@android:color/transparent"
+        android:onClick="Registration"
+        android:text="אם עוד לא נרשמת הירשם כאן"
+        android:textColor="#921"
         android:textSize="18sp"
         android:textStyle="normal|bold" />
 

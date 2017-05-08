@@ -10,5 +10,12 @@
         android:orderInCategory="1"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/search_sl"
+        android:title="@string/search_sl"
+        android:orderInCategory="2"
+        app:showAsAction="never" />
+
+
 
 </menu>

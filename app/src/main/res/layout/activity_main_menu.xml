@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_menu"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorAccent"
+    android:background="@drawable/back2"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-
     tools:context="com.example.shirl1.mykitchenland.MainMenu">
-
-    <GridLayout
-        android:id="@+id/gridLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </GridLayout>
 
     <TextView
         android:id="@+id/menuTv"
@@ -25,80 +18,88 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/gridLayout"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="38dp"
         android:text="תפריט ראשי"
-        android:textColor="@android:color/white"
-        android:textSize="35sp" />
+        android:textStyle="bold"
+        android:textColor="#A52A2A"
+        android:textSize="50sp" />
 
     <Button
-        android:id="@+id/bookBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignWithParentIfMissing="true"
-        android:layout_below="@+id/menuTv"
-        android:layout_marginTop="29dp"
+        android:id="@+id/btn_recipes"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:text="מאגר מתכונים"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/circul5"
+        android:onClick="AdminRecipesActivity_onClick"
+        android:layout_alignBottom="@+id/btn_weekly"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/btn_myrecipe"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/circul2"
+        android:text="המתכונים שלי"
         android:onClick="MyRecipesActivity_onClick"
-        android:text="ספר המתכונים שלי"
-        android:textSize="22sp">
-
-    </Button>
-
-    <Button
-        android:id="@+id/inventoryBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/button5"
-        android:onClick="inventoryLayout"
-        android:text="המלאי הביתי "
-        android:textSize="22sp" />
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_below="@+id/menuTv"
+        android:layout_toLeftOf="@+id/btn_list"
+        android:layout_toStartOf="@+id/btn_list"
+        android:layout_marginTop="55dp" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/recipeBtn"
+        android:id="@+id/btn_list"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/circul9"
         android:onClick="ShoppingListActivity_onClick"
         android:text="רשימת קניות"
-        android:textSize="22sp" />
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="21dp"
+        android:layout_alignBottom="@+id/btn_myrecipe"
+        android:layout_alignRight="@+id/menuTv"
+        android:layout_alignEnd="@+id/menuTv"
+        android:layout_alignTop="@+id/btn_myrecipe" />
 
     <Button
-        android:id="@+id/recipeBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/bookBtn"
-        android:onClick="AdminRecipesActivity_onClick"
-        android:text="מאגר מתכונים"
-        android:textSize="22sp"
-        tools:onClick="AdminRecipesActivity_onClick" />
+        android:id="@+id/btn_inve"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/circul4"
+        android:onClick="inventoryLayout"
+        android:text="מלאי ביתי"
+        android:layout_alignBottom="@+id/btn_weekly"
+        android:layout_toLeftOf="@+id/btn_recipes"
+        android:layout_toStartOf="@+id/btn_recipes" />
 
     <Button
-        android:id="@+id/weeklyBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/inventoryBtn"
+        android:id="@+id/btn_weekly"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/circul3"
         android:onClick="WeeklyMenuLayout"
         android:text="תפריט שבועי"
-        android:textSize="22sp" />
+        android:layout_below="@+id/btn_list"
+        android:layout_toRightOf="@+id/btn_recipes"
+        android:layout_toEndOf="@+id/btn_recipes"
+        android:layout_marginTop="23dp" />
 
     <Button
-        android:id="@+id/logotBtn"
-        android:layout_width="match_parent"
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/weeklyBtn"
-        android:layout_marginTop="51dp"
         android:onClick="LogOut"
+        android:background="@android:color/transparent"
         android:text="התנתקות"
-        android:textSize="22sp" />
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

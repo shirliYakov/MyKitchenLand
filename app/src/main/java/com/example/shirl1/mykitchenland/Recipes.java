@@ -45,4 +45,7 @@ public class Recipes {
         return this.recipeinstructions;
     }
 
+    public String toString() {
+        return this.id + ". " + this.recipename +  this.recipeinstructions ;
+    }
 }

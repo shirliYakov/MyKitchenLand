@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -26,6 +27,7 @@ public class AddShopListActivity extends AppCompatActivity {
     EditText item_name;
     EditText item_amount;
     ImageButton add;
+    int listID;
     private RecyclerView mRecyclerView;
     private ItemAdapter mAdapter;
 
@@ -34,6 +36,8 @@ public class AddShopListActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_shop_list);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.list_of_items);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
@@ -49,11 +53,17 @@ public class AddShopListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Item item=new Item();
-                item.setItemName(item_name.getText().toString());
-                item.setAmount(item_amount.getText().toString());
-                mAdapter.AddItem(item);
-                item_name.setText("");
-                item_amount.setText("");
+                if (item_name.getText().equals(""))
+                    item_name.setError("אין להשאיר שדה ריק");
+                if (item_amount.getText().equals(""))
+                    item_amount.setError("אין להשאיר שדה ריק");
+                else {
+                    item.setItemName(item_name.getText().toString());
+                    item.setAmount(item_amount.getText().toString());
+                    mAdapter.AddItem(item);
+                    item_name.setText("");
+                    item_amount.setText("");
+                }
             }
         });
     }
@@ -76,22 +86,32 @@ public class AddShopListActivity extends AppCompatActivity {
     public void btn_add_On_Click(View v)
     {
         List<Item> items=mAdapter.getItems();
+        int id;
         Shopping_list shoppingList = create_List_And_get_list();
-        int list_id=shoppingList.get_list_id();
+        if (shoppingList!=null)
+        {
+            int list_id=shoppingList.get_list_id();
         db.addItems(items);
         db.close();
         Toast.makeText(this, "הרשימה נוצרה בהצלחה", Toast.LENGTH_LONG).show();
 
         Intent Go = new Intent(this, ShopListActivity.class);
        startActivity(Go);
+        }
     }
 
 
-    public Shopping_list create_List_And_get_list()
-    {
+    public Shopping_list create_List_And_get_list() {
         Shopping_list shopList = new Shopping_list();
         shopList.set_listname(list_name.getText().toString());
-        db.addShopList(shopList);
+
+        if (db.addShopList(shopList) == 0)
+        {
+            list_name.setError("שם הרשימה תפוס,אנא הזן שם חדש");
+            db.close();
+            return null;
+        }
+       else
         db.close();
         return shopList;
 

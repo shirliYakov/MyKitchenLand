@@ -41,9 +41,9 @@
         android:onClick="btn_back_myrecpie_On_Click"
         android:text="חזור למתכונים שלי"
         android:textSize="10sp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="8dp"
-        android:layout_above="@+id/btn_back" />
+        android:layout_marginRight="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
 
     <TextView
         android:id="@+id/recipe_ingredient"
@@ -84,6 +84,6 @@
         android:layout_below="@+id/recipe_ingredient" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
 
 

@@ -11,46 +11,53 @@
     android:background="@drawable/img17"
     tools:context="com.example.shirl1.mykitchenland.MyRecipesActivity">
 
-        <TextView
-            android:id="@+id/txt_head"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:text="המתכונים שלי"
-            android:textSize="20sp" />
+    <TextView
+        android:id="@+id/txt_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="המתכונים שלי"
+        android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:onClick="btn_delete_On_Click"
-            android:text="מחק את כל המאגר"
-            android:textSize="10sp" />
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="10dp"
+        android:onClick="btn_delete_On_Click"
+        android:text="מחק את כל המאגר"
+        android:textSize="10sp" />
 
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:onClick="btn_back_On_Click"
-            android:text="חזור לתפריט הראשי"
-            android:textSize="10sp" />
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10dp"
+        android:onClick="btn_back_On_Click"
+        android:text="חזור לתפריט הראשי"
+        android:textSize="10sp" />
 
-        <ListView
-            android:id="@+id/listview_myrecipe"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/scrollViewMR2"
-            android:layout_above="@+id/btn_back"
-            android:layout_marginTop="50dp" />
+    <ListView
+        android:id="@+id/listview_myrecipe"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_below="@+id/txt_head"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/showtable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/listview_myrecipe"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="43dp"
+        android:text="TextView" />
 
 </RelativeLayout>
