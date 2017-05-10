@@ -32,7 +32,6 @@ public class MyRecipesActivity extends AppCompatActivity {
     DBHandler db;
     ListView listView;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,6 +54,7 @@ public class MyRecipesActivity extends AppCompatActivity {
             Toast.makeText(MyRecipesActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
         }else{
             while(data.moveToNext()){
+
                 list.add(data.getString(1));//column 2 is index of column-name
             }
         }
@@ -69,8 +69,6 @@ public class MyRecipesActivity extends AppCompatActivity {
         });
 
         listView.setAdapter(listAdapter);
-
-
 
 
     }

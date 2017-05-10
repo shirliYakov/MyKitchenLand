@@ -28,13 +28,13 @@
         android:layout_height="wrap_content"
         android:drawableTop="@drawable/home"
         android:background="@android:color/transparent"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="10dp"
         android:onClick="btn_back_On_Click"
         android:text="חזור לתפריט הראשי"
         android:textColor="@color/colorPrimary"
-        android:textSize="10sp" />
+        android:textSize="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/txt_head"
+        android:layout_toStartOf="@+id/txt_head" />
 
     <ListView
         android:id="@+id/listview_myrecipe"
