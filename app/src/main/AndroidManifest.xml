@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.shirl1.mykitchenland">
 
-    <uses-feature android:name="android.hardware.camera2" android:required="true"/>
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -16,7 +19,6 @@
         android:roundIcon="@mipmap/ic_myapp"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -26,7 +28,8 @@
         <activity android:name=".MainMenu" />
         <activity
             android:name=".WeeklyMenu"
-            android:windowSoftInputMode="adjustPan" />/>
+            android:windowSoftInputMode="adjustPan" />
+        />
         <activity
             android:name=".Inventory"
             android:label="@string/title_activity_inventory" />
@@ -54,12 +57,11 @@
         <activity
             android:name=".ShowRecipActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity
             android:name=".ShowManagerRecipActivity"
-            android:windowSoftInputMode="adjustPan"></activity>
-        <activity android:name=".ImageRecipActivity"></activity>
-
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".ImageRecipActivity" />
+        <activity android:name=".DisplayMenuActivity"></activity>
     </application>
 
 </manifest>

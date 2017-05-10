@@ -9,6 +9,7 @@ import android.view.View;
 public class MainMenu extends AppCompatActivity {
 
     public static String myFullName;
+    public static String myEmail;
     DBHandler db;
 
     @Override
@@ -16,7 +17,9 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         db = new DBHandler(this);
-        myFullName = db.getLastUser();
+        USERS myUser = db.getLastUser();
+        myFullName = myUser.getName() + " " + myUser.getLastname();
+        myEmail = myUser.getEmail();
 
         getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
     }

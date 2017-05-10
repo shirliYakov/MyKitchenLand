@@ -430,7 +430,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String getLastUser(){
+    public USERS getLastUser(){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -451,10 +451,12 @@ public class DBHandler extends SQLiteOpenHelper {
         USERS u = new USERS();
         u.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
         u.setLastname(c.getString(c.getColumnIndex(COLUMN_LAST_NAME)));
-        log = log + u.getName() + " " + u.getLastname();
+        u.setEmail(c.getString(c.getColumnIndex(COLUMN_EMAIL)));
+        u.setPassword(c.getString(c.getColumnIndex(COLUMN_PASSWORD)));
+
         db.close();
 
-        return log;
+        return u;
 
     }
 
