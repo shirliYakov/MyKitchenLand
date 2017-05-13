@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class WeeklyMenu extends AppCompatActivity {
@@ -34,6 +35,7 @@ public class WeeklyMenu extends AppCompatActivity {
     String day_7;
     String emailTo;
     String log;
+    Week w;
 
 
     @Override
@@ -53,7 +55,7 @@ public class WeeklyMenu extends AppCompatActivity {
         day6 = (EditText)findViewById(R.id.txt_friday);
         day7 = (EditText)findViewById(R.id.txt_saterday);
 
-        Week w = db.getWeek();
+        w = db.getWeek();
         if(w!=null){
 
             day1.setText(w.getDay1());
@@ -92,6 +94,7 @@ public class WeeklyMenu extends AppCompatActivity {
 
         Week week = new Week(day_1, day_2, day_3, day_4, day_5, day_6, day_7);
         db.setWeek(week);
+        Toast.makeText(WeeklyMenu.this, "התפריט עודכן בהצלחה", Toast.LENGTH_LONG).show();
     }
 
     public boolean onCreateOptionsMenu(Menu menu){
@@ -103,10 +106,17 @@ public class WeeklyMenu extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
+        Week w1 = db.getWeek();
 
         if (id == R.id.display) {
-            Intent Go = new Intent(WeeklyMenu.this, DisplayMenuActivity.class);
-            startActivity(Go);
+            if(w1!=null){
+                Intent Go = new Intent(WeeklyMenu.this, DisplayMenuActivity.class);
+                startActivity(Go);
+            }
+            else
+                Toast.makeText(WeeklyMenu.this, "התפריט עדיין ריק", Toast.LENGTH_LONG).show();
+
+
         }
 
         if (id == R.id.sendToEmail) {

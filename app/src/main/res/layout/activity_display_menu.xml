@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/img1"
+    android:background="@drawable/img16"
     tools:context="com.example.shirl1.mykitchenland.ShowRecipActivity">
 
     <TextView
@@ -19,7 +19,7 @@
         android:text="תפריט שבועי"
         android:textStyle="bold"
         android:textSize="30dp"
-        android:textColor="@color/colorPrimary"
+        android:textColor="@color/colorAccent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -55,6 +55,7 @@
         android:layout_height="350dp"
         android:layout_below="@+id/txt_head"
         android:layout_centerHorizontal="true"
+        android:background="@drawable/border_style"
         android:layout_marginTop="20dp">
 
         <TextView
@@ -63,6 +64,7 @@
             android:layout_height="wrap_content"
             android:text="תפריט עדיין לא קיים"
             android:textSize="20dp"
+            android:textStyle="bold"
             android:layout_gravity="center|top"
 
              />
