@@ -43,15 +43,16 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="התחבר"
+        android:text="התחבר/י"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnLogin"
-        android:nestedScrollingEnabled="true"
+        android:drawableTop="@drawable/loginnow"
+        android:background="@android:color/transparent"
+        android:textColor="#921"
         android:textSize="15sp"
         android:onClick="login"
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="32dp"
         android:layout_below="@+id/passEt"
         android:layout_centerHorizontal="true" />
 
@@ -59,14 +60,14 @@
         android:id="@+id/registrationBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
         android:background="@android:color/transparent"
         android:onClick="Register"
         android:text="אם עוד לא נרשמת הירשם כאן"
         android:textColor="#921"
         android:textSize="18sp"
-        android:textStyle="normal|bold" />
+        android:textStyle="normal|bold"
+        android:layout_below="@+id/SCROLLER_ID"
+        android:layout_centerHorizontal="true" />
 
     <ScrollView
         android:id="@+id/SCROLLER_ID"
@@ -80,12 +81,6 @@
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp">
 
-        <TextView
-            android:id="@+id/printtable"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="TextView" />
     </ScrollView>
 
 

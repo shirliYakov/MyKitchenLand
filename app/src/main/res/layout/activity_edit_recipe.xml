@@ -9,7 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:background="@drawable/img15"
-    tools:context="com.example.shirl1.mykitchenland.AddRecActivity">
+    android:fillViewport="true"
+    tools:context="com.example.shirl1.mykitchenland.EditRecipeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -91,7 +92,6 @@
             android:id="@+id/listview_ingre"
             android:layout_below="@+id/lay_amount"
             android:layout_marginTop="15dp"
-            android:longClickable="true"
             android:scrollbars="vertical"/>
 
         <EditText

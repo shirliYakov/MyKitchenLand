@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,6 +17,8 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
     TextView ingredient1;
     TextView instructions1;
     DBHandler db;
+    TextView time1;
+    ImageView image1;
     String name;
     String nameinput;
     int id;
@@ -26,12 +29,15 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
         setContentView(R.layout.activity_show_manager_recip);
         db = new DBHandler(this);
 
         name1 = (TextView) findViewById(R.id.recipe_name);
         ingredient1 = (TextView) findViewById(R.id.input_ingredient);
         instructions1 = (TextView) findViewById(R.id.input_instructions);
+        time1 = (TextView) findViewById(R.id.input_time);
+        image1 = (ImageView)findViewById(R.id.input_image);
 
         //get name from list
         Bundle bundle = getIntent().getExtras();
@@ -43,6 +49,8 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
         if (r!= null) {
             instructions1.setText(r.get_recipeinstructions());
             name1.setText(r.get_recipename());
+            time1.setText(r.getTime());
+            //image1.setImageBitmap(r.getImage());
             id = r.get_id();
 
             String log = "";

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.shirl1.mykitchenland.ShowRecipActivity">
+
+    <item
+        android:id="@+id/delete_recipe"
+        android:title="@string/delete_recipe"
+        android:orderInCategory="1"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/edit_recipe"
+        android:orderInCategory="2"
+        android:title="@string/edit_recipe"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/send_recipe_ingre"
+        android:orderInCategory="3"
+        android:title="@string/send_recipe_ingre"
+        app:showAsAction="never"/>
+
+</menu>

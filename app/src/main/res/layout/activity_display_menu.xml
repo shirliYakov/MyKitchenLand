@@ -53,10 +53,9 @@
     <ScrollView
         android:layout_width="300dp"
         android:layout_height="350dp"
-        android:layout_below="@+id/txt_head"
-        android:layout_centerHorizontal="true"
         android:background="@drawable/border_style"
-        android:layout_marginTop="20dp">
+        android:layout_above="@+id/btn_back"
+        android:layout_centerHorizontal="true">
 
         <TextView
             android:id="@+id/showMenu"

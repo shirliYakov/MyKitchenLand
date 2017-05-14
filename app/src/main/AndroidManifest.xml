@@ -60,8 +60,15 @@
         <activity
             android:name=".ShowManagerRecipActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ImageRecipActivity" />
-        <activity android:name=".DisplayMenuActivity"></activity>
+        <activity
+            android:name=".ImageRecipActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".DisplayMenuActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".EditRecipeActivity"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>

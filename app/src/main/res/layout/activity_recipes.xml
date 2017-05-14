@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/img17"
+    android:background="@drawable/img14"
     tools:context="com.example.shirl1.mykitchenland.MyRecipesActivity">
 
     <TextView
@@ -39,11 +39,12 @@
 
     <ListView
         android:id="@+id/listview_recipes"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/border_style"
         android:layout_below="@+id/txt_head"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
 
