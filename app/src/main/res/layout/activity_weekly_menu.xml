@@ -16,12 +16,27 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/txt_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="יום ראשון"
-            android:id="@+id/sunday"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="תפריט שבועי"
             android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            android:textSize="25sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="יום ראשון"
+            android:layout_below="@+id/txt_head"
+            android:textSize="20sp"
+            android:id="@+id/sunday"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
             android:layout_centerHorizontal="true" />
 
         <EditText
@@ -29,10 +44,10 @@
             android:id="@+id/txt_sunday"
             android:layout_height="wrap_content"
             android:layout_below="@+id/sunday"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_style"
             android:inputType="textMultiLine"
-            android:lines="5"
-            android:minLines="5"
+            android:lines="3"
+            android:minLines="3"
             android:gravity="top|right"
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"/>
@@ -42,55 +57,62 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="יום שני"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:id="@+id/munday"
             android:layout_below="@+id/txt_sunday"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:layout_centerHorizontal="true" />
 
         <EditText
             android:layout_width="250dp"
             android:id="@+id/txt_munday"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/munday"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_style"
             android:inputType="textMultiLine"
-            android:lines="5"
-            android:minLines="5"
+            android:lines="3"
+            android:minLines="3"
             android:gravity="top|right"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_marginTop="12dp"
+            android:layout_below="@+id/munday"
+            android:layout_alignLeft="@+id/txt_sunday"
+            android:layout_alignStart="@+id/txt_sunday" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="יום שלישי"
+            android:textSize="20sp"
+            android:textStyle="bold"
             android:id="@+id/thusday"
             android:layout_below="@+id/txt_munday"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:layout_centerHorizontal="true" />
 
         <EditText
             android:layout_width="250dp"
             android:id="@+id/txt_thusday"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/thusday"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_style"
             android:inputType="textMultiLine"
-            android:lines="5"
-            android:minLines="5"
+            android:lines="3"
+            android:minLines="3"
             android:gravity="top|right"
-            android:layout_marginTop="10dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_below="@+id/thusday"
+            android:layout_alignLeft="@+id/txt_munday"
+            android:layout_alignStart="@+id/txt_munday" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="יום רביעי"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:layout_below="@+id/txt_thusday"
             android:id="@+id/wedensday"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:layout_centerHorizontal="true" />
 
         <EditText
@@ -98,10 +120,10 @@
             android:id="@+id/txt_wedensday"
             android:layout_height="wrap_content"
             android:layout_below="@+id/wedensday"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_style"
             android:inputType="textMultiLine"
-            android:lines="5"
-            android:minLines="5"
+            android:lines="3"
+            android:minLines="3"
             android:gravity="top|right"
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"/>
@@ -111,9 +133,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="יום חמישי"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:id="@+id/thursday"
             android:layout_below="@+id/txt_wedensday"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:layout_centerHorizontal="true" />
 
         <EditText
@@ -121,33 +145,35 @@
             android:id="@+id/txt_thursday"
             android:layout_height="wrap_content"
             android:layout_below="@+id/thursday"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_style"
             android:inputType="textMultiLine"
-            android:lines="5"
-            android:minLines="5"
+            android:lines="3"
+            android:minLines="3"
             android:gravity="top|right"
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"/>
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="יום שישי"
-        android:id="@+id/friday"
-        android:layout_below="@+id/txt_thursday"
-        android:textColor="@color/colorAccent"
-        android:layout_centerHorizontal="true" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="יום שישי"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:id="@+id/friday"
+            android:layout_below="@+id/txt_thursday"
+            android:textColor="@color/colorPrimary"
+            android:layout_centerHorizontal="true" />
 
         <EditText
             android:layout_width="250dp"
             android:id="@+id/txt_friday"
             android:layout_height="wrap_content"
             android:layout_below="@+id/friday"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_style"
             android:inputType="textMultiLine"
-            android:lines="5"
-            android:minLines="5"
+            android:lines="3"
+            android:minLines="3"
             android:gravity="top|right"
             android:layout_marginTop="10dp"
             android:layout_centerHorizontal="true"/>
@@ -157,9 +183,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="יום שבת"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:id="@+id/saterday"
             android:layout_below="@+id/txt_friday"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/colorPrimary"
             android:layout_centerHorizontal="true" />
 
         <EditText
@@ -167,24 +195,60 @@
             android:id="@+id/txt_saterday"
             android:layout_height="wrap_content"
             android:layout_below="@+id/saterday"
-            android:background="#FFFFFF"
+            android:background="@drawable/border_style"
             android:inputType="textMultiLine"
-            android:lines="5"
-            android:minLines="5"
+            android:lines="3"
+            android:minLines="3"
             android:gravity="top|right"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_centerHorizontal="true"/>
-
-
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10sp"
             android:layout_below="@+id/txt_saterday"
             android:layout_marginTop="20dp"
-            android:text="שבוע חדש מחק תוכן"
-            android:textColor="@color/colorAccent"
-            android:onClick="SetContent"/>
+            android:id="@+id/reset_menu"
+            android:onClick="SetContent"
+            android:text="עדכן תפריט"
+            android:drawableTop="@drawable/update_new"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"  />
+
+        <Button
+            android:id="@+id/btn_myrecipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txt_saterday"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorPrimary"
+            android:background="@android:color/transparent"
+            android:onClick="btn_delete_menu_On_Click"
+            android:text="מחק תפריט"
+            android:textSize="10sp"
+            android:drawableTop="@drawable/delete_new"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" />
+
+        <Button
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/home"
+            android:onClick="btn_back_On_Click"
+            android:text="חזור לתפריט הראשי"
+            android:layout_alignBaseline="@+id/reset_menu"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10sp"
+            android:layout_below="@+id/txt_saterday"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

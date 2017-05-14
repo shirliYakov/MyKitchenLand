@@ -43,6 +43,8 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listview_myrecipe);
         //info = (TextView) findViewById(R.id.showtable);
+
+
         ArrayList <String> list = new ArrayList<>();
         Cursor data = db.getRecipeForList();
 
@@ -68,18 +70,6 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         listView.setAdapter(listAdapter);
 
-/*
-        //print table
-        String log ="";
-        List <Recipes> recipesList = db.getAllRecipes();
-        for (Recipes recipes : recipesList) {
-            log = log + "Id: " + recipes.get_id() + " , Name: "  + recipes.get_recipename()
-                    + ", instructions: " + recipes.get_recipeinstructions() + "\n";
-            info.setText(log);
-        }*/
-
-        //db.addRecipe(new Recipes("RECIP1", "FUN"));
-        //db.addIngredient(new Ingredient(1,"6","BANANA"));
 
     }
 

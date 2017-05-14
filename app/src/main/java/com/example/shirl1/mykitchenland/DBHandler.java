@@ -111,11 +111,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 + COLUMN_RECIPE_AMOUNT + " INTEGER, "
                 + COLUMN_RECIPE_INGREDIENT + " TEXT )";
 
-        String CREATE_TABLE_USERS= "CREATE TABLE " + TABLE_USERS + "("
-                + COLUMN_EMAIL + " TEXT PRIMARY KEY , "
-                + COLUMN_PASSWORD + " TEXT , "
-                + COLUMN_NAME + " TEXT , "
-                + COLUMN_LAST_NAME + " TEXT )";
+
 
         String CREATE_TABLE_WEEK= "CREATE TABLE " + TABLE_WEEK + "("
                 + COLUMN_DAY1 + " TEXT , "
@@ -140,13 +136,21 @@ public class DBHandler extends SQLiteOpenHelper {
                 + COLUMN_NAME_ITEM + " TEXT , "
                 + COLUMN_AMOUNT_ITEM + " TEXT )";
 
+        String CREATE_TABLE_USERS= "CREATE TABLE " + TABLE_USERS + "("
+                + COLUMN_EMAIL + " TEXT PRIMARY KEY , "
+                + COLUMN_PASSWORD + " TEXT , "
+                + COLUMN_NAME + " TEXT , "
+                + COLUMN_LAST_NAME + " TEXT )";
+
+        db.execSQL(CREATE_TABLE_USERS);
+
 
 
         db.execSQL(CREATE_TABLE_RECIPE);
         db.execSQL(CREATE_TABLE_INGREDIENT);
         db.execSQL(CREATE_TABLE_RECIPE_MANAGER);
         db.execSQL(CREATE_TABLE_INGREDIENT_MANAGER);
-        db.execSQL(CREATE_TABLE_USERS);
+
         db.execSQL(CREATE_TABLE_WEEK);
         db.execSQL(CREATE_TABLE_SHOPLIST);
         db.execSQL(CREATE_TABLE_ITEMS);
@@ -216,10 +220,11 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addWeek(Week week)
+    public void setWeek(Week week)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
+        clearTableWeek();
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_DAY1, week.getDay1());
@@ -357,6 +362,38 @@ public class DBHandler extends SQLiteOpenHelper {
         return re;
     }
 
+
+    public Week getWeek( ) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_WEEK;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+        if(c.getCount() <= 0){
+            c.close();
+            return null;
+        }
+
+        if (c != null)
+            c.moveToFirst();
+
+        Week we = new Week();
+        we.setDay1(c.getString(c.getColumnIndex(COLUMN_DAY1)));
+        we.setDay2(c.getString(c.getColumnIndex(COLUMN_DAY2)));
+        we.setDay3(c.getString(c.getColumnIndex(COLUMN_DAY3)));
+        we.setDay4(c.getString(c.getColumnIndex(COLUMN_DAY4)));
+        we.setDay5(c.getString(c.getColumnIndex(COLUMN_DAY5)));
+        we.setDay6(c.getString(c.getColumnIndex(COLUMN_DAY6)));
+        we.setDay7(c.getString(c.getColumnIndex(COLUMN_DAY7)));
+
+        db.close();
+
+        return we;
+    }
+
     public Recipes getRecipeByName_manager(String re_name) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -393,7 +430,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public String getLastUser(){
+    public USERS getLastUser(){
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -414,10 +451,12 @@ public class DBHandler extends SQLiteOpenHelper {
         USERS u = new USERS();
         u.setName(c.getString(c.getColumnIndex(COLUMN_NAME)));
         u.setLastname(c.getString(c.getColumnIndex(COLUMN_LAST_NAME)));
-        log = log + u.getName() + " " + u.getLastname();
+        u.setEmail(c.getString(c.getColumnIndex(COLUMN_EMAIL)));
+        u.setPassword(c.getString(c.getColumnIndex(COLUMN_PASSWORD)));
+
         db.close();
 
-        return log;
+        return u;
 
     }
 
