@@ -4,6 +4,9 @@
     <string name="add_shoplist">הוסף רשימת קניות</string>
     <string name="search_recip">חפש מתכון</string>
     <string name="add_recip">הוסף מתכון</string>
+    <string name="delete_recipe">מחק מתכון</string>
+    <string name="edit_recipe">ערוך מתכון</string>
+    <string name="send_recipe_ingre">הוסף לרשימת קניות</string>
 
 
     <!-- Strings related to login -->

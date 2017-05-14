@@ -261,6 +261,29 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
+    public void EditRecipe2(Recipes recipe){
+
+        String na = recipe.get_recipename();
+        deleteRecipe(na);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_RECIPE_NAME, recipe.get_recipename());
+        values.put(COLUMN_RECIPE_INSTRUCTIONS, recipe.get_recipeinstructions());
+        values.put(COLUMN_TIME, recipe.getTime());
+        db.insert(TABLE_RECIPES, null, values);
+
+        //get id
+        final String MY_QUERY = "SELECT MAX(recipeid) FROM " + TABLE_RECIPES;
+        Cursor cur = db.rawQuery(MY_QUERY, null);
+        cur.moveToFirst();
+        MyId = cur.getInt(0);
+        cur.close();
+
+        db.close();
+    }
+
     public void addRecipe_manager(Recipes recipe){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -286,6 +309,19 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
 
         values.put(COLUMN_ID, MyId);
+        values.put(COLUMN_RECIPE_AMOUNT, ingredient.get_amount());
+        values.put(COLUMN_RECIPE_INGREDIENT, ingredient.get_ingredient());
+
+        db.insert(TABLE_INGREDIENT, null, values);
+        db.close();
+    }
+
+    public void addIngredientById(Ingredient ingredient, int id){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_ID, id);
         values.put(COLUMN_RECIPE_AMOUNT, ingredient.get_amount());
         values.put(COLUMN_RECIPE_INGREDIENT, ingredient.get_ingredient());
 
@@ -427,6 +463,13 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         db.execSQL("DELETE FROM " + TABLE_RECIPES + " WHERE " + COLUMN_RECIPE_NAME + " = '" + recipename + "'");
+        db.close();
+    }
+
+    public void deleteIngredient(String name){
+        SQLiteDatabase db = getWritableDatabase();
+
+        db.execSQL("DELETE FROM " + TABLE_INGREDIENT + " WHERE " + COLUMN_RECIPE_INGREDIENT + " = '" + name + "'");
         db.close();
     }
 

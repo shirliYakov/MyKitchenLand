@@ -36,18 +36,14 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.activity_main);
 
-             /*db.clearTableUsers();
-        USERS user = new USERS("noa", "nachmias", "admin","admin01");
-        db.addUser(user);*/
-
         email = (EditText)findViewById(R.id.emailEt);
         password = (EditText)findViewById(R.id.passEt);
         flag = true;
 
-            db = new DBHandler(this);
+        db = new DBHandler(this);
 
 
-        print = (TextView)findViewById(R.id.printtable) ;
+        /*print = (TextView)findViewById(R.id.printtable) ;
         //print table
         String log ="";
         List<USERS> userList = db.getAllusers();
@@ -55,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             log = log + "email: " + u.getEmail() + " , pass: "  + u.getPassword()
                     + ", name: " + u.getName() + ", lastname: " + u.getLastname() + "\n";
             print.setText(log);
-        }
+        }*/
     }
 
     public void Register(View view)

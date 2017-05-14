@@ -36,6 +36,7 @@ public class AddRecActivity extends AppCompatActivity {
     Cursor data;
     ArrayList <String> list;
     Bitmap photo;
+    ListAdapter listAdapter;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -55,19 +56,22 @@ public class AddRecActivity extends AppCompatActivity {
 
         check = 0;
 
-
-
         listView = (ListView) findViewById(R.id.listview_ingre);
         //info = (TextView) findViewById(R.id.showtable);
         list = new ArrayList<>();
         data = db.getRecipeForList();
 
-        ListAdapter listAdapter = new ArrayAdapter<>(AddRecActivity.this, android.R.layout.simple_list_item_1, list);
+        listAdapter = new ArrayAdapter<>(AddRecActivity.this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(listAdapter);
 
-        //db.addRecipe(new Recipes("RECIP1"));
-        //db.addRecipe(new Recipes("RECIP2"));
-        //db.addRecipe(new Recipes("RECIP3"));
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
+                list.remove(pos);
+                arr_in.remove(pos);
+                listView.invalidateViews();
+                return false;
+            }
+        });
 
     }
 
@@ -96,21 +100,24 @@ public class AddRecActivity extends AppCompatActivity {
 
     public void btn_add_re_On_Click(View v){
 
+        if(re_name.getText().toString().isEmpty())
+            re_name.setError("נא הכנס שם מתכון");
 
-        Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString() ,re_time.getText().toString());
-        db.addRecipe(recipe);
+        else {
+
+            Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
+            db.addRecipe(recipe);
 
 
-        for (int i = 0; i < arr_in.size(); i++) {
-            Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());
-            db.addIngredient(ing);
+            for (int i = 0; i < arr_in.size(); i++) {
+                Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());
+                db.addIngredient(ing);
+            }
+            Toast.makeText(AddRecActivity.this, "נוסף למתכונים שלי", Toast.LENGTH_LONG).show();
+
+            Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
+            startActivity(Go);
         }
-        Toast.makeText(AddRecActivity.this, "נוסף למתכונים שלי", Toast.LENGTH_LONG).show();
-
-        Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
-        startActivity(Go);
-
-
 
     }
 

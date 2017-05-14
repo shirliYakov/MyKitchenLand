@@ -1,13 +1,20 @@
 package com.example.shirl1.mykitchenland;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,17 +22,17 @@ import java.util.List;
 
 public class ShowRecipActivity extends AppCompatActivity {
 
-
     TextView name1;
     TextView ingredient1;
     TextView instructions1;
+    TextView time1;
+    ImageView image1;
     DBHandler db;
     String name;
     String nameinput;
     int id;
     String instruct;
     String in;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,42 +44,20 @@ public class ShowRecipActivity extends AppCompatActivity {
         name1 = (TextView) findViewById(R.id.recipe_name);
         ingredient1 = (TextView) findViewById(R.id.input_ingredient);
         instructions1 = (TextView) findViewById(R.id.input_instructions);
+        time1 = (TextView) findViewById(R.id.input_time);
+        image1 = (ImageView)findViewById(R.id.input_image);
 
         //get name from list
         Bundle bundle = getIntent().getExtras();
         nameinput = bundle.getString("Name");
-    /*public Recipes getRecipeByName(String re_name) {
-
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_RECIPES + " WHERE "
-                + COLUMN_RECIPE_NAME + " = '" + re_name + "'";
-
-        Log.e(LOG, selectQuery);
-
-        Cursor c = db.rawQuery(selectQuery, null);
-        if(c.getCount() <= 0){
-            c.close();
-            return null;
-        }
-
-        if (c != null)
-            c.moveToFirst();
-
-        Recipes re = new Recipes();
-        re.set_id(c.getInt(c.getColumnIndex(COLUMN_ID)));
-        re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
-        re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
-        db.close();
-
-        return re;
-    }*/
 
         Recipes r = db.getRecipeByName(nameinput);
 
         if (r!= null) {
             instructions1.setText(r.get_recipeinstructions());
             name1.setText(r.get_recipename());
+            time1.setText(r.getTime());
+            //image1.setImageBitmap(r.getImage());
             id =r.get_id();
 
             String log="";
@@ -88,9 +73,6 @@ public class ShowRecipActivity extends AppCompatActivity {
             Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
             startActivity(Go);
         }
-
-
-
     }
 
     public void btn_back_On_Click(View v){
@@ -103,11 +85,39 @@ public class ShowRecipActivity extends AppCompatActivity {
         startActivity(Go);
     }
 
-    public void DeleteRecipe_onClick(View v){
+    public boolean onCreateOptionsMenu(Menu menu){
 
-        db.deleteRecipe(nameinput);
-        Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
-        startActivity(Go);
+        getMenuInflater().inflate(R.menu.showrecipemenu, menu);
+        return true;
+    }
+
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.delete_recipe) {
+
+            db.deleteRecipe(nameinput);
+            Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
+            startActivity(Go);
+        }
+
+        if (id == R.id.edit_recipe) {
+
+            Intent intent = new Intent(ShowRecipActivity.this, EditRecipeActivity.class);
+            intent.putExtra("NameToEdit", nameinput);
+            startActivity(intent);
+
+        }
+
+        if (id == R.id.send_recipe_ingre) {
+            Intent Go = new Intent(ShowRecipActivity.this, MainMenu.class);
+            startActivity(Go);
+        }
+
+        return super.onOptionsItemSelected(item);
+
     }
 
 }

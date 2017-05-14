@@ -58,9 +58,12 @@ public class RecipesActivity extends AppCompatActivity {
 
         if(data.getCount()==0){
             Toast.makeText(RecipesActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
-        }else{
-            while(data.moveToNext()){
-                list.add(data.getString(1));//column 2 is index of column-name
+        }
+        else{
+            if(list.isEmpty()) {
+                while (data.moveToNext()) {
+                    list.add(data.getString(1));//column 2 is index of column-name
+                }
             }
         }
 

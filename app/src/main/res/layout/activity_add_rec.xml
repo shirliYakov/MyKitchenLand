@@ -53,7 +53,7 @@
 
             <EditText
                 android:id="@+id/input_amount"
-                android:layout_width="100dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:gravity="top|right"
                 android:hint="כמות"
@@ -62,7 +62,7 @@
 
             <EditText
                 android:id="@+id/input_ingre"
-                android:layout_width="200dp"
+                android:layout_width="180dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/lay_amount"
@@ -78,16 +78,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
+                android:drawableTop="@drawable/addme2"
                 android:onClick="btn_add_ingre_on_click"
-                android:text="הוסף מוצר" />
+                android:text="הוסף מוצר"
+                android:textColor="@color/colorPrimary" />
         </LinearLayout>
 
         <ListView
             android:layout_width="match_parent"
             android:layout_height="150dp"
+            android:background="@drawable/border_style"
             android:id="@+id/listview_ingre"
             android:layout_below="@+id/lay_amount"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="15dp"
+            android:longClickable="true"
+            android:scrollbars="vertical"/>
 
         <EditText
             android:id="@+id/input_instructions"
@@ -97,9 +102,9 @@
             android:inputType="textMultiLine"
             android:lines="5"
             android:minLines="5"
+            android:background="@drawable/border_style"
             android:gravity="top|right"
             android:hint="אופן הכנה"
-            android:textStyle="bold"
             android:textColorHint="@android:color/white"
             android:textColorLink="@android:color/darker_gray"
             android:layout_below="@+id/listview_ingre"
@@ -121,56 +126,56 @@
             android:id="@+id/btn_takePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/icon_add1"
-            android:background="@android:color/transparent"
-            android:layout_alignParentRight="true"
             android:onClick="takePicture_on_click"
             android:layout_below="@+id/txt_pictures"
-            android:textColor="@color/colorPrimary"
-            android:textSize="10sp" />
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/addme2"
+            android:layout_alignParentRight="true"
+            android:text="הוסף תמונה"
+            android:textColor="@color/colorPrimary"  />
 
         <EditText
             android:id="@+id/input_time"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:gravity="top|right"
             android:hint="זמן הכנה"
             android:inputType="textPersonName"
-            android:layout_alignParentRight="true"
             android:textColorHint="@android:color/white"
             android:textColorLink="@android:color/darker_gray"
             android:layout_below="@+id/btn_takePicture"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="30dp"/>
 
         <Button
             android:id="@+id/btn_add_re_"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/recip_ic"
+            android:layout_below="@+id/input_time"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:onClick="btn_add_re_On_Click"
             android:text="הוסף למתכונים שלי"
-            android:background="@color/colorPrimary"
             android:textSize="10sp" />
 
         <Button
             android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
+            android:layout_height="wrap_content"
             android:onClick="btn_cancel_On_Click"
             android:textSize="10sp"
+            android:drawableTop="@drawable/cancel1"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"
             android:text="ביטול"
-            android:background="@color/colorPrimary"
+            android:layout_below="@+id/input_time"
+            android:layout_marginTop="20dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true" />
-
-
-
     </RelativeLayout>
 
 </ScrollView>
-
-
-
-
