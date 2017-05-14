@@ -7,7 +7,7 @@ package com.example.shirl1.mykitchenland;
 
 public class Shopping_list {
 
-    int list_id;
+    String list_id;
     String list_name;
 
     public Shopping_list() {
@@ -18,7 +18,7 @@ public class Shopping_list {
         this.list_name = list_name;
     }
 
-    public Shopping_list(int id, String list_name) {
+    public Shopping_list(String id, String list_name) {
         this.list_id = id;
         this.list_name = list_name;
     }
@@ -31,12 +31,12 @@ public class Shopping_list {
         this.list_name = list_name;
     }
 
-    public void set_listId(int list_id){
+    public void set_listId(String list_id){
         this.list_id = list_id;
     }
 
 
-    public int get_list_id(){
+    public String get_list_id(){
         return this.list_id;
     }
 

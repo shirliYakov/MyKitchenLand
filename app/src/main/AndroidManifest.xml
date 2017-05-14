@@ -54,6 +54,14 @@
         <activity
             android:name=".ShowManagerRecipActivity"
             android:windowSoftInputMode="adjustPan"></activity>
+
+        <activity
+            android:name=".ShowList"
+            android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".search_list"
+            android:windowSoftInputMode="adjustPan" />
     </application>
 
 </manifest>
