@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_shop_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,123 +9,162 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/paper"
+    android:background="@drawable/fruits"
     tools:context="com.example.shirl1.mykitchenland.ShowList">
 
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/scrollView3"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/relativeLayout">
+
+
+        <EditText
+                android:id="@+id/item_amount"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:ems="3"
+                android:hint="כמות"
+                android:imeOptions="actionDone"
+                android:textSize="15dp"
+                android:inputType="number"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textColorLink="@android:color/darker_gray"
+            android:layout_below="@+id/list_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp" />
+
+            <ImageButton
+                android:id="@+id/add_more_btn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/plus1"
+                android:layout_alignBottom="@+id/item_amount"
+                android:layout_toRightOf="@+id/txtFromRec"
+                android:layout_toEndOf="@+id/txtFromRec" />
+
+
+            <EditText
+                android:id="@+id/item_name"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="7"
+                android:imeOptions="actionNext"
+                android:nextFocusForward="@+id/item_amount"
+                android:hint="שם המוצר"
+                android:textSize="15dp"
+                android:inputType="textPersonName"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/black"
+                android:textColorLink="@android:color/darker_gray"
+                android:layout_above="@+id/items_list"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+        <TextView
+            android:id="@+id/txtFromRec"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="הוסף מוצרים מתוך מתכון"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="17dp"
+            android:textStyle="italic"
+
+            android:layout_below="@+id/items_list"
+            android:layout_toLeftOf="@+id/btn_back"
+            android:layout_toStartOf="@+id/btn_back"
+            android:layout_marginTop="18dp" />
+
+
+
+                <ListView
+                    android:id="@+id/showRecipes"
+                    android:background="@drawable/border_style"
+                    android:layout_width="match_parent"
+                    android:scrollbars="vertical"
+                    android:ellipsize="marquee"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/txtFromRec"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                </ListView>
+
+
+            <Button
+                android:id="@+id/btn_back"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:background="@drawable/cancel1"
+                android:elevation="0dp"
+                android:onClick="btn_back_On_Click"
+                android:textSize="15dp"
+                android:layout_below="@+id/showRecipes"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="27dp"
+                android:layout_marginEnd="27dp" />
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/items_list"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+
+                android:background="@drawable/border_style"
+                android:layout_marginTop="14dp"
+                android:layout_below="@+id/item_amount"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true">
+
+            </android.support.v7.widget.RecyclerView>
+
+
+        <EditText
+            android:id="@+id/list_name"
+            android:layout_width="220sp"
+            android:layout_height="50dp"
+
+            android:gravity="center"
+            android:maxLines="1"
+            android:nextFocusForward="@+id/item_name"
+            android:text="כאן יוצג שם הרשימה"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:drawableBottom="@android:color/transparent"
-        android:background="@drawable/sa1"
-        android:onClick="btn_save_On_Click"
-        android:textColor="@android:color/black"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textSize="15dp"></Button>
-
-
-    <Button
-        android:id="@+id/btn_back"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:background="@drawable/back"
-        android:onClick="btn_back_On_Click"
+
+        android:background="@drawable/update_new"
+        android:drawableTop="@android:color/transparent"
+        android:onClick="btn_save_On_Click"
+        android:text="שמור"
+        android:textColor="@color/colorPrimary"
         android:textSize="15dp"
-        android:elevation="0dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/items_list"
-        android:layout_alignStart="@+id/items_list" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
-    <EditText
-        android:id="@+id/item_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="7"
-        android:imeOptions="actionNext"
-        android:nextFocusForward="@+id/item_amount"
-        android:hint="שם המוצר"
-        android:textSize="15dp"
-        android:inputType="textPersonName"
-        android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black"
-        android:textColorLink="@android:color/darker_gray"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
-        android:layout_alignBaseline="@+id/item_amount"
-        android:layout_alignBottom="@+id/item_amount"
-        android:layout_alignLeft="@+id/btn_back"
-        android:layout_alignStart="@+id/btn_back" />
+    </Button>
 
-    <EditText
-        android:id="@+id/item_amount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:ems="3"
-        android:hint="כמות"
-        android:imeOptions="actionDone"
-        android:textSize="15dp"
-        android:inputType="number"
-        android:textColor="@android:color/black"
-        android:textColorHint="@android:color/black"
-        android:textColorLink="@android:color/darker_gray"
-        android:layout_marginBottom="17dp"
-        android:layout_above="@+id/btn_save"
-        android:layout_alignRight="@+id/list_name"
-        android:layout_alignEnd="@+id/list_name"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp" />
+</RelativeLayout>
 
-    <ImageButton
-        android:id="@+id/add_more_btn"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_weight="1"
-        android:background="@drawable/plus1"
-        android:layout_alignTop="@+id/item_amount"
-        android:layout_toLeftOf="@+id/btn_save"
-        android:layout_toStartOf="@+id/btn_save" />
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="320dp"
-        android:layout_height="300sp"
-        android:id="@+id/items_list"
-        android:layout_marginTop="53dp"
-        android:layout_below="@+id/list_name"
-        android:layout_centerHorizontal="true">
-    </android.support.v7.widget.RecyclerView>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/deleteShopList"
-        android:drawableTop="@drawable/delete"
-        android:background="@android:color/transparent"
-        android:text="מחק רשימה"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/list_name"
-        android:layout_alignRight="@+id/items_list"
-        android:layout_alignEnd="@+id/items_list" />
-
-    <EditText
-        android:layout_width="220sp"
-        android:layout_height="50dp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:id="@+id/list_name"
-        android:text="כאן יוצג שם הרשימה"
-        android:maxLines="1"
-        android:gravity="center"
-        android:nextFocusForward="@+id/item_name"
-        android:textSize="20dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true">
-
-    </EditText>
-    />
+</ScrollView>
 
 </RelativeLayout>

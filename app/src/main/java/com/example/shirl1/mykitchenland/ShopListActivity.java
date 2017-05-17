@@ -47,6 +47,8 @@ public class ShopListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_list);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+
         db = new DBHandler(this);
         listView = (ListView) findViewById(R.id.list_list);
         ArrayList<String> list = new ArrayList<>();
@@ -177,25 +179,4 @@ public class ShopListActivity extends AppCompatActivity {
     }
 
 
-
-    /*print in text view
-    db = new DBHandler(this);
-    info = (TextView) findViewById(R.id.txt_show);
-    Cursor i = db.getListOfItems();
-    Cursor c = db.getListOfShopList();
-
-    if ((c.getCount() == 0) ) {
-        Toast.makeText(this, "לא קיימות רשימות", Toast.LENGTH_LONG).show();
-        return;
-    }
-    StringBuffer buffer = new StringBuffer();
-    while (c.moveToNext()&&i.moveToNext()) {
-        buffer.append("מספר רשימה: " + c.getString(0) + "\n");
-        buffer.append("שם הרשימה: " + c.getString(1) + "\n");
-        buffer.append("מספר רשימה: "+i.getString(0)+"\n");
-        buffer.append("שם הפריט: "+i.getString(1)+"\n");
-        buffer.append("כמות: "+i.getString(2)+"\n");
-
-    }
-    info.setText(buffer);*/
 }

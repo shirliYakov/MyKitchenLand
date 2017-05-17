@@ -174,41 +174,69 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"></LinearLayout>
 
-    <ScrollView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"></ScrollView>
 
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_height="130dp"
+        android:background="@drawable/border_style"
+        android:id="@+id/scrollView22"
+        android:layout_above="@+id/btn_back"
+        android:layout_alignLeft="@+id/scrollView2"
+        android:layout_alignStart="@+id/scrollView2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="90dp"
         style="?android:attr/spinnerItemStyle"
         android:ellipsize="marquee"
         android:id="@+id/showRecipes"
-
-        android:layout_above="@+id/btn_back"
+        android:layout_below="@+id/txtFromRec"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/txtFromRec"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="הוסף מוצרים מתוך מתכון"
+                android:textColor="@android:color/holo_red_dark"
+                android:textSize="17dp"
+                android:textStyle="italic"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:background="@drawable/border_style"
+        android:id="@+id/scrollView2"
+        android:layout_below="@+id/add_more_btn"
+        android:layout_alignLeft="@+id/txt_items"
+        android:layout_alignStart="@+id/txt_items">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/list_of_items"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_below="@+id/add_more_btn"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
     </android.support.v7.widget.RecyclerView>
 
-    <TextView
-        android:text="הוסף מוצרים מתוך מתכון"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtFromRec"
-        android:textSize="17dp"
-        android:textStyle="italic"
-        android:textColor="@android:color/holo_red_dark"
-        android:layout_above="@+id/showRecipes"
-        android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+    </ScrollView>
+
 
 </RelativeLayout>
 

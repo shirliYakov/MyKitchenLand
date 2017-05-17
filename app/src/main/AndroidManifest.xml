@@ -32,7 +32,7 @@
         />
         <activity
             android:name=".Inventory"
-            android:label="@string/title_activity_inventory" />
+            android:label="מלאי ביתי"/>
         <activity android:name=".splash_welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />`1
@@ -46,11 +46,14 @@
         <activity
             android:name=".RecipesActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ShopListActivity" />
+        <activity android:name=".ShopListActivity"
+            android:label="רשימת קניות"/>
         <activity
             android:name=".AddRecActivity"
+            android:label="מתכון חדש"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".AddShopListActivity" />
+        <activity android:name=".AddShopListActivity"
+            android:label="רשימת קניות חדשה"/>
         <activity
             android:name=".SearchRecActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -65,7 +68,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DisplayMenuActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:label="תפריט שבועי"/>
         <activity
             android:name=".EditRecipeActivity"
             android:windowSoftInputMode="adjustPan" />

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.shirl1.mykitchenland.ShowList">
+
+    <item
+        android:id="@+id/send_to_email"
+        android:orderInCategory="1"
+        android:title="שלח לאימייל"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/delete_list"
+        android:title="מחק רשימה"
+        android:orderInCategory="2"
+        app:showAsAction="never" />
+
+</menu>

@@ -46,7 +46,7 @@ public class AddShopListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_shop_list);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
         mRecyclerView = (RecyclerView) findViewById(R.id.list_of_items);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
