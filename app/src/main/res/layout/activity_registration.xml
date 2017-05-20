@@ -18,10 +18,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/regBtn"
-        android:textSize="18sp"
-        android:layout_marginTop="46dp"
+        android:layout_marginTop="48dp"
         android:onClick="Register_on_click"
-        android:background="@color/colorPrimary"
+        android:drawableTop="@drawable/adduser"
+        android:background="@android:color/transparent"
+        android:textColor="#921"
+        android:textSize="15sp"
         android:layout_below="@+id/input_password"
         android:layout_centerHorizontal="true" />
 
@@ -40,10 +42,10 @@
 
     <EditText
         android:id="@+id/input_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
-        android:ems="5"
+        android:ems="6"
         android:inputType="textPersonName"
         android:hint="שם פרטי"
         android:textColorLink="@android:color/holo_blue_dark"

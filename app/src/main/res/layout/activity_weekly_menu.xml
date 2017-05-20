@@ -230,6 +230,7 @@
             android:onClick="btn_delete_menu_On_Click"
             android:text="מחק תפריט"
             android:textSize="10sp"
+            android:layout_alignBaseline="@+id/reset_menu"
             android:drawableTop="@drawable/delete_new"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true" />
@@ -242,13 +243,10 @@
             android:drawableTop="@drawable/home"
             android:onClick="btn_back_On_Click"
             android:text="חזור לתפריט הראשי"
-            android:layout_alignBaseline="@+id/reset_menu"
             android:textColor="@color/colorPrimary"
             android:textSize="10sp"
-            android:layout_below="@+id/txt_saterday"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
 
     </RelativeLayout>
 

@@ -9,7 +9,6 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -61,14 +60,14 @@
             android:name=".ShowManagerRecipActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ImageRecipActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
             android:name=".DisplayMenuActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".EditRecipeActivity"
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".allowdeleterecipActivity" />
+        <activity android:name=".allowdeletemenuActivity" />
+        <activity android:name=".fullscreenimageActivity"></activity>
     </application>
 
 </manifest>

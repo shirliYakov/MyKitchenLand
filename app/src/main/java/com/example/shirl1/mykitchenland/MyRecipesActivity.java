@@ -110,17 +110,22 @@ public class MyRecipesActivity extends AppCompatActivity {
 
             builder.setCancelable(false);
 
-            builder.setView(view).setPositiveButton("חפש", new DialogInterface.OnClickListener() {
+            builder.setView(view)
+                    .setPositiveButton("חפש", new DialogInterface.OnClickListener() {
 
-                public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    Intent intent = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
-                    intent.putExtra("Name", search.getText().toString());
-                    startActivity(intent);
-                }
+                            Intent intent = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
+                            intent.putExtra("Name", search.getText().toString());
+                            startActivity(intent);
+                        }
 
-            });
-
+                    })
+                    .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
             AlertDialog alert = builder.create();
             alert.show();
         }

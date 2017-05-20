@@ -1,23 +1,32 @@
 package com.example.shirl1.mykitchenland;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.util.Log;
+
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import android.database.sqlite.SQLiteDatabase;
@@ -27,6 +36,7 @@ import android.widget.Toast;
 public class AddRecActivity extends AppCompatActivity {
 
     DBHandler db;
+    byte[] imageMe;
     EditText re_name, re_instructions, re_ingredient, re_amount, re_time, e_in, e_am;
     LinearLayout lay_in, lay_am;
     int check;
@@ -37,6 +47,10 @@ public class AddRecActivity extends AppCompatActivity {
     ArrayList <String> list;
     Bitmap photo;
     ListAdapter listAdapter;
+    ImageView IV;
+    Button camera, upload, gallery;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,8 +67,9 @@ public class AddRecActivity extends AppCompatActivity {
         //lay_in = (LinearLayout) findViewById(R.id.lay_ingredient);
         lay_am = (LinearLayout) findViewById(R.id.lay_amount);
         arr_in = new ArrayList<>();
-
+        IV = (ImageView) findViewById(R.id.imageView_pic);
         check = 0;
+
 
         listView = (ListView) findViewById(R.id.listview_ingre);
         //info = (TextView) findViewById(R.id.showtable);
@@ -75,22 +90,50 @@ public class AddRecActivity extends AppCompatActivity {
 
     }
 
+
+
     public void btn_add_ingre_on_click(View v) {
 
         in1 = re_amount.getText().toString();
         in2 = re_ingredient.getText().toString();
-        Ingredient in_new = new Ingredient(in2,in1);
-        arr_in.add(in_new);
 
-        list.add(arr_in.get(list.size()).get_ingredient().toString() + " " + arr_in.get(list.size()).get_amount().toString());//column 2 is index of column-name
-        re_amount.setText("");
-        re_ingredient.setText("");
+        if(in1.isEmpty() && in2.isEmpty())
+            Toast.makeText(AddRecActivity.this, "לא ניתן להכניס מוצר ריק", Toast.LENGTH_LONG).show();
+
+        else if(in1.isEmpty() && (!in2.isEmpty()))
+            Toast.makeText(AddRecActivity.this, "לא ניתן להכניס מוצר ללא כמות", Toast.LENGTH_LONG).show();
+
+        else if(in2.isEmpty() && (!in1.isEmpty()))
+            Toast.makeText(AddRecActivity.this, "לא ניתן להכניס כמות ללא מוצר", Toast.LENGTH_LONG).show();
+
+        else {
+            Ingredient in_new = new Ingredient(in2, in1);
+            arr_in.add(in_new);
+            list.add(in1 + " " + in2);//column 2 is index of column-name
+            re_amount.setText("");
+            re_ingredient.setText("");
+        }
     }
 
     public void takePicture_on_click(View v) {
-        Intent Go = new Intent(AddRecActivity.this, ImageRecipActivity.class);
-        startActivity(Go);
 
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);//PASS RESULT TO onactivityresult
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            Bitmap photo = (Bitmap) extras.get("data");
+            IV.setImageBitmap(photo);
+            imageMe = getBytes(photo);
+        }
+    }
+
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
     }
 
     public void btn_cancel_On_Click(View v){
@@ -105,9 +148,14 @@ public class AddRecActivity extends AppCompatActivity {
 
         else {
 
-            Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
-            db.addRecipe(recipe);
-
+            if(imageMe==null) {
+                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
+                db.addRecipe(recipe);
+            }
+            else {
+                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                db.addRecipe(recipe);
+            }
 
             for (int i = 0; i < arr_in.size(); i++) {
                 Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());
@@ -118,9 +166,7 @@ public class AddRecActivity extends AppCompatActivity {
             Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
             startActivity(Go);
         }
-
     }
-
 }
 
 

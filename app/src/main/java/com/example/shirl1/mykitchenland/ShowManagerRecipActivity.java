@@ -37,13 +37,9 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
         ingredient1 = (TextView) findViewById(R.id.input_ingredient);
         instructions1 = (TextView) findViewById(R.id.input_instructions);
         time1 = (TextView) findViewById(R.id.input_time);
-        image1 = (ImageView)findViewById(R.id.input_image);
 
-        //get name from list
         Bundle bundle = getIntent().getExtras();
         nameinput = bundle.getString("Name");
-
-
         Recipes r = db.getRecipeByName_manager(nameinput);
 
         if (r!= null) {
@@ -66,6 +62,9 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
             Intent Go = new Intent(ShowManagerRecipActivity.this, RecipesActivity.class);
             startActivity(Go);
         }
+
+
+
 
     }
 

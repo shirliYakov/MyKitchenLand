@@ -41,15 +41,6 @@ public class RecipesActivity extends AppCompatActivity {
 
         //btn_delete_On_Click();
 
-        /*Recipes recipe = new Recipes("פשטידה","לערבב");
-        db.addRecipe_manager(recipe);
-        Ingredient ingredient = new Ingredient("5","בננות");
-        db.addIngredient_manager(ingredient);
-        Recipes recipe2 = new Recipes("חביתה","לערבב");
-        db.addRecipe_manager(recipe2);
-        Ingredient ingredient2 = new Ingredient("4","ביצים");
-        db.addIngredient_manager(ingredient2);*/
-
         listView = (ListView) findViewById(R.id.listview_recipes);
         ArrayList<String> list = new ArrayList<>();
         Cursor data = db.getRecipeForList_manager();
@@ -57,13 +48,16 @@ public class RecipesActivity extends AppCompatActivity {
         ListAdapter listAdapter = new ArrayAdapter<>(RecipesActivity.this, android.R.layout.simple_list_item_1, list);
 
         if(data.getCount()==0){
-            Toast.makeText(RecipesActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
+            fillRecipes();
+            data = db.getRecipeForList_manager();
+            while (data.moveToNext()) {
+                list.add(data.getString(1));//column 2 is index of column-name
+            }
         }
-        else{
-            if(list.isEmpty()) {
-                while (data.moveToNext()) {
-                    list.add(data.getString(1));//column 2 is index of column-name
-                }
+
+        if(list.isEmpty()) {
+            while (data.moveToNext()) {
+                list.add(data.getString(1));//column 2 is index of column-name
             }
         }
 
@@ -77,6 +71,19 @@ public class RecipesActivity extends AppCompatActivity {
         });
 
         listView.setAdapter(listAdapter);
+
+    }
+
+    public void fillRecipes(){
+
+        Recipes recipe = new Recipes("פשטידה","לערבב");
+        db.addRecipe_manager(recipe);
+        Ingredient ingredient = new Ingredient("5","בננות");
+        db.addIngredient_manager(ingredient);
+        Recipes recipe2 = new Recipes("חביתה","לערבב");
+        db.addRecipe_manager(recipe2);
+        Ingredient ingredient2 = new Ingredient("4","ביצים");
+        db.addIngredient_manager(ingredient2);
 
     }
 
@@ -111,17 +118,22 @@ public class RecipesActivity extends AppCompatActivity {
 
             builder.setCancelable(false);
 
-            builder.setView(view).setPositiveButton("חפש", new DialogInterface.OnClickListener() {
+            builder.setView(view)
+                    .setPositiveButton("חפש", new DialogInterface.OnClickListener() {
 
-                public void onClick(DialogInterface dialog, int which) {
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    Intent intent = new Intent(RecipesActivity.this, ShowManagerRecipActivity.class);
-                    intent.putExtra("Name", search.getText().toString());
-                    startActivity(intent);
-                }
+                            Intent intent = new Intent(RecipesActivity.this, ShowRecipActivity.class);
+                            intent.putExtra("Name", search.getText().toString());
+                            startActivity(intent);
+                        }
 
-            });
-
+                    })
+                    .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
             AlertDialog alert = builder.create();
             alert.show();
 
