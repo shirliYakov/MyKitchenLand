@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -26,11 +27,10 @@ public class ShowList extends AppCompatActivity {
     EditText item_name;
     EditText item_amount;
     ImageButton add;
-
+    Button delete;
     @Override
 
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_list);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -64,6 +64,18 @@ public class ShowList extends AppCompatActivity {
             add = (ImageButton) findViewById(R.id.add_more_btn);
             item_name = (EditText) findViewById(R.id.item_name);
             item_amount = (EditText) findViewById(R.id.item_amount);
+            delete= (Button) findViewById(R.id.deleteShopList);
+            delete.setOnClickListener(new View.OnClickListener()
+            {
+                public void onClick(View v)
+                {
+                    db.delete_shoplist(listname);
+                    Toast.makeText(ShowList.this, "הרשימה נמחקה", Toast.LENGTH_LONG).show();
+                    Intent Go = new Intent(ShowList.this, ShopListActivity.class);
+                    startActivity(Go);
+                }
+            });
+
             add.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -113,13 +125,12 @@ public class ShowList extends AppCompatActivity {
     }
 
 
-    public void delete_table_on_click(View v)
+ /*   public void delete_table_on_click(View v)
     {
         db.delete_shoplist(listname);
         Toast.makeText(this, "הרשימה נמחקה", Toast.LENGTH_LONG).show();
         Intent Go = new Intent(this, ShopListActivity.class);
         startActivity(Go);
-    }
-
+    }*/
 
 }

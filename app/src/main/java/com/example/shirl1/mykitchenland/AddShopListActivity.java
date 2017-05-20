@@ -1,6 +1,7 @@
 package com.example.shirl1.mykitchenland;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,28 +9,36 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.view.View.*;
 
 public class AddShopListActivity extends AppCompatActivity {
 
     DBHandler db;
     EditText list_name;
     EditText item_name;
+    ListView recipelist;
     EditText item_amount;
     ImageButton add;
-    int listID;
+    String listID;
     private RecyclerView mRecyclerView;
     private ItemAdapter mAdapter;
+    List<Ingredient> ing;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +58,46 @@ public class AddShopListActivity extends AppCompatActivity {
         list_name = (EditText) findViewById(R.id.list_name);
         item_name = (EditText) findViewById(R.id.input_itemName);
         item_amount = (EditText) findViewById(R.id.input_itemAmount);
-        add.setOnClickListener(new View.OnClickListener() {
+        recipelist = (ListView) findViewById(R.id.showRecipes) ;
+
+        ArrayList <String> list = new ArrayList<>();
+        Cursor data = db.getRecipeForList();
+
+        ListAdapter listAdapter = new ArrayAdapter<>(AddShopListActivity.this, android.R.layout.simple_list_item_1, list);
+
+        if(data.getCount()!=0)
+        {
+            while(data.moveToNext()){
+                list.add(data.getString(1));//column 2 is index of column-name
+            }
+        }
+        recipelist.setAdapter(listAdapter);
+
+        if (recipelist.getCount() != 0)
+        {
+            recipelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    String name = recipelist.getItemAtPosition(i).toString();
+                    Recipes r = db.getRecipeByName(name);
+                    if (r != null) {
+                        int id = r.get_id();
+                        ing = db.getIngredientById(id);
+                    }
+                    for (Ingredient ingredient : ing)
+                    {
+                        Item itm=new Item();
+                        itm.setItemName(ingredient.get_amount());
+                        itm.setAmount(ingredient.get_ingredient());
+                        mAdapter.AddItem(itm);
+                    }
+                }
+            });
+
+        }
+
+
+
+        add.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 Item item=new Item();
@@ -90,7 +138,7 @@ public class AddShopListActivity extends AppCompatActivity {
         Shopping_list shoppingList = create_List_And_get_list();
         if (shoppingList!=null)
         {
-            int list_id=shoppingList.get_list_id();
+            String list_id=shoppingList.get_list_id();
         db.addItems(items);
         db.close();
         Toast.makeText(this, "הרשימה נוצרה בהצלחה", Toast.LENGTH_LONG).show();
@@ -116,4 +164,6 @@ public class AddShopListActivity extends AppCompatActivity {
         return shopList;
 
     }
+
+
 }

@@ -20,7 +20,7 @@ public class splash_welcome extends AppCompatActivity {
             public void run() {
                 startActivity(new Intent(splash_welcome.this , MainActivity.class));
                 finish();
-           }
+            }
         },4000);
     }
 }

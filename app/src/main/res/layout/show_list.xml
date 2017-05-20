@@ -9,30 +9,31 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/back2"
+    android:background="@drawable/paper"
     tools:context="com.example.shirl1.mykitchenland.ShowList">
 
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:drawableBottom="@android:color/transparent"
         android:background="@drawable/sa1"
         android:onClick="btn_save_On_Click"
         android:textColor="@android:color/black"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:textSize="15dp"></Button>
 
-    <ImageButton
+
+    <Button
         android:id="@+id/btn_back"
-        android:layout_width="40dp"
-        android:layout_height="35dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:background="@drawable/back"
         android:onClick="btn_back_On_Click"
-        android:text="חזור"
-        android:textSize="10sp"
+        android:textSize="15dp"
         android:elevation="0dp"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/items_list"
@@ -89,6 +90,15 @@
         android:layout_toLeftOf="@+id/btn_save"
         android:layout_toStartOf="@+id/btn_save" />
 
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="320dp"
+        android:layout_height="300sp"
+        android:id="@+id/items_list"
+        android:layout_marginTop="53dp"
+        android:layout_below="@+id/list_name"
+        android:layout_centerHorizontal="true">
+    </android.support.v7.widget.RecyclerView>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,35 +107,23 @@
         android:background="@android:color/transparent"
         android:text="מחק רשימה"
         android:textColor="@android:color/black"
-        android:onClick="delete_table_on_click"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/list_name"
-        android:layout_toEndOf="@+id/list_name"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp" />
-
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="320dp"
-        android:layout_height="280sp"
-        android:id="@+id/items_list"
-        android:layout_above="@+id/item_amount"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp">
-    </android.support.v7.widget.RecyclerView>
+        android:layout_below="@+id/list_name"
+        android:layout_alignRight="@+id/items_list"
+        android:layout_alignEnd="@+id/items_list" />
 
     <EditText
         android:layout_width="220sp"
         android:layout_height="50dp"
         android:textStyle="bold"
-        android:textColor="@android:color/holo_red_dark"
+        android:textColor="@android:color/black"
         android:id="@+id/list_name"
         android:text="כאן יוצג שם הרשימה"
         android:maxLines="1"
+        android:gravity="center"
         android:nextFocusForward="@+id/item_name"
         android:textSize="20dp"
         android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/item_name"
-        android:layout_alignStart="@+id/item_name">
+        android:layout_centerHorizontal="true">
 
     </EditText>
     />

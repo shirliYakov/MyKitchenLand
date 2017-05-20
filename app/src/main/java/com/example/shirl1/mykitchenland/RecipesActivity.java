@@ -123,7 +123,7 @@ public class RecipesActivity extends AppCompatActivity {
 
                         public void onClick(DialogInterface dialog, int which) {
 
-                            Intent intent = new Intent(RecipesActivity.this, ShowRecipActivity.class);
+                            Intent intent = new Intent(RecipesActivity.this, ShowManagerRecipActivity.class);
                             intent.putExtra("Name", search.getText().toString());
                             startActivity(intent);
                         }

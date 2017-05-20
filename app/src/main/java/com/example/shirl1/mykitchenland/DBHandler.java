@@ -20,7 +20,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     int MyId;
     int MyId_m;
-    int ListId;
+    String ListId;
 
     //table1
     private static final String TABLE_RECIPES = "Recipes";
@@ -111,8 +111,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 + COLUMN_RECIPE_AMOUNT + " INTEGER, "
                 + COLUMN_RECIPE_INGREDIENT + " TEXT )";
 
-
-
         String CREATE_TABLE_WEEK= "CREATE TABLE " + TABLE_WEEK + "("
                 + COLUMN_DAY1 + " TEXT , "
                 + COLUMN_DAY2 + " TEXT , "
@@ -143,14 +141,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 + COLUMN_LAST_NAME + " TEXT )";
 
         db.execSQL(CREATE_TABLE_USERS);
-
-
-
         db.execSQL(CREATE_TABLE_RECIPE);
         db.execSQL(CREATE_TABLE_INGREDIENT);
         db.execSQL(CREATE_TABLE_RECIPE_MANAGER);
         db.execSQL(CREATE_TABLE_INGREDIENT_MANAGER);
-
         db.execSQL(CREATE_TABLE_WEEK);
         db.execSQL(CREATE_TABLE_SHOPLIST);
         db.execSQL(CREATE_TABLE_ITEMS);
@@ -685,8 +679,8 @@ public class DBHandler extends SQLiteOpenHelper {
             Cursor cur = db.rawQuery(MY_QUERY, null);
 
             cur.moveToFirst();
-            ListId = cur.getInt(0);
-            int id=ListId;
+            ListId = cur.getString(0);
+            String id=ListId;
             ContentValues values = new ContentValues();
             //  values.put(COLUMN_LITS_ID, shoplist.get_listname());
             values.put(COLUMN_LIST_NAME, shoplist.get_listname());
@@ -753,7 +747,7 @@ public class DBHandler extends SQLiteOpenHelper {
         if (c.moveToFirst()) {
             do {
                 Shopping_list shopl = new Shopping_list();
-                shopl.set_listId(c.getInt(c.getColumnIndex(COLUMN_LITS_ID)));
+                shopl.set_listId(c.getString(c.getColumnIndex(COLUMN_LITS_ID)));
                 shopl.set_listname(c.getString(c.getColumnIndex(COLUMN_LIST_NAME)));
                 all_lists.add(shopl);
             } while (c.moveToNext());
@@ -761,7 +755,7 @@ public class DBHandler extends SQLiteOpenHelper {
         return all_lists;
     }
 
-    public List <Item> getItemsByListId(int list_id)
+    public List <Item> getItemsByListId(String list_id)
     {
         List <Item> items_list = new ArrayList <Item>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -790,7 +784,7 @@ public class DBHandler extends SQLiteOpenHelper {
         else if (c != null)
             c.moveToFirst();
         Shopping_list shop = new Shopping_list();
-        shop.set_listId(c.getInt(c.getColumnIndex(COLUMN_LITS_ID)));
+        shop.set_listId(c.getString(c.getColumnIndex(COLUMN_LITS_ID)));
         shop.set_listname(c.getString(c.getColumnIndex(COLUMN_LIST_NAME)));
         db.close();
         return shop;
@@ -854,12 +848,17 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public void delete_shoplist(String name_of_list)
     {
-        SQLiteDatabase db=this.getWritableDatabase();
+        SQLiteDatabase db = getWritableDatabase();
         String list_id=getColumnLitsIdByName(name_of_list);
-        String[] args = new String[]{list_id};
-        deleteItemsFromTableByListId(name_of_list);
-//.        db.delete(TABLE_SHOPLIST,"list_name=?",args);
+      //  db.execSQL("DELETE FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ID_LIST + " = '" + list_id + "'");
+        db.execSQL("DELETE FROM " + TABLE_SHOPLIST + " WHERE " + COLUMN_LIST_NAME + " = '" + name_of_list + "'");
+
         db.close();
+       /* SQLiteDatabase dbb = getWritableDatabase();
+        dbb.execSQL("DELETE FROM " + TABLE_SHOPLIST + " WHERE " + COLUMN_LIST_NAME + " = '" + name_of_list + "'");
+*/
+       deleteItemsFromTableByListId(list_id);
+
     }
 
 
@@ -952,6 +951,22 @@ public class DBHandler extends SQLiteOpenHelper {
             return 0; //can call the list in this name
         else return -1; //list name is occupied
     }
+
+    public void addItemsFromRecipe(List <Ingredient> ingredients,String list_id)
+    {
+        List <Item> items=new ArrayList <Item>(); //create list of items
+        //convert ingredient to item
+        for (Ingredient ingredient : ingredients)
+        {
+            Item item=new Item();
+            item.setItemName(ingredient.get_ingredient());
+            item.setAmount(ingredient.get_amount());
+            items.add(item);
+        }
+
+        addItemsByListId(items,list_id); //add items to specific list
+    }
+
 
 }
 
