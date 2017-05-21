@@ -2,7 +2,7 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
 
-        <item name="colorPrimary">#FFC0CB</item> <!-- background appbar -->
+        <item name="colorPrimary">#B3FFC0CB</item> <!-- background appbar -->
         <item name="colorPrimaryDark">#921</item> <!--//#FFC0CB #E9967A #FAEBD7 #FFDAB9  #F5DEB3-->
         <item name="colorAccent">#D3D3D3</item> <!--color effects, EditText, RadioButtons...-->
     </style>

@@ -3,17 +3,22 @@ package com.example.shirl1.mykitchenland;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +37,11 @@ public class EditRecipeActivity extends AppCompatActivity {
     String nameToEdit;
     ListAdapter listAdapter;
     int id;
+    byte[] imageMe;
+    Bitmap Myimage;
+    ImageView IV;
+    Button camera, upload, gallery;
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +61,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         arr_in = new ArrayList<>();
         listView = (ListView) findViewById(R.id.listview_ingre);
         list = new ArrayList<>();
+        IV = (ImageView) findViewById(R.id.imageView_pic);
         check = 0;
 
         listAdapter = new ArrayAdapter<>(EditRecipeActivity.this, android.R.layout.simple_list_item_1, list);
@@ -60,6 +71,10 @@ public class EditRecipeActivity extends AppCompatActivity {
         re_name.setText(r.get_recipename());
         re_instructions.setText(r.get_recipeinstructions());
         re_time.setText(r.getTime());
+        if (r.getImage() != null) {
+            Myimage = getImage(r.getImage());
+            IV.setImageBitmap(Myimage);
+        }
 
         id =r.get_id();
         List<Ingredient> i = db.getIngredientById(id);
@@ -78,6 +93,30 @@ public class EditRecipeActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
+    }
+
+    public void takePicture_on_click(View v) {
+
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);//PASS RESULT TO onactivityresult
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
+            Bundle extras = data.getExtras();
+            Bitmap photo = (Bitmap) extras.get("data");
+            IV.setImageBitmap(photo);
+            imageMe = getBytes(photo);
+        }
+    }
+
+    public static byte[] getBytes(Bitmap bitmap) {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        return stream.toByteArray();
     }
 
     public void btn_add_ingre_on_click(View v) {
@@ -103,10 +142,6 @@ public class EditRecipeActivity extends AppCompatActivity {
         }
     }
 
-    public void takePicture_on_click(View v) {
-        Intent Go = new Intent(EditRecipeActivity.this, ImageRecipActivity.class);
-        startActivity(Go);
-    }
 
     public void btn_cancel_On_Click(View v){
         Intent Go = new Intent(EditRecipeActivity.this, MyRecipesActivity.class);
@@ -122,8 +157,14 @@ public class EditRecipeActivity extends AppCompatActivity {
 
             if (nameToEdit.equals(re_name.getText().toString())) {
 
-                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
-                db.EditRecipe2(recipe);
+                if(imageMe==null) {
+                    Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
+                    db.EditRecipe2(recipe);
+                }
+                else {
+                    Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                    db.EditRecipe2(recipe);
+                }
 
                 for (int i = 0; i < arr_in.size(); i++) {
                     Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());
@@ -131,8 +172,14 @@ public class EditRecipeActivity extends AppCompatActivity {
                 }
             } else {
 
-                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
-                db.addRecipe(recipe);
+                if(imageMe==null) {
+                    Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
+                    db.addRecipe(recipe);
+                }
+                else {
+                    Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                    db.addRecipe(recipe);
+                }
 
                 for (int i = 0; i < arr_in.size(); i++) {
                     Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());

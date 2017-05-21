@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 14;
+    private static final int DATABASE_VERSION = 17;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
@@ -111,8 +111,6 @@ public class DBHandler extends SQLiteOpenHelper {
                 + COLUMN_RECIPE_AMOUNT + " INTEGER, "
                 + COLUMN_RECIPE_INGREDIENT + " TEXT )";
 
-
-
         String CREATE_TABLE_WEEK= "CREATE TABLE " + TABLE_WEEK + "("
                 + COLUMN_DAY1 + " TEXT , "
                 + COLUMN_DAY2 + " TEXT , "
@@ -143,14 +141,10 @@ public class DBHandler extends SQLiteOpenHelper {
                 + COLUMN_LAST_NAME + " TEXT )";
 
         db.execSQL(CREATE_TABLE_USERS);
-
-
-
         db.execSQL(CREATE_TABLE_RECIPE);
         db.execSQL(CREATE_TABLE_INGREDIENT);
         db.execSQL(CREATE_TABLE_RECIPE_MANAGER);
         db.execSQL(CREATE_TABLE_INGREDIENT_MANAGER);
-
         db.execSQL(CREATE_TABLE_WEEK);
         db.execSQL(CREATE_TABLE_SHOPLIST);
         db.execSQL(CREATE_TABLE_ITEMS);
@@ -248,6 +242,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         values.put(COLUMN_RECIPE_NAME, recipe.get_recipename());
         values.put(COLUMN_RECIPE_INSTRUCTIONS, recipe.get_recipeinstructions());
+        values.put(COLUMN_IMAGE, recipe.getImage());
         values.put(COLUMN_TIME, recipe.getTime());
         db.insert(TABLE_RECIPES, null, values);
 
@@ -271,6 +266,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
         values.put(COLUMN_RECIPE_NAME, recipe.get_recipename());
         values.put(COLUMN_RECIPE_INSTRUCTIONS, recipe.get_recipeinstructions());
+        values.put(COLUMN_IMAGE, recipe.getImage());
         values.put(COLUMN_TIME, recipe.getTime());
         db.insert(TABLE_RECIPES, null, values);
 
@@ -392,6 +388,7 @@ public class DBHandler extends SQLiteOpenHelper {
         re.set_id(c.getInt(c.getColumnIndex(COLUMN_ID)));
         re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
         re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
+        re.setImage(c.getBlob(c.getColumnIndex(COLUMN_IMAGE)));
         re.setTime(c.getString(c.getColumnIndex(COLUMN_TIME)));
         db.close();
 
@@ -531,6 +528,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 re.set_id(c.getInt((c.getColumnIndex(COLUMN_ID))));
                 re.set_recipename(c.getString(c.getColumnIndex(COLUMN_RECIPE_NAME)));
                 re.set_recipeinstructions(c.getString(c.getColumnIndex(COLUMN_RECIPE_INSTRUCTIONS)));
+                re.setImage(c.getBlob(c.getColumnIndex(COLUMN_IMAGE)));
                 re.setTime(c.getString(c.getColumnIndex(COLUMN_TIME)));
 
                 all_recipes.add(re);
@@ -571,6 +569,13 @@ public class DBHandler extends SQLiteOpenHelper {
 
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + TABLE_RECIPES, null);
+        return c;
+    }
+
+    public Cursor getUsersForList(){
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM " + TABLE_USERS, null);
         return c;
     }
 

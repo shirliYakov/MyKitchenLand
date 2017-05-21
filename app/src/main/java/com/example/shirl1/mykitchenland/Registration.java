@@ -1,12 +1,16 @@
 package com.example.shirl1.mykitchenland;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Registration extends AppCompatActivity {
 
@@ -19,6 +23,7 @@ public class Registration extends AppCompatActivity {
     String password;
     String name;
     String lastname;
+    String FullName;
     DBHandler db;
 
 
@@ -61,20 +66,52 @@ public class Registration extends AppCompatActivity {
 
         if(log.isEmpty()) {
 
-            USERS user = new USERS(name, lastname, email, password);
-            db.addUser(user);
-            Toast.makeText(Registration.this, "נרשם בהצלחה", Toast.LENGTH_LONG).show();
+            if(isEmailValid(email) == true) {
 
-            String FullName = name + " " + lastname;
+                USERS user = new USERS(name, lastname, email, password);
+                db.addUser(user);
 
-            Intent intent = new Intent(Registration.this, MainMenu.class);
-            intent.putExtra("FullName", FullName);
-            startActivity(intent);
+                /*Intent mail = new Intent(Intent.ACTION_SEND);
+                mail.setData(Uri.parse("mailto:"));
+                String[] to = {email};
+                mail.putExtra(Intent.EXTRA_EMAIL, to);
+                mail.putExtra(Intent.EXTRA_SUBJECT, "אישור הרשמה לאפליקציית ניהול מטבח");
+                mail.putExtra(Intent.EXTRA_TEXT, log);
+                mail.setType("message/rfc822");
+                startActivity(Intent.createChooser(mail, "Send email..."));*/
 
+                FullName = name + " " + lastname;
+                Toast.makeText(Registration.this, "נרשם בהצלחה", Toast.LENGTH_LONG).show();
+                go();
+            }
+
+            else
+                input_email.setError("נא הכנס כתובת מייל חוקית");
         }
 
         else
             Toast.makeText(Registration.this, "שים לב" + "\n" + log, Toast.LENGTH_LONG).show();
 
+    }
+
+    public void go(){
+
+        Intent intent = new Intent(Registration.this, MainMenu.class);
+        intent.putExtra("FullName", FullName);
+        startActivity(intent);
+    }
+
+    public static boolean isEmailValid(String email) {
+        boolean isValid = false;
+
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+        if (matcher.matches()) {
+            isValid = true;
+        }
+        return isValid;
     }
 }

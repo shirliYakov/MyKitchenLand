@@ -76,10 +76,34 @@ public class WeeklyMenu extends AppCompatActivity {
 
 
     public void btn_delete_menu_On_Click(View view) {
-        db.clearTableWeek();
-        Intent refresh = new Intent(this, WeeklyMenu.class);
-        startActivity(refresh);
-        this.finish();
+
+        View v = LayoutInflater.from(WeeklyMenu.this).inflate(R.layout.activity_allowdeletemenu, null);
+        AlertDialog.Builder builder= new AlertDialog.Builder(WeeklyMenu.this);
+        builder.setCancelable(false);
+
+        builder.setView(v)
+                .setPositiveButton("מחק", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        db.clearTableWeek();
+                        Intent refresh = new Intent(WeeklyMenu.this, WeeklyMenu.class);
+                        startActivity(refresh);
+                        //this.finish();
+                        //Intent refresh = new Intent(WeeklyMenu.this, WeeklyMenu.class);
+                        //startActivity(refresh);
+                        //this.finish();
+                    }
+
+                })
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 
     public void SetContent(View view){

@@ -92,6 +92,7 @@
             android:id="@+id/listview_ingre"
             android:layout_below="@+id/lay_amount"
             android:layout_marginTop="15dp"
+            android:longClickable="true"
             android:scrollbars="vertical"/>
 
         <EditText
@@ -117,7 +118,7 @@
             android:layout_below="@+id/input_instructions"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="הוסף תמונות"
+            android:text="הוסף תמונה"
             android:textStyle="bold"
             android:textColor="@android:color/white"
             android:textSize="20dp" />
@@ -134,6 +135,14 @@
             android:text="הוסף תמונה"
             android:textColor="@color/colorPrimary"  />
 
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
+            android:layout_below="@+id/btn_takePicture"
+            android:id="@+id/imageView_pic"
+            android:background="@drawable/border_style"
+            android:layout_marginTop="10dp"/>
+
         <EditText
             android:id="@+id/input_time"
             android:layout_width="150dp"
@@ -142,7 +151,7 @@
             android:inputType="textPersonName"
             android:textColorHint="@android:color/white"
             android:textColorLink="@android:color/darker_gray"
-            android:layout_below="@+id/btn_takePicture"
+            android:layout_below="@+id/imageView_pic"
             android:layout_marginTop="10dp"
             android:layout_alignParentRight="true"
             android:layout_marginBottom="30dp"/>

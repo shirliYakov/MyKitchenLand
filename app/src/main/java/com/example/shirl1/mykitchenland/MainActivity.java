@@ -2,14 +2,17 @@ package com.example.shirl1.mykitchenland;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,8 +44,14 @@ public class MainActivity extends AppCompatActivity {
         flag = true;
 
         db = new DBHandler(this);
+        Cursor data = db.getUsersForList();
 
+        if(data.getCount()==0){
+            USERS u = new USERS("MANAGER", "N/S", "admin", "123");
+            db.addUser(u);
+        }
 
+        //printall users
         /*print = (TextView)findViewById(R.id.printtable) ;
         //print table
         String log ="";

@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,8 @@ public class ShowRecipActivity extends AppCompatActivity {
     int id;
     String instruct;
     String in;
+    Bitmap Myimage;
+    boolean isImageFitToScreen;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,11 @@ public class ShowRecipActivity extends AppCompatActivity {
             instructions1.setText(r.get_recipeinstructions());
             name1.setText(r.get_recipename());
             time1.setText(r.getTime());
+            if (r.getImage() != null) {
+                Myimage = getImage(r.getImage());
+                image1.setImageBitmap(Myimage);
+            }
+
             //image1.setImageBitmap(r.getImage());
             id =r.get_id();
 
@@ -73,6 +83,19 @@ public class ShowRecipActivity extends AppCompatActivity {
             Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
             startActivity(Go);
         }
+
+        image1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ShowRecipActivity.this, fullscreenimageActivity.class);
+                intent.putExtra("image", Myimage);
+                startActivity(intent);
+                }
+        });
+    }
+
+    public static Bitmap getImage(byte[] image) {
+        return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
     public void btn_back_On_Click(View v){
@@ -98,9 +121,29 @@ public class ShowRecipActivity extends AppCompatActivity {
 
         if (id == R.id.delete_recipe) {
 
-            db.deleteRecipe(nameinput);
-            Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
-            startActivity(Go);
+            View view = LayoutInflater.from(ShowRecipActivity.this).inflate(R.layout.activity_allowdeleterecip, null);
+            AlertDialog.Builder builder= new AlertDialog.Builder(ShowRecipActivity.this);
+
+            builder.setCancelable(false);
+
+            builder.setView(view)
+                    .setPositiveButton("מחק", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            db.deleteRecipe(nameinput);
+                            Intent Go = new Intent(ShowRecipActivity.this, MyRecipesActivity.class);
+                            startActivity(Go);
+                        }
+
+            })
+                    .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
         if (id == R.id.edit_recipe) {

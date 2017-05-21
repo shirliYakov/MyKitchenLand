@@ -54,7 +54,8 @@
         android:layout_width="300dp"
         android:layout_height="350dp"
         android:background="@drawable/border_style"
-        android:layout_above="@+id/btn_back"
+        android:layout_below="@+id/txt_head"
+        android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true">
 
         <TextView
@@ -64,9 +65,9 @@
             android:text="תפריט עדיין לא קיים"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:layout_gravity="center|top"
+            android:layout_gravity="center|top"/>
 
-             />
+
     </ScrollView>
 
 </RelativeLayout>
