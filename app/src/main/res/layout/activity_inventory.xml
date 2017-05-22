@@ -55,11 +55,12 @@
         android:background="@android:color/transparent"
         android:textColor="@color/colorPrimary"
         android:textSize="10sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
         android:id="@+id/btn_back"
         android:onClick="btn_back_On_Click"
         android:text="חזור לתפריט הראשי"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"  />
+        />
 
 
     <Button
@@ -74,8 +75,8 @@
         android:onClick="btn_back_On_Click"
         android:text="עדכן"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignLeft="@+id/scrollView22"
+        android:layout_alignStart="@+id/scrollView22" />
 
 
 

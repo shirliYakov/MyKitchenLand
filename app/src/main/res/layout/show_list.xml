@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_shop_list"
@@ -12,9 +12,6 @@
     android:background="@drawable/fruits"
     tools:context="com.example.shirl1.mykitchenland.ShowList">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
 
 <ScrollView
@@ -44,18 +41,21 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textColorLink="@android:color/darker_gray"
+            android:layout_marginTop="18dp"
             android:layout_below="@+id/list_name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp" />
+            android:layout_alignRight="@+id/txtFromRec"
+            android:layout_alignEnd="@+id/txtFromRec" />
 
             <ImageButton
                 android:id="@+id/add_more_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/plus1"
-                android:layout_alignBottom="@+id/item_amount"
-                android:layout_toRightOf="@+id/txtFromRec"
-                android:layout_toEndOf="@+id/txtFromRec" />
+                android:layout_alignTop="@+id/item_amount"
+                android:layout_alignRight="@+id/btn_back"
+                android:layout_alignEnd="@+id/btn_back"
+                android:layout_marginRight="22dp"
+                android:layout_marginEnd="22dp" />
 
 
             <EditText
@@ -113,12 +113,14 @@
 
             <Button
                 android:id="@+id/btn_back"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/cancel1"
-                android:elevation="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/cancel1"
+                android:textColor="@color/colorPrimary"
+                android:background="@android:color/transparent"
                 android:onClick="btn_back_On_Click"
                 android:textSize="15dp"
+                android:text="בטל"
                 android:layout_below="@+id/showRecipes"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -152,24 +154,22 @@
             android:textSize="20dp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
             android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
 
-        android:background="@drawable/update_new"
-        android:drawableTop="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/update_new"
+        android:textColor="@color/colorPrimary"
+        android:background="@android:color/transparent"
         android:onClick="btn_save_On_Click"
         android:text="שמור"
-        android:textColor="@color/colorPrimary"
         android:textSize="15dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/showRecipes"
+        android:layout_toLeftOf="@+id/item_amount"
+        android:layout_toStartOf="@+id/item_amount">
 
     </Button>
 
@@ -177,6 +177,5 @@
 
 
 </ScrollView>
-    </LinearLayout>
 
-</ScrollView>
+</RelativeLayout>
