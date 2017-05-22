@@ -5,22 +5,11 @@
     android:id="@+id/activity_inventory"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/food11"
+    android:background="@drawable/img1"
     tools:context="com.example.shirl1.mykitchenland.Inventory">
 
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="80dp"
-        android:layout_height="70dp"
-        android:textColor="@android:color/white"
-        android:onClick="btn_add_On_Click"
-        android:background="@drawable/update_new"
-        android:text=" עדכן "
-        android:textSize="15sp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+
 
     <TextView
         android:text="מלאי ביתי"
@@ -57,16 +46,38 @@
 </RelativeLayout>
     </ScrollView>
 
+
     <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/home"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
         android:id="@+id/btn_back"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
         android:onClick="btn_back_On_Click"
-        android:background="@drawable/home"
-        android:textSize="12sp"
+        android:text="חזור לתפריט הראשי"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/scrollView22"
-        android:layout_alignStart="@+id/scrollView22" />
+        android:layout_alignParentRight="true"  />
+
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/update_new"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:id="@+id/update"
+        android:onClick="btn_back_On_Click"
+        android:text="עדכן"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
 
     <EditText
         android:id="@+id/input_itemAmount"
@@ -80,12 +91,12 @@
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/black"
         android:textColorLink="@android:color/darker_gray"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="24dp"
         android:layout_below="@+id/titelTv"
-        android:layout_alignLeft="@+id/titelTv"
-        android:layout_alignStart="@+id/titelTv"
-        android:layout_marginLeft="21dp"
-        android:layout_marginStart="21dp" />
+        android:layout_toLeftOf="@+id/add_more_btn"
+        android:layout_toStartOf="@+id/add_more_btn"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp" />
 
     <ImageButton
         android:id="@+id/add_more_btn"
@@ -94,12 +105,10 @@
         android:layout_weight="1"
         android:background="@null"
         app:srcCompat="@drawable/plus1"
+        android:layout_marginTop="11dp"
         android:layout_alignTop="@+id/input_itemAmount"
-        android:layout_toRightOf="@+id/titelTv"
-        android:layout_toEndOf="@+id/titelTv"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="11dp" />
+        android:layout_alignLeft="@+id/update"
+        android:layout_alignStart="@+id/update" />
 
     <EditText
         android:id="@+id/input_itemName"
@@ -112,11 +121,12 @@
         android:textColor="@android:color/black"
         android:textColorHint="@android:color/black"
         android:textColorLink="@android:color/darker_gray"
-        android:layout_alignBaseline="@+id/input_itemAmount"
-        android:layout_alignBottom="@+id/input_itemAmount"
         android:imeOptions="actionNext"
         android:nextFocusForward="@+id/input_itemAmount"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_above="@+id/scrollView22"
+        android:layout_toLeftOf="@+id/input_itemAmount"
+        android:layout_toStartOf="@+id/input_itemAmount"
+        android:layout_marginRight="17dp"
+        android:layout_marginEnd="17dp" />
 
 </RelativeLayout>
