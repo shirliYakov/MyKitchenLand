@@ -36,7 +36,8 @@ public class Inventory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-         items = (RecyclerView) findViewById(R.id.products);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        items = (RecyclerView) findViewById(R.id.products);
         items.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         db = new DBHandler(this);
         List<Item> inventory=db.getInventory();
