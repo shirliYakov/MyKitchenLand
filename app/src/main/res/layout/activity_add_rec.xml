@@ -95,9 +95,7 @@
             android:layout_below="@+id/lay_amount"
             android:layout_marginTop="15dp"
             android:longClickable="true"
-            android:scrollbars="vertical">
-        </ListView>
-
+            android:scrollbars="vertical"/>
 
         <EditText
             android:id="@+id/input_instructions"

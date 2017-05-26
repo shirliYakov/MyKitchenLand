@@ -80,7 +80,7 @@
         <activity
             android:name=".search_list"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".RecipesListActivity"></activity>
+        <activity android:name=".allow_delete_list"></activity>
     </application>
 
 </manifest>

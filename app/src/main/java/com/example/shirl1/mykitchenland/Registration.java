@@ -25,7 +25,6 @@ public class Registration extends AppCompatActivity {
     String lastname;
     String FullName;
     DBHandler db;
-    USERS useri;
 
 
 
@@ -69,21 +68,21 @@ public class Registration extends AppCompatActivity {
 
             if(isEmailValid(email) == true) {
 
-                useri = db.getUserByEmail(email);
-                if (useri == null) {
+                USERS user = new USERS(name, lastname, email, password);
+                db.addUser(user);
 
-                    USERS user = new USERS(name, lastname, email, password);
-                    db.addUser(user);
+                /*Intent mail = new Intent(Intent.ACTION_SEND);
+                mail.setData(Uri.parse("mailto:"));
+                String[] to = {email};
+                mail.putExtra(Intent.EXTRA_EMAIL, to);
+                mail.putExtra(Intent.EXTRA_SUBJECT, "אישור הרשמה לאפליקציית ניהול מטבח");
+                mail.putExtra(Intent.EXTRA_TEXT, log);
+                mail.setType("message/rfc822");
+                startActivity(Intent.createChooser(mail, "Send email..."));*/
 
-                    FullName = name + " " + lastname;
-                    Toast.makeText(Registration.this, "נרשם בהצלחה", Toast.LENGTH_LONG).show();
-                    go();
-
-                }
-                else
-                    Toast.makeText(Registration.this, "אימייל זה כבר קיים במערכת" + "\n" + log, Toast.LENGTH_LONG).show();
-
-
+                FullName = name + " " + lastname;
+                Toast.makeText(Registration.this, "נרשם בהצלחה", Toast.LENGTH_LONG).show();
+                go();
             }
 
             else
@@ -114,12 +113,5 @@ public class Registration extends AppCompatActivity {
             isValid = true;
         }
         return isValid;
-    }
-
-    public void back_on_click(View view){
-
-        Intent login = new Intent(Registration.this, MainActivity.class);
-        startActivity(login);
-
     }
 }

@@ -1,13 +1,16 @@
 package com.example.shirl1.mykitchenland;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,7 +48,7 @@ public class ShowList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_list);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
         Intent intent = getIntent();
         intent.getIntExtra("list_id", listID);
         // Toast.makeText(this, "הרשימה נוצרה בהצלחה", Toast.LENGTH_LONG).show();
@@ -70,7 +73,6 @@ public class ShowList extends AppCompatActivity {
             }
         }
         recipelist.setAdapter(listAdapter);
-
         if (recipelist.getCount() != 0)
         {
             recipelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -84,15 +86,14 @@ public class ShowList extends AppCompatActivity {
                     for (Ingredient ingredient : ing)
                     {
                         Item itm=new Item();
-                        itm.setItemName(ingredient.get_ingredient());
-                        itm.setAmount(ingredient.get_amount());
+                        itm.setItemName(ingredient.get_amount());
+                        itm.setAmount(ingredient.get_ingredient());
                         mAdapter.AddItem(itm);
                     }
                 }
             });
 
         }
-
         Shopping_list s = db.getShopListByID(listname);
         if (s==null)
         {
@@ -128,10 +129,10 @@ public class ShowList extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Item item = new Item();
-                    if (item_name.getText().equals(""))
+                    if (item_name.getText().toString().isEmpty())
                         item_name.setError("אין להשאיר שדה ריק");
 
-                    if (item_amount.getText().equals(""))
+                    if (item_amount.getText().toString().isEmpty())
                         item_amount.setError("אין להשאיר שדה ריק");
                     else {
                         item.setItemName(item_name.getText().toString());
@@ -158,7 +159,7 @@ public class ShowList extends AppCompatActivity {
     {
         List<Item> items=mAdapter.getItems();
         new_name=list_name.getText().toString();//save the list new name
-        if (list_name.getText().equals(""))
+        if (list_name.getText().toString().isEmpty())
             list_name.setError("אין להשאיר שדה ריק");
         else {
             //add sql question to change the values
@@ -186,9 +187,30 @@ public class ShowList extends AppCompatActivity {
 
         if (id == R.id.delete_list)
         {
-            db.delete_shoplist(listname);
-            Intent Go = new Intent(ShowList.this, ShopListActivity.class);
-            startActivity(Go);
+            final View view = LayoutInflater.from(ShowList.this).inflate(R.layout.activity_allow_delete_list, null);
+            AlertDialog.Builder builder= new AlertDialog.Builder(ShowList.this);
+
+            builder.setCancelable(false);
+
+            builder.setView(view)
+                    .setPositiveButton("מחק", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            delete_table_on_click(view);
+                            Intent Go = new Intent(ShowList.this, ShopListActivity.class);
+                            startActivity(Go);
+                        }
+
+                    })
+                    .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
+
         }
         
 

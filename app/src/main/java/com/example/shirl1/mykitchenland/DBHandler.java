@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 20;
+    private static final int DATABASE_VERSION = 17;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
@@ -690,7 +690,7 @@ public class DBHandler extends SQLiteOpenHelper {
             db.close();
             return 1;}
         else
-            return 0;
+         return 0;
 
     }
 
@@ -752,6 +752,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 all_lists.add(shopl);
             } while (c.moveToNext());
         }
+        db.close();
         return all_lists;
     }
 
@@ -771,6 +772,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 items_list.add(item);
             } while (c.moveToNext());
         }
+        db.close();
         return items_list;
     }
 
@@ -845,25 +847,11 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void addIngregientByListId(List<Ingredient> in,String list_id) {
-
-        SQLiteDatabase db = this.getWritableDatabase();
-        for (Ingredient ing : in)
-        {
-            ContentValues values = new ContentValues();
-            values.put(COLUMN_ID_LIST,list_id);
-            values.put(COLUMN_ITEM_NAME, ing.get_ingredient());
-            values.put(COLUMN_ITEM_AMOUNT, ing.get_amount());
-            db.insert(TABLE_ITEMS, null, values);
-        }
-        db.close();
-    }
-
 
     public void delete_shoplist(String name_of_list)
     {
-        SQLiteDatabase db = getWritableDatabase();
         String list_id=getColumnLitsIdByName(name_of_list);
+        SQLiteDatabase db = this.getWritableDatabase();
       //  db.execSQL("DELETE FROM " + TABLE_ITEMS + " WHERE " + COLUMN_ID_LIST + " = '" + list_id + "'");
         db.execSQL("DELETE FROM " + TABLE_SHOPLIST + " WHERE " + COLUMN_LIST_NAME + " = '" + name_of_list + "'");
 

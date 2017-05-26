@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/ScrollWeek"
+    android:id="@+id/activity_add_rec"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -43,15 +43,14 @@
             android:layout_width="250dp"
             android:id="@+id/txt_sunday"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/sunday"
             android:background="@drawable/border_style"
             android:inputType="textMultiLine"
             android:lines="3"
             android:minLines="3"
             android:gravity="top|right"
-            android:layout_marginTop="12dp"
-            android:layout_below="@+id/sunday"
-            android:layout_alignLeft="@+id/txt_wedensday"
-            android:layout_alignStart="@+id/txt_wedensday" />
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -100,7 +99,6 @@
             android:lines="3"
             android:minLines="3"
             android:gravity="top|right"
-            android:layout_marginTop="12dp"
             android:layout_below="@+id/thusday"
             android:layout_alignLeft="@+id/txt_munday"
             android:layout_alignStart="@+id/txt_munday" />
@@ -207,7 +205,22 @@
             android:layout_centerHorizontal="true"/>
 
         <Button
-            android:id="@+id/btn_deletemenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10sp"
+            android:layout_below="@+id/txt_saterday"
+            android:layout_marginTop="20dp"
+            android:id="@+id/reset_menu"
+            android:onClick="SetContent"
+            android:text="עדכן תפריט"
+            android:drawableTop="@drawable/update_new"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"  />
+
+        <Button
+            android:id="@+id/btn_myrecipe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txt_saterday"
@@ -217,7 +230,7 @@
             android:onClick="btn_delete_menu_On_Click"
             android:text="מחק תפריט"
             android:textSize="10sp"
-            android:layout_alignBaseline="@+id/btn_back"
+            android:layout_alignBaseline="@+id/reset_menu"
             android:drawableTop="@drawable/delete_new"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true" />
@@ -232,87 +245,8 @@
             android:text="חזור לתפריט הראשי"
             android:textColor="@color/colorPrimary"
             android:textSize="10sp"
-            android:layout_below="@+id/txt_saterday"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true" />
-
-        <Button
-            android:id="@+id/btn_day1"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/txt_sunday"
-            android:layout_alignBaseline="@+id/txt_sunday"
-            android:onClick="list_onclick1"
-            android:textColor="@color/colorPrimary"
-            android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
-
-        <Button
-            android:id="@+id/btn_day2"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/txt_munday"
-            android:layout_alignBaseline="@+id/txt_munday"
-            android:onClick="list_onclick2"
-            android:textColor="@color/colorPrimary"
-            android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
-
-        <Button
-            android:id="@+id/btn_day3"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/txt_thusday"
-            android:layout_alignBaseline="@+id/txt_thusday"
-            android:onClick="list_onclick3"
-            android:textColor="@color/colorPrimary"
-            android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
-
-        <Button
-            android:id="@+id/btn_day4"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/txt_wedensday"
-            android:layout_alignBaseline="@+id/txt_wedensday"
-            android:onClick="list_onclick4"
-            android:textColor="@color/colorPrimary"
-            android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
-
-        <Button
-            android:id="@+id/btn_day5"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/txt_thursday"
-            android:layout_alignBaseline="@+id/txt_thursday"
-            android:onClick="list_onclick5"
-            android:textColor="@color/colorPrimary"
-            android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
-
-        <Button
-            android:id="@+id/btn_day6"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/txt_friday"
-            android:layout_alignBaseline="@+id/txt_friday"
-            android:onClick="list_onclick6"
-            android:textColor="@color/colorPrimary"
-            android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
-
-        <Button
-            android:id="@+id/btn_day7"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/txt_saterday"
-            android:layout_alignBaseline="@+id/txt_saterday"
-            android:onClick="list_onclick7"
-            android:textColor="@color/colorPrimary"
-            android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
 
     </RelativeLayout>
 

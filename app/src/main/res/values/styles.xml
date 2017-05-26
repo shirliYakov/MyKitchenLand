@@ -1,8 +1,9 @@
 <resources>
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">#B3FFC0CB</item> <!-- background appbar #B3FFC0CB -->
-        <item name="colorPrimaryDark">#cd919e</item> <!--// #921#FFC0CB #E9967A #FAEBD7 #FFDAB9  #F5DEB3-->
+
+        <item name="colorPrimary">#FFC0CB</item> <!-- background appbar -->
+        <item name="colorPrimaryDark">#921</item> <!--//#FFC0CB #E9967A #FAEBD7 #FFDAB9  #F5DEB3-->
         <item name="colorAccent">#D3D3D3</item> <!--color effects, EditText, RadioButtons...-->
     </style>
 
@@ -15,8 +16,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-
-
 
 
 </resources>

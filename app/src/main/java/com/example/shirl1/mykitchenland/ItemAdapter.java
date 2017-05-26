@@ -26,7 +26,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>
         public TextView amuntTv;
         public ImageButton delete;
 
-        public ViewHolder(View v) {
+        public ViewHolder(View v)
+        {
             super(v);
             nameTv = (TextView) v.findViewById(R.id.name);
             amuntTv=(TextView)v.findViewById(R.id.amount);

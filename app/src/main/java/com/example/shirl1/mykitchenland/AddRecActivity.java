@@ -12,7 +12,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,7 +56,7 @@ public class AddRecActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rec);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
         db = new DBHandler(this);
 
         re_name = (EditText)findViewById(R.id.input_name);
@@ -71,29 +70,8 @@ public class AddRecActivity extends AppCompatActivity {
         IV = (ImageView) findViewById(R.id.imageView_pic);
         check = 0;
 
+
         listView = (ListView) findViewById(R.id.listview_ingre);
-        listView.setOnTouchListener(new ListView.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                int action = event.getAction();
-                switch (action) {
-                    case MotionEvent.ACTION_DOWN:
-                        // Disallow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(true);
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        // Allow ScrollView to intercept touch events.
-                        v.getParent().requestDisallowInterceptTouchEvent(false);
-                        break;
-                }
-
-                // Handle ListView touch events.
-                v.onTouchEvent(event);
-                return true;
-            }
-        });
-
         //info = (TextView) findViewById(R.id.showtable);
         list = new ArrayList<>();
         data = db.getRecipeForList();
@@ -112,6 +90,8 @@ public class AddRecActivity extends AppCompatActivity {
 
     }
 
+
+
     public void btn_add_ingre_on_click(View v) {
 
         in1 = re_amount.getText().toString();
@@ -127,9 +107,9 @@ public class AddRecActivity extends AppCompatActivity {
             Toast.makeText(AddRecActivity.this, "לא ניתן להכניס כמות ללא מוצר", Toast.LENGTH_LONG).show();
 
         else {
-            Ingredient in_new = new Ingredient(in1, in2);
+            Ingredient in_new = new Ingredient(in2, in1);
             arr_in.add(in_new);
-            list.add(in1 + " " + in2);
+            list.add(in1 + " " + in2);//column 2 is index of column-name
             re_amount.setText("");
             re_ingredient.setText("");
         }
@@ -152,7 +132,7 @@ public class AddRecActivity extends AppCompatActivity {
 
     public static byte[] getBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        //bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
         return stream.toByteArray();
     }
 
@@ -169,11 +149,11 @@ public class AddRecActivity extends AppCompatActivity {
         else {
 
             if(imageMe==null) {
-                Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), re_time.getText().toString());
+                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
                 db.addRecipe(recipe);
             }
             else {
-                Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
                 db.addRecipe(recipe);
             }
 

@@ -36,7 +36,7 @@ public class Inventory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventory);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
         items = (RecyclerView) findViewById(R.id.products);
         items.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         db = new DBHandler(this);
@@ -66,6 +66,17 @@ public class Inventory extends AppCompatActivity {
     {
         Intent menu = new Intent(this, MainMenu.class);
         startActivity(menu);
+    }
+
+
+    public void btn_delete_On_Click(View view)
+    {
+        DBHandler db=new DBHandler(this);
+        db.clearInventoryTable();
+        db.close();
+        Toast.makeText(this, "המלאי אותחל", Toast.LENGTH_LONG).show();
+        Intent refresh = new Intent(this, Inventory.class);
+        startActivity(refresh);
     }
 
    public void btn_add_On_Click(View v)

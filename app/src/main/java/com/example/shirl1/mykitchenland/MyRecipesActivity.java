@@ -37,7 +37,7 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_recipes);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
 
         db = new DBHandler(this);
 
@@ -106,6 +106,8 @@ public class MyRecipesActivity extends AppCompatActivity {
             final EditText search = (EditText) view.findViewById(R.id.txt_search_re);
 
             AlertDialog.Builder builder= new AlertDialog.Builder(MyRecipesActivity.this);
+            builder.setTitle("חיפוש מתכון");
+
             builder.setCancelable(false);
 
             builder.setView(view)
@@ -114,7 +116,7 @@ public class MyRecipesActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int which) {
 
                             Intent intent = new Intent(MyRecipesActivity.this, ShowRecipActivity.class);
-                            intent.putExtra("Name", search.getText().toString().trim());
+                            intent.putExtra("Name", search.getText().toString());
                             startActivity(intent);
                         }
 

@@ -1,37 +1,23 @@
 package com.example.shirl1.mykitchenland;
 
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.ScrollingTabContainerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.ScrollView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import java.util.ArrayList;
 
 
 public class WeeklyMenu extends AppCompatActivity {
 
     DBHandler db;
-    ScrollView S;
     EditText day1;
     EditText day2;
     EditText day3;
@@ -50,20 +36,17 @@ public class WeeklyMenu extends AppCompatActivity {
     String emailTo;
     String log;
     Week w;
-    ArrayList<String> list;
-    ArrayList<String> list2;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
         setContentView(R.layout.activity_weekly_menu);
 
         emailTo = MainMenu.myEmail;
 
         db = new DBHandler(this);
-        S =  (ScrollView) findViewById(R.id.ScrollWeek);
         day1 = (EditText)findViewById(R.id.txt_sunday);
         day2 = (EditText)findViewById(R.id.txt_munday);
         day3 = (EditText)findViewById(R.id.txt_thusday);
@@ -71,7 +54,6 @@ public class WeeklyMenu extends AppCompatActivity {
         day5 = (EditText)findViewById(R.id.txt_thursday);
         day6 = (EditText)findViewById(R.id.txt_friday);
         day7 = (EditText)findViewById(R.id.txt_saterday);
-
 
         w = db.getWeek();
         if(w!=null){
@@ -85,143 +67,9 @@ public class WeeklyMenu extends AppCompatActivity {
             day7.setText(w.getDay7());
         }
 
-        day1.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                S.requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-        day2.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                S.requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-        day3.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                S.requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-        day4.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                S.requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-        day5.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                S.requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-        day6.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                S.requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-        day7.setOnTouchListener(new View.OnTouchListener() {
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                S.requestDisallowInterceptTouchEvent(true);
-                return false;
-            }
-        });
-    }
-
-    public void list_onclick1(View view){
-        addRecipeToDay(day1);
-    }
-    public void list_onclick2(View view){
-        addRecipeToDay(day2);
-    }
-    public void list_onclick3(View view){
-        addRecipeToDay(day3);
-    }
-    public void list_onclick4(View view){
-        addRecipeToDay(day4);
-    }
-    public void list_onclick5(View view){
-        addRecipeToDay(day5);
-    }
-    public void list_onclick6(View view){
-        addRecipeToDay(day6);
-    }
-    public void list_onclick7(View view){
-        addRecipeToDay(day7);
-    }
-
-    public void addRecipeToDay(final EditText day){
-
-        View view = LayoutInflater.from(WeeklyMenu.this).inflate(R.layout.activity_recipes_list, null);
-
-        final ListView list_myRecipes = (ListView) view.findViewById(R.id.list_myrecipes);
-        final ListView list_Recipes = (ListView) view.findViewById(R.id.list_recipes);
-
-        //list1
-        list = new ArrayList<>();
-        Cursor data = db.getRecipeForList();
-        ListAdapter listAdapter = new ArrayAdapter<>(WeeklyMenu.this, android.R.layout.simple_list_item_1, list);
-
-        if (data.getCount() == 0) {
-            Toast.makeText(WeeklyMenu.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
-        } else {
-            while (data.moveToNext()) {
-                list.add(data.getString(1));//column 2 is index of column-name
-            }
-        }
-        list_myRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView<?> adapterView , View view, int i, long l) {
-                String D = day.getText().toString();
-                if(D.isEmpty())
-                    day.append(list_myRecipes.getItemAtPosition(i).toString());
-                else
-                    day.append("\n" + list_myRecipes.getItemAtPosition(i).toString());
-            }
-        });
-
-        list_myRecipes.setAdapter(listAdapter);
-
-        //list2
-        list2 = new ArrayList<>();
-        Cursor data2 =  db.getRecipeForList_manager();
-        ListAdapter listAdapter2 = new ArrayAdapter<>(WeeklyMenu.this, android.R.layout.simple_list_item_1, list2);
-
-        if (data2.getCount() == 0) {
-            Toast.makeText(WeeklyMenu.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
-        } else {
-            while (data2.moveToNext()) {
-                list2.add(data2.getString(1));//column 2 is index of column-name
-            }
-        }
-
-        list_Recipes.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            public void onItemClick(AdapterView<?> adapterView , View view, int i, long l) {
-                String D2 = day.getText().toString();
-                if(D2.isEmpty())
-                    day.append(list_Recipes.getItemAtPosition(i).toString());
-                else
-                    day.append("\n" + list_Recipes.getItemAtPosition(i).toString());
-            }
-        });
-        list_Recipes.setAdapter(listAdapter2);
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(WeeklyMenu.this);
-        builder.setCancelable(false);
-        builder.setView(view)
-                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.cancel();
-                    }
-                });
-
-        AlertDialog alert = builder.create();
-        alert.show();
-
     }
 
     public void btn_back_On_Click(View view) {
-        updateMenu();
         Intent menu = new Intent(this, MainMenu.class);
         startActivity(menu);
     }
@@ -241,7 +89,10 @@ public class WeeklyMenu extends AppCompatActivity {
                         db.clearTableWeek();
                         Intent refresh = new Intent(WeeklyMenu.this, WeeklyMenu.class);
                         startActivity(refresh);
-
+                        //this.finish();
+                        //Intent refresh = new Intent(WeeklyMenu.this, WeeklyMenu.class);
+                        //startActivity(refresh);
+                        //this.finish();
                     }
 
                 })
@@ -255,22 +106,7 @@ public class WeeklyMenu extends AppCompatActivity {
 
     }
 
-    /*public void SetContent(View view){
-
-        day_1 = day1.getText().toString();
-        day_2 = day2.getText().toString();
-        day_3 = day3.getText().toString();
-        day_4 = day4.getText().toString();
-        day_5 = day5.getText().toString();
-        day_6 = day6.getText().toString();
-        day_7 = day7.getText().toString();
-
-        Week week = new Week(day_1, day_2, day_3, day_4, day_5, day_6, day_7);
-        db.setWeek(week);
-        Toast.makeText(WeeklyMenu.this, "התפריט עודכן בהצלחה", Toast.LENGTH_LONG).show();
-    }*/
-
-    public void updateMenu(){
+    public void SetContent(View view){
 
         day_1 = day1.getText().toString();
         day_2 = day2.getText().toString();
@@ -284,8 +120,6 @@ public class WeeklyMenu extends AppCompatActivity {
         db.setWeek(week);
         Toast.makeText(WeeklyMenu.this, "התפריט עודכן בהצלחה", Toast.LENGTH_LONG).show();
     }
-
-
 
     public boolean onCreateOptionsMenu(Menu menu){
 
@@ -300,7 +134,6 @@ public class WeeklyMenu extends AppCompatActivity {
 
         if (id == R.id.display) {
             if(w1!=null){
-                updateMenu();
                 Intent Go = new Intent(WeeklyMenu.this, DisplayMenuActivity.class);
                 startActivity(Go);
             }
@@ -311,7 +144,7 @@ public class WeeklyMenu extends AppCompatActivity {
         }
 
         if (id == R.id.sendToEmail) {
-            updateMenu();
+
             log =" ";
             Week wee = db.getWeek();
             if(wee!=null) {
@@ -331,6 +164,8 @@ public class WeeklyMenu extends AppCompatActivity {
             intent.setType("message/rfc822");
             startActivity(Intent.createChooser(intent, "Send email..."));
         }
+
+
         return super.onOptionsItemSelected(item);
 
     }

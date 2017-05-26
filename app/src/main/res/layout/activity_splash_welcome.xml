@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.shirl1.mykitchenland.splash_welcome"
-    android:background="@drawable/welcome8">
-
+    android:background="@drawable/welcome">
+x`
 
     <ProgressBar
         android:id="@+id/progressBar2"

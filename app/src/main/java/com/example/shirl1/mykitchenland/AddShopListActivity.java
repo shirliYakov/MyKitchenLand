@@ -46,8 +46,7 @@ public class AddShopListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_shop_list);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
-
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
         mRecyclerView = (RecyclerView) findViewById(R.id.list_of_items);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
@@ -87,8 +86,8 @@ public class AddShopListActivity extends AppCompatActivity {
                     for (Ingredient ingredient : ing)
                     {
                         Item itm=new Item();
-                        itm.setItemName(ingredient.get_ingredient());
-                        itm.setAmount(ingredient.get_amount());
+                        itm.setItemName(ingredient.get_amount());
+                        itm.setAmount(ingredient.get_ingredient());
                         mAdapter.AddItem(itm);
                     }
                 }
@@ -102,11 +101,15 @@ public class AddShopListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Item item=new Item();
-                if (item_name.getText().equals(""))
-                    item_name.setError("אין להשאיר שדה ריק");
-                if (item_amount.getText().equals(""))
-                    item_amount.setError("אין להשאיר שדה ריק");
-                else {
+                if (item_name.getText().toString().isEmpty() ||((item_amount.getText().toString().isEmpty())))
+                {
+                    if (item_name.getText().toString().isEmpty())
+                        item_name.setError("אין להשאיר שדה ריק");
+                    if (item_amount.getText().toString().isEmpty())
+                        item_amount.setError("אין להשאיר שדה ריק");
+                }
+                else
+                    {
                     item.setItemName(item_name.getText().toString());
                     item.setAmount(item_amount.getText().toString());
                     mAdapter.AddItem(item);
@@ -160,7 +163,15 @@ public class AddShopListActivity extends AppCompatActivity {
             db.close();
             return null;
         }
-       else
+        else if (list_name.getText().toString().isEmpty())
+        {
+            list_name.setError("אין להשאיר שדה ריק");
+
+            db.close();
+            return null;
+        }
+
+        else
         db.close();
         return shopList;
 

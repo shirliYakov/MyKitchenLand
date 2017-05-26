@@ -21,6 +21,6 @@ public class splash_welcome extends AppCompatActivity {
                 startActivity(new Intent(splash_welcome.this , MainActivity.class));
                 finish();
             }
-        },3000);
+        },4000);
     }
 }

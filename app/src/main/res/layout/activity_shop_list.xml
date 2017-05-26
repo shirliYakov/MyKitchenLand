@@ -23,17 +23,6 @@
         android:textColor="@android:color/holo_red_dark"/>
 
 
-    <Button
-        android:text="מחק את המאגר הקיים"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="btn_delete"
-        android:textSize="10sp"
-        android:id="@+id/deleteBtn"
-        android:layout_alignTop="@+id/btn_back"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <ScrollView
         android:layout_width="300dp"
         android:layout_height="340dp"
@@ -60,16 +49,16 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/btn_back"
-        android:layout_width="65dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/home"
+        android:textColor="@color/colorPrimary"
+        android:background="@android:color/transparent"
         android:onClick="btn_back_On_Click"
         android:textSize="14dp"
-        android:textColor="@android:color/white"
-        android:background="@drawable/home2"
+        android:text="חזרה לתפריט הראשי"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/scrollView2"
-        android:layout_alignStart="@+id/scrollView2" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
 
