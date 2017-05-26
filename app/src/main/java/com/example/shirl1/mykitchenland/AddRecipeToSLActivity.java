@@ -26,7 +26,7 @@ public class AddRecipeToSLActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_recipe_to_sl);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName + ",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
 
         db = new DBHandler(this);
 

@@ -13,9 +13,9 @@
 
     <application
         android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:icon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -31,11 +31,11 @@
         />
         <activity
             android:name=".Inventory"
-            android:label="מלאי ביתי"/>
+            android:label="מלאי ביתי" />
         <activity android:name=".splash_welcome">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />`1
-
+                <action android:name="android.intent.action.MAIN" />
+                `1
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -45,14 +45,16 @@
         <activity
             android:name=".RecipesActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ShopListActivity"
-            android:label="רשימת קניות"/>
+        <activity
+            android:name=".ShopListActivity"
+            android:label="רשימת קניות" />
         <activity
             android:name=".AddRecActivity"
             android:label="מתכון חדש"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".AddShopListActivity"
-            android:label="רשימת קניות חדשה"/>
+        <activity
+            android:name=".AddShopListActivity"
+            android:label="רשימת קניות חדשה" />
         <activity
             android:name=".SearchRecActivity"
             android:windowSoftInputMode="adjustPan" />
@@ -64,21 +66,21 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".DisplayMenuActivity"
-            android:windowSoftInputMode="adjustPan"
-            android:label="תפריט שבועי"/>
+            android:label="תפריט שבועי"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".EditRecipeActivity"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".allowdeleterecipActivity" />
         <activity android:name=".allowdeletemenuActivity" />
-        <activity android:name=".fullscreenimageActivity"></activity>
+        <activity android:name=".fullscreenimageActivity" />
         <activity
             android:name=".ShowList"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".search_list"
             android:windowSoftInputMode="adjustPan" />
-
+        <activity android:name=".RecipesListActivity"></activity>
     </application>
 
 </manifest>

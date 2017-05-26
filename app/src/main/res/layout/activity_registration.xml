@@ -27,6 +27,20 @@
         android:layout_below="@+id/input_password"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:text="חזרה להתחברות"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/back"
+        android:onClick="back_on_click"
+        android:background="@android:color/transparent"
+        android:textColor="#921"
+        android:textSize="15sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+
+        />
+
     <EditText
         android:id="@+id/input_email"
         android:layout_width="match_parent"
@@ -34,7 +48,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="170dp"
         android:ems="10"
         android:hint="דואר אלקטרוני"
         android:inputType="textEmailAddress"

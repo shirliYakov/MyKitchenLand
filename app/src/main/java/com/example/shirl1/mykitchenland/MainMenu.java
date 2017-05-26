@@ -21,7 +21,7 @@ public class MainMenu extends AppCompatActivity {
         myFullName = myUser.getName() + " " + myUser.getLastname();
         myEmail = myUser.getEmail();
 
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
     }
 
     public void MyRecipesActivity_onClick(View view)

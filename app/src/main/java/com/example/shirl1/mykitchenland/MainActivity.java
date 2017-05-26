@@ -3,6 +3,7 @@ package com.example.shirl1.mykitchenland;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -68,6 +69,36 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Registration.class);
         startActivity(intent);
 
+    }
+
+    public void forget_on_click(View view){
+
+        email1 = email.getText().toString();
+
+        if(email1.isEmpty())
+            Toast.makeText(MainActivity.this, "אנא הכנס את האימייל שלך", Toast.LENGTH_LONG).show();
+        else {
+
+            useri = db.getUserByEmail(email1);
+            if (useri != null) {
+
+                String log = "שם המשתמש שלך הוא " + email1 + "\n" + "הסיסמא שלך היא " + useri.getPassword() + "\n" +
+                        "נשלח מאפליקציית " + "My Kitchen Land";
+
+                Intent mail = new Intent(Intent.ACTION_SEND);
+                mail.setData(Uri.parse("mailto:"));
+                String[] to = {email1};
+                mail.putExtra(Intent.EXTRA_EMAIL, to);
+                mail.putExtra(Intent.EXTRA_SUBJECT, "פרטי הרשמה לאפליקציה לניהול מטבח");
+                mail.putExtra(Intent.EXTRA_TEXT, log);
+                mail.setType("message/rfc822");
+                startActivity(Intent.createChooser(mail, "Send email..."));
+            }
+            else
+                Toast.makeText(MainActivity.this, "משתמש לא קיים" +
+                        "\n" + "נסה שוב או הירשם", Toast.LENGTH_LONG).show();
+
+        }
     }
 
     public void login(View view){

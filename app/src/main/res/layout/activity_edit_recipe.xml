@@ -26,6 +26,7 @@
             android:layout_marginTop="18dp"
             android:gravity="center"
             android:hint="תן שם למתכון"
+            android:textColor="@color/colorPrimary"
             android:textStyle="bold"
             android:inputType="textPersonName"
             android:textColorHint="@android:color/white"
@@ -149,6 +150,7 @@
             android:layout_height="wrap_content"
             android:hint="זמן הכנה"
             android:inputType="textPersonName"
+            android:textColor="@color/colorPrimary"
             android:textColorHint="@android:color/white"
             android:textColorLink="@android:color/darker_gray"
             android:layout_below="@+id/imageView_pic"
@@ -168,7 +170,7 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="10dp"
             android:onClick="btn_add_re_On_Click"
-            android:text="הוסף למתכונים שלי"
+            android:text="עדכן מתכון"
             android:textSize="10sp" />
 
         <Button

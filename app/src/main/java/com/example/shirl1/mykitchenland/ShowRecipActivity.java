@@ -43,7 +43,7 @@ public class ShowRecipActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_recip);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
         db = new DBHandler(this);
 
         name1 = (TextView) findViewById(R.id.recipe_name);
@@ -54,7 +54,7 @@ public class ShowRecipActivity extends AppCompatActivity {
 
         //get name from list
         Bundle bundle = getIntent().getExtras();
-        nameinput = bundle.getString("Name");
+        nameinput = bundle.getString("Name").trim();
 
         Recipes r = db.getRecipeByName(nameinput);
 

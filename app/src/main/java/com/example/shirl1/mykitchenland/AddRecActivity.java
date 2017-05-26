@@ -57,7 +57,7 @@ public class AddRecActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rec);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
         db = new DBHandler(this);
 
         re_name = (EditText)findViewById(R.id.input_name);
@@ -169,11 +169,11 @@ public class AddRecActivity extends AppCompatActivity {
         else {
 
             if(imageMe==null) {
-                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
+                Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), re_time.getText().toString());
                 db.addRecipe(recipe);
             }
             else {
-                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
                 db.addRecipe(recipe);
             }
 

@@ -45,7 +45,7 @@ public class ShowList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_list);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
         Intent intent = getIntent();
         intent.getIntExtra("list_id", listID);
         // Toast.makeText(this, "הרשימה נוצרה בהצלחה", Toast.LENGTH_LONG).show();

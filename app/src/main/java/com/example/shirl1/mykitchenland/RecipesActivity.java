@@ -35,7 +35,7 @@ public class RecipesActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
 
         db = new DBHandler(this);
 
@@ -114,7 +114,6 @@ public class RecipesActivity extends AppCompatActivity {
             final EditText search = (EditText) view.findViewById(R.id.txt_search_re);
 
             AlertDialog.Builder builder= new AlertDialog.Builder(RecipesActivity.this);
-            builder.setTitle("חיפוש מתכון");
 
             builder.setCancelable(false);
 

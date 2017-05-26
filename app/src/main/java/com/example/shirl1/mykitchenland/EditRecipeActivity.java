@@ -47,7 +47,7 @@ public class EditRecipeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
         setContentView(R.layout.activity_edit_recipe);
 
         db = new DBHandler(this);
@@ -177,14 +177,14 @@ public class EditRecipeActivity extends AppCompatActivity {
 
         else {
 
-            if (nameToEdit.equals(re_name.getText().toString())) {
+            if (nameToEdit.equals(re_name.getText().toString().trim())) {
 
                 if(imageMe==null) {
-                    Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
+                    Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), re_time.getText().toString());
                     db.EditRecipe2(recipe);
                 }
                 else {
-                    Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                    Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
                     db.EditRecipe2(recipe);
                 }
 
@@ -195,11 +195,11 @@ public class EditRecipeActivity extends AppCompatActivity {
             } else {
 
                 if(imageMe==null) {
-                    Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
+                    Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), re_time.getText().toString());
                     db.addRecipe(recipe);
                 }
                 else {
-                    Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                    Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
                     db.addRecipe(recipe);
                 }
 
@@ -209,7 +209,7 @@ public class EditRecipeActivity extends AppCompatActivity {
                 }
             }
 
-            Toast.makeText(EditRecipeActivity.this, "נוסף למתכונים שלי", Toast.LENGTH_LONG).show();
+            Toast.makeText(EditRecipeActivity.this, "המתכון עודכן", Toast.LENGTH_LONG).show();
             Intent Go = new Intent(EditRecipeActivity.this, MyRecipesActivity.class);
             startActivity(Go);
         }

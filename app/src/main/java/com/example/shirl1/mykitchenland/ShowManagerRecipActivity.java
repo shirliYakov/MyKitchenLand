@@ -29,7 +29,7 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
         setContentView(R.layout.activity_show_manager_recip);
         db = new DBHandler(this);
 
@@ -39,7 +39,7 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
         time1 = (TextView) findViewById(R.id.input_time);
 
         Bundle bundle = getIntent().getExtras();
-        nameinput = bundle.getString("Name");
+        nameinput = bundle.getString("Name").trim();
         Recipes r = db.getRecipeByName_manager(nameinput);
 
         if (r!= null) {

@@ -17,7 +17,7 @@ public class DisplayMenuActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
         setContentView(R.layout.activity_display_menu);
 
         print = (TextView)findViewById(R.id.showMenu);
