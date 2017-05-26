@@ -80,7 +80,7 @@ public class ShowRecipActivity extends AppCompatActivity {
             String log="";
             ing = db.getIngredientById(id);
             for (Ingredient ingre : ing) {
-                log = log +  ingre.get_ingredient() + "  "  + ingre.get_amount() + "\n";
+                log = log +  ingre.get_amount() + "  "  + ingre.get_ingredient() + "\n";
                 ingredient1.setText(log);
             }
         }
