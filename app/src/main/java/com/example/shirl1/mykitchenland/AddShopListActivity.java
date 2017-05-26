@@ -87,8 +87,8 @@ public class AddShopListActivity extends AppCompatActivity {
                     for (Ingredient ingredient : ing)
                     {
                         Item itm=new Item();
-                        itm.setItemName(ingredient.get_amount());
-                        itm.setAmount(ingredient.get_ingredient());
+                        itm.setItemName(ingredient.get_ingredient());
+                        itm.setAmount(ingredient.get_amount());
                         mAdapter.AddItem(itm);
                     }
                 }

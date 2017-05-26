@@ -127,7 +127,7 @@ public class AddRecActivity extends AppCompatActivity {
             Toast.makeText(AddRecActivity.this, "לא ניתן להכניס כמות ללא מוצר", Toast.LENGTH_LONG).show();
 
         else {
-            Ingredient in_new = new Ingredient(in2, in1);
+            Ingredient in_new = new Ingredient(in1, in2);
             arr_in.add(in_new);
             list.add(in1 + " " + in2);//column 2 is index of column-name
             re_amount.setText("");

@@ -12,6 +12,8 @@
     android:background="@drawable/fruits"
     tools:context="com.example.shirl1.mykitchenland.ShowList">
 
+
+
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -39,18 +41,21 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textColorLink="@android:color/darker_gray"
+            android:layout_marginTop="18dp"
             android:layout_below="@+id/list_name"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp" />
+            android:layout_alignRight="@+id/txtFromRec"
+            android:layout_alignEnd="@+id/txtFromRec" />
 
             <ImageButton
                 android:id="@+id/add_more_btn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@drawable/plus1"
-                android:layout_alignBottom="@+id/item_amount"
-                android:layout_toRightOf="@+id/txtFromRec"
-                android:layout_toEndOf="@+id/txtFromRec" />
+                android:layout_alignTop="@+id/item_amount"
+                android:layout_alignRight="@+id/btn_back"
+                android:layout_alignEnd="@+id/btn_back"
+                android:layout_marginRight="22dp"
+                android:layout_marginEnd="22dp" />
 
 
             <EditText
@@ -89,27 +94,33 @@
 
 
                 <ListView
+
                     android:id="@+id/showRecipes"
                     android:background="@drawable/border_style"
                     android:layout_width="match_parent"
-                    android:scrollbars="vertical"
+                    android:scrollbars="none"
                     android:ellipsize="marquee"
-                    android:layout_height="match_parent"
+                    android:layout_height="120dp"
                     android:layout_below="@+id/txtFromRec"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true">
 
-                </ListView>
+                    android:layout_alignParentStart="true"
+                    android:nestedScrollingEnabled="true"
+
+                />
+
 
 
             <Button
                 android:id="@+id/btn_back"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:background="@drawable/cancel1"
-                android:elevation="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableTop="@drawable/cancel1"
+                android:textColor="@color/colorPrimary"
+                android:background="@android:color/transparent"
                 android:onClick="btn_back_On_Click"
                 android:textSize="15dp"
+                android:text="בטל"
                 android:layout_below="@+id/showRecipes"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -147,18 +158,18 @@
 
     <Button
         android:id="@+id/btn_save"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
 
-        android:background="@drawable/update_new"
-        android:drawableTop="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/update_new"
+        android:textColor="@color/colorPrimary"
+        android:background="@android:color/transparent"
         android:onClick="btn_save_On_Click"
         android:text="שמור"
-        android:textColor="@color/colorPrimary"
         android:textSize="15dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_below="@+id/showRecipes"
+        android:layout_toLeftOf="@+id/item_amount"
+        android:layout_toStartOf="@+id/item_amount">
 
     </Button>
 

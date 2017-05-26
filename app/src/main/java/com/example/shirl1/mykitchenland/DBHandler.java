@@ -15,7 +15,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     //for the db:
     private static final String LOG = "DBHandler";
-    private static final int DATABASE_VERSION = 17;
+    private static final int DATABASE_VERSION = 18;
     private static final String DATABASE_NAME = "MANAGER";
 
     int MyId;
@@ -840,6 +840,20 @@ public class DBHandler extends SQLiteOpenHelper {
             values.put(COLUMN_ID_LIST,list_id);
             values.put(COLUMN_ITEM_NAME, item.getItemName());
             values.put(COLUMN_ITEM_AMOUNT, item.getAmount());
+            db.insert(TABLE_ITEMS, null, values);
+        }
+        db.close();
+    }
+
+    public void addItemsByListId2(List<Ingredient> in,String list_id) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (Ingredient ing : in)
+        {
+            ContentValues values = new ContentValues();
+            values.put(COLUMN_ID_LIST,list_id);
+            values.put(COLUMN_ITEM_NAME, ing.get_ingredient());
+            values.put(COLUMN_ITEM_AMOUNT, ing.get_amount());
             db.insert(TABLE_ITEMS, null, values);
         }
         db.close();
