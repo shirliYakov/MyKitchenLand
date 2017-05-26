@@ -129,7 +129,7 @@ public class AddRecActivity extends AppCompatActivity {
         else {
             Ingredient in_new = new Ingredient(in1, in2);
             arr_in.add(in_new);
-            list.add(in1 + " " + in2);//column 2 is index of column-name
+            list.add(in1 + " " + in2);
             re_amount.setText("");
             re_ingredient.setText("");
         }

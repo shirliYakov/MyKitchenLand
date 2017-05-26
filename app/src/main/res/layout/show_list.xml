@@ -41,10 +41,10 @@
                 android:textColor="@android:color/black"
                 android:textColorHint="@android:color/black"
                 android:textColorLink="@android:color/darker_gray"
-            android:layout_marginTop="18dp"
-            android:layout_below="@+id/list_name"
-            android:layout_alignRight="@+id/txtFromRec"
-            android:layout_alignEnd="@+id/txtFromRec" />
+                android:layout_marginTop="18dp"
+                android:layout_below="@+id/list_name"
+                android:layout_alignRight="@+id/txtFromRec"
+                android:layout_alignEnd="@+id/txtFromRec" />
 
             <ImageButton
                 android:id="@+id/add_more_btn"

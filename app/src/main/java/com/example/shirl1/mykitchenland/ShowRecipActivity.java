@@ -73,8 +73,6 @@ public class ShowRecipActivity extends AppCompatActivity {
                 Myimage = getImage(r.getImage());
                 image1.setImageBitmap(Myimage);
             }
-
-            //image1.setImageBitmap(r.getImage());
             id =r.get_id();
 
             String log="";
@@ -183,8 +181,8 @@ public class ShowRecipActivity extends AppCompatActivity {
 
                     String listName = list_shoplist.getItemAtPosition(i).toString();
                     Shopping_list MyList =  db.getShopListByID(listName);
-                    String id_l = MyList.get_list_id();
-                    db.addItemsByListId2(ing,id_l);
+                    String id_list = MyList.get_list_id();
+                    db.addIngregientByListId(ing,id_list);
                 }
             });
 

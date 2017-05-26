@@ -70,6 +70,7 @@ public class ShowList extends AppCompatActivity {
             }
         }
         recipelist.setAdapter(listAdapter);
+
         if (recipelist.getCount() != 0)
         {
             recipelist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,14 +84,15 @@ public class ShowList extends AppCompatActivity {
                     for (Ingredient ingredient : ing)
                     {
                         Item itm=new Item();
-                        itm.setItemName(ingredient.get_amount());
-                        itm.setAmount(ingredient.get_ingredient());
+                        itm.setItemName(ingredient.get_ingredient());
+                        itm.setAmount(ingredient.get_amount());
                         mAdapter.AddItem(itm);
                     }
                 }
             });
 
         }
+
         Shopping_list s = db.getShopListByID(listname);
         if (s==null)
         {

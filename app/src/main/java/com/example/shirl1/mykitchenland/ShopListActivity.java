@@ -69,7 +69,6 @@ public class ShopListActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(ShopListActivity.this, ShowList.class);
                 intent.putExtra("Name", listView.getItemAtPosition(i).toString());
-
                 startActivity(intent);
             }
         });
