@@ -30,6 +30,7 @@ public class MyRecipesActivity extends AppCompatActivity {
     TextView info;
     TextView info2;
     DBHandler db;
+    String nameR;
     ListView listView;
 
     @Override
@@ -58,6 +59,7 @@ public class MyRecipesActivity extends AppCompatActivity {
                 list.add(data.getString(1));//column 2 is index of column-name
             }
         }
+        listView.setAdapter(listAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             public void onItemClick(AdapterView<?> adapterView , View view, int i, long l) {
@@ -68,9 +70,37 @@ public class MyRecipesActivity extends AppCompatActivity {
             }
         });
 
-        listView.setAdapter(listAdapter);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
 
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
 
+                nameR = listView.getItemAtPosition(pos).toString();
+
+                View view = LayoutInflater.from(MyRecipesActivity.this).inflate(R.layout.activity_allowdeleterecip, null);
+                AlertDialog.Builder builder= new AlertDialog.Builder(MyRecipesActivity.this);
+
+                builder.setCancelable(false);
+
+                builder.setView(view)
+                        .setPositiveButton("מחק", new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+                                db.deleteRecipe(nameR);
+                                Intent Go = new Intent(MyRecipesActivity.this, MyRecipesActivity.class);
+                                startActivity(Go);
+                            }
+
+                        })
+                        .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alert = builder.create();
+                alert.show();
+                return true;
+            }
+        });
     }
 
     /*public void btn_delete_On_Click(View v){
@@ -133,6 +163,30 @@ public class MyRecipesActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "ראה אפשרויות נוספות בתפריט למעלה- הוספה וחיפוש מתכון" + "\n"
+                + "לחץ על מתכון מהרשימה כדי לצפות בו" + "\n"
+                +"מתוך 'צפייה במתכון' תוכל להוסיף אותו לרשימת קניות" + "\n";
+
+
+        View v = LayoutInflater.from(MyRecipesActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(MyRecipesActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 

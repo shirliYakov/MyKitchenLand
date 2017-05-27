@@ -97,6 +97,8 @@ public class RecipesActivity extends AppCompatActivity {
     }
 
 
+
+
     public boolean onCreateOptionsMenu(Menu menu){
 
         getMenuInflater().inflate(R.menu.recipmenu, menu);
@@ -141,6 +143,29 @@ public class RecipesActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "ראה אפשרויות נוספות בתפריט למעלה- חיפוש מתכון" + "\n"
+                + "לחץ על מתכון מהרשימה כדי לצפות בו" + "\n"
+                +"מתוך 'צפייה במתכון' תוכל להוסיף אותו לרשימת קניות" + "\n";
+
+        View v = LayoutInflater.from(RecipesActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(RecipesActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 

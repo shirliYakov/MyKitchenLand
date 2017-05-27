@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_show_recip"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -15,12 +16,25 @@
         android:id="@+id/recipe_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
+        android:layout_marginTop="10dp"
         android:text="שם מתכון"
         android:textStyle="bold"
         android:textSize="25dp"
         android:textColor="@color/colorPrimary"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/littlecart"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:id="@+id/addToShopList"
+        android:onClick="addToShopList_On_Click"
+        android:text="הוסף לרשימת קניות"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -55,9 +69,7 @@
         android:layout_width="300dp"
         android:layout_height="340dp"
         android:background="@drawable/border_style"
-        android:layout_above="@+id/btn_back"
-        android:layout_below="@+id/recipe_name"
-        android:layout_marginTop="20dp"
+        android:layout_centerVertical="true"
         android:layout_centerHorizontal="true">
 
         <RelativeLayout
@@ -140,14 +152,28 @@
 
             <ImageView
                 android:id="@+id/input_image"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
                 android:layout_below="@+id/input_time"
                 android:layout_marginTop="20dp"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                app:srcCompat="@drawable/noimage2" />
 
         </RelativeLayout>
     </ScrollView>
+
+    <Button
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/littleinfo2"
+        android:onClick="info_On_Click"
+        android:text="מידע כללי"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
 </RelativeLayout>
 
 

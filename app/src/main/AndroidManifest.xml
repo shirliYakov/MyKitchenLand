@@ -35,7 +35,6 @@
         <activity android:name=".splash_welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                `1
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

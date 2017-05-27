@@ -169,4 +169,29 @@ public class WeeklyMenu extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
+
+    public void info_On_Click(View view) {
+
+        String log ="\n" + "ראה אפשרויות נוספות בתפריט למעלה- תצוגה נוחה ושליחת תפריט למייל" + "\n"
+                + "הוסף מתכון מתוך רשימות המתכונים ליום ספציפי בכפתור המופיע לשמאלו" + "\n"
+                +"מחק את כל התפריט בסוף השבוע לעדכון תפריט חדש בתחתית המסך" + "\n"
+                +"ביציאה דרך 'חזרה לתפריט ראשי' יתעדכן התפריט" + "\n";
+
+        View v = LayoutInflater.from(WeeklyMenu.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(WeeklyMenu.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 }

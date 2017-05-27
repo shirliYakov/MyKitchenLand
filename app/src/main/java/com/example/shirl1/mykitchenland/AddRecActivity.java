@@ -1,23 +1,21 @@
 package com.example.shirl1.mykitchenland;
-
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -27,6 +25,7 @@ import android.widget.TextView;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import android.database.sqlite.SQLiteDatabase;
@@ -49,14 +48,14 @@ public class AddRecActivity extends AppCompatActivity {
     ListAdapter listAdapter;
     ImageView IV;
     Button camera, upload, gallery;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 0;
 
 
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_rec);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
         db = new DBHandler(this);
 
         re_name = (EditText)findViewById(R.id.input_name);
@@ -70,8 +69,29 @@ public class AddRecActivity extends AppCompatActivity {
         IV = (ImageView) findViewById(R.id.imageView_pic);
         check = 0;
 
-
         listView = (ListView) findViewById(R.id.listview_ingre);
+        listView.setOnTouchListener(new ListView.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                switch (action) {
+                    case MotionEvent.ACTION_DOWN:
+                        // Disallow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(true);
+                        break;
+
+                    case MotionEvent.ACTION_UP:
+                        // Allow ScrollView to intercept touch events.
+                        v.getParent().requestDisallowInterceptTouchEvent(false);
+                        break;
+                }
+
+                // Handle ListView touch events.
+                v.onTouchEvent(event);
+                return true;
+            }
+        });
+
         //info = (TextView) findViewById(R.id.showtable);
         list = new ArrayList<>();
         data = db.getRecipeForList();
@@ -90,8 +110,6 @@ public class AddRecActivity extends AppCompatActivity {
 
     }
 
-
-
     public void btn_add_ingre_on_click(View v) {
 
         in1 = re_amount.getText().toString();
@@ -107,9 +125,9 @@ public class AddRecActivity extends AppCompatActivity {
             Toast.makeText(AddRecActivity.this, "לא ניתן להכניס כמות ללא מוצר", Toast.LENGTH_LONG).show();
 
         else {
-            Ingredient in_new = new Ingredient(in2, in1);
+            Ingredient in_new = new Ingredient(in1, in2);
             arr_in.add(in_new);
-            list.add(in1 + " " + in2);//column 2 is index of column-name
+            list.add(in1 + " " + in2);
             re_amount.setText("");
             re_ingredient.setText("");
         }
@@ -132,7 +150,7 @@ public class AddRecActivity extends AppCompatActivity {
 
     public static byte[] getBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100 , stream);
         return stream.toByteArray();
     }
 
@@ -149,11 +167,11 @@ public class AddRecActivity extends AppCompatActivity {
         else {
 
             if(imageMe==null) {
-                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), re_time.getText().toString());
+                Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), re_time.getText().toString());
                 db.addRecipe(recipe);
             }
             else {
-                Recipes recipe = new Recipes(re_name.getText().toString(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
                 db.addRecipe(recipe);
             }
 
@@ -166,6 +184,30 @@ public class AddRecActivity extends AppCompatActivity {
             Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
             startActivity(Go);
         }
+    }
+
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "לחץ על הוסף מוצר כדי להוסיף את המצרך לרשימה" + "\n"
+                + "לחיצה ארוכה על המצרך תסיר אותו מהרשימה" + "\n"
+                +"לחץ על הוסף תמונה כדי לצלם תמונה הקשורה למתכון" + "\n";
+
+
+        View v = LayoutInflater.from(AddRecActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(AddRecActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
 

@@ -14,13 +14,18 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowRecipActivity extends AppCompatActivity {
@@ -34,16 +39,17 @@ public class ShowRecipActivity extends AppCompatActivity {
     String name;
     String nameinput;
     int id;
+    ArrayList<String> list;
     String instruct;
     String in;
     Bitmap Myimage;
-    boolean isImageFitToScreen;;
+    List <Ingredient> ing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_recip);
-        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName +",");
+        getSupportActionBar().setTitle(" שלום " + MainMenu.myFullName);
         db = new DBHandler(this);
 
         name1 = (TextView) findViewById(R.id.recipe_name);
@@ -54,7 +60,7 @@ public class ShowRecipActivity extends AppCompatActivity {
 
         //get name from list
         Bundle bundle = getIntent().getExtras();
-        nameinput = bundle.getString("Name");
+        nameinput = bundle.getString("Name").trim();
 
         Recipes r = db.getRecipeByName(nameinput);
 
@@ -66,14 +72,12 @@ public class ShowRecipActivity extends AppCompatActivity {
                 Myimage = getImage(r.getImage());
                 image1.setImageBitmap(Myimage);
             }
-
-            //image1.setImageBitmap(r.getImage());
             id =r.get_id();
 
             String log="";
-            List <Ingredient> i = db.getIngredientById(id);
-            for (Ingredient ingre : i) {
-                log = log +  ingre.get_ingredient() + "  "  + ingre.get_amount() + "\n";
+            ing = db.getIngredientById(id);
+            for (Ingredient ingre : ing) {
+                log = log +  ingre.get_amount() + "  "  + ingre.get_ingredient() + "\n";
                 ingredient1.setText(log);
             }
         }
@@ -155,12 +159,72 @@ public class ShowRecipActivity extends AppCompatActivity {
         }
 
         if (id == R.id.send_recipe_ingre) {
-            Intent Go = new Intent(ShowRecipActivity.this, MainMenu.class);
-            startActivity(Go);
+
+            View view = LayoutInflater.from(ShowRecipActivity.this).inflate(R.layout.addrecipetolist, null);
+            final ListView list_shoplist = (ListView) view.findViewById(R.id.list_shoplist);
+
+            list = new ArrayList<>();
+            Cursor data = db.getListOfShopList();
+            ListAdapter listAdapter = new ArrayAdapter<>(ShowRecipActivity.this, android.R.layout.simple_list_item_1, list);
+
+            if (data.getCount() == 0) {
+                Toast.makeText(ShowRecipActivity.this, "המאגר עדיין ריק", Toast.LENGTH_LONG).show();
+            } else {
+                while (data.moveToNext()) {
+                    list.add(data.getString(1));
+                }
+            }
+
+            list_shoplist.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+                public void onItemClick(AdapterView<?> adapterView , View view, int i, long l) {
+
+                    String listName = list_shoplist.getItemAtPosition(i).toString();
+                    Shopping_list MyList =  db.getShopListByID(listName);
+                    String id_list = MyList.get_list_id();
+                    db.addIngregientByListId(ing,id_list);
+                    Toast.makeText(ShowRecipActivity.this,"המתכון נוסף לרשימה" + "\n" +  "'" + listName + "'", Toast.LENGTH_LONG).show();
+                }
+            });
+
+            list_shoplist.setAdapter(listAdapter);
+            AlertDialog.Builder builder = new AlertDialog.Builder(ShowRecipActivity.this);
+            builder.setCancelable(false);
+            builder.setView(view)
+                    .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+            alert.show();
         }
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "ראה אפשרויות נוספות בתפריט למעלה- מחיקה ועריכת מתכון" + "\n"
+                + "בחר ב'הוסף לרשימת קניות' כדי להוסיף את המצרכים ישירות לרשימה קיימת" + "\n"
+                +"לחץ על התמונה כדי לצפות בה על מסך מלא" + "\n";
+
+
+        View v = LayoutInflater.from(ShowRecipActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(ShowRecipActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 }
