@@ -23,7 +23,6 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15dp"
             android:text="תפריט שבועי"
-            android:textColor="@color/colorAccent"
             android:textStyle="bold"
             android:textSize="25sp" />
 
@@ -246,18 +245,18 @@
             android:onClick="list_onclick1"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
+            android:text="הוספת מתכון" />
 
         <Button
             android:id="@+id/btn_day2"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_toLeftOf="@+id/txt_munday"
             android:layout_alignBaseline="@+id/txt_munday"
             android:onClick="list_onclick2"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
+            android:text="הוספת מתכון" />
 
         <Button
             android:id="@+id/btn_day3"
@@ -268,7 +267,7 @@
             android:onClick="list_onclick3"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
+            android:text="הוספת מתכון" />
 
         <Button
             android:id="@+id/btn_day4"
@@ -279,7 +278,7 @@
             android:onClick="list_onclick4"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
+            android:text="הוספת מתכון" />
 
         <Button
             android:id="@+id/btn_day5"
@@ -290,7 +289,7 @@
             android:onClick="list_onclick5"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
+            android:text="הוספת מתכון" />
 
         <Button
             android:id="@+id/btn_day6"
@@ -301,7 +300,7 @@
             android:onClick="list_onclick6"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
+            android:text="הוספת מתכון" />
 
         <Button
             android:id="@+id/btn_day7"
@@ -312,7 +311,20 @@
             android:onClick="list_onclick7"
             android:textColor="@color/colorPrimary"
             android:background="@android:color/transparent"
-            android:text="הוסף מתוך מתכון" />
+            android:text="הוספת מתכון" />
+
+        <Button
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/littleinfo2"
+            android:onClick="info_On_Click"
+            android:text="מידע כללי"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
 
     </RelativeLayout>
 

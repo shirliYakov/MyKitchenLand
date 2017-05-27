@@ -1,12 +1,10 @@
 package com.example.shirl1.mykitchenland;
-
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +16,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -28,6 +25,7 @@ import android.widget.TextView;
 import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import android.database.sqlite.SQLiteDatabase;
@@ -50,7 +48,7 @@ public class AddRecActivity extends AppCompatActivity {
     ListAdapter listAdapter;
     ImageView IV;
     Button camera, upload, gallery;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int REQUEST_IMAGE_CAPTURE = 0;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,7 +150,7 @@ public class AddRecActivity extends AppCompatActivity {
 
     public static byte[] getBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        //bitmap.compress(Bitmap.CompressFormat.PNG, 0, stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100 , stream);
         return stream.toByteArray();
     }
 
@@ -186,6 +184,30 @@ public class AddRecActivity extends AppCompatActivity {
             Intent Go = new Intent(AddRecActivity.this, MyRecipesActivity.class);
             startActivity(Go);
         }
+    }
+
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "לחץ על הוסף מוצר כדי להוסיף את המצרך לרשימה" + "\n"
+                + "לחיצה ארוכה על המצרך תסיר אותו מהרשימה" + "\n"
+                +"לחץ על הוסף תמונה כדי לצלם תמונה הקשורה למתכון" + "\n";
+
+
+        View v = LayoutInflater.from(AddRecActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(AddRecActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
 

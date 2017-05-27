@@ -190,6 +190,19 @@
             android:layout_marginTop="20dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true" />
+
+        <Button
+            android:id="@+id/info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawableTop="@drawable/littleinfo2"
+            android:onClick="info_On_Click"
+            android:text="מידע כללי"
+            android:textColor="@color/colorPrimary"
+            android:textSize="10sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
 </ScrollView>

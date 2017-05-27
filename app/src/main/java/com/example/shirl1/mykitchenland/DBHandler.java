@@ -256,10 +256,10 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-    public void EditRecipe2(Recipes recipe){
+    public void EditRecipe2(Recipes recipe, String oldName){
 
-        String na = recipe.get_recipename();
-        deleteRecipe(na);
+        //String na = recipe.get_recipename();
+        deleteRecipe(oldName);
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -287,6 +287,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
         values.put(COLUMN_RECIPE_NAME, recipe.get_recipename());
         values.put(COLUMN_RECIPE_INSTRUCTIONS, recipe.get_recipeinstructions());
+        values.put(COLUMN_IMAGE, recipe.getImage());
+        values.put(COLUMN_TIME, recipe.getTime());
         db.insert(TABLE_RECIPES_MANAGER, null, values);
 
         //get id

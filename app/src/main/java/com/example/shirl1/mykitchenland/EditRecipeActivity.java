@@ -1,12 +1,15 @@
 package com.example.shirl1.mykitchenland;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.provider.MediaStore;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
@@ -80,7 +84,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         id =r.get_id();
         List<Ingredient> i = db.getIngredientById(id);
         for (Ingredient ingre : i) {
-            list.add(ingre.get_ingredient() + " " + ingre.get_amount());
+            list.add(ingre.get_amount() + " " + ingre.get_ingredient());
             arr_in.add(ingre);
         }
 
@@ -156,12 +160,36 @@ public class EditRecipeActivity extends AppCompatActivity {
             Toast.makeText(EditRecipeActivity.this, "לא ניתן להכניס כמות ללא מוצר", Toast.LENGTH_LONG).show();
 
         else {
-            Ingredient in_new = new Ingredient(in2, in1);
+            Ingredient in_new = new Ingredient(in1, in2);
             arr_in.add(in_new);
             list.add(in1 + " " + in2);//column 2 is index of column-name
             re_amount.setText("");
             re_ingredient.setText("");
         }
+    }
+
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "לחץ על הוסף מוצר כדי להוסיף את המצרך לרשימה" + "\n"
+                + "לחיצה ארוכה על המצרך תסיר אותו מהרשימה" + "\n"
+                +"לחץ על הוסף תמונה כדי לצלם תמונה הקשורה למתכון" + "\n"
+                +"בסוף העריכה לחץ 'עדכן מתכון' בתחתית המסך כדי לשמור את השינויים" + "\n";
+
+        View v = LayoutInflater.from(EditRecipeActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(EditRecipeActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 
@@ -175,7 +203,7 @@ public class EditRecipeActivity extends AppCompatActivity {
         if(re_name.getText().toString().isEmpty())
             re_name.setError("נא הכנס שם מתכון");
 
-        else {
+        /*else {
 
             if (nameToEdit.equals(re_name.getText().toString().trim())) {
 
@@ -207,11 +235,28 @@ public class EditRecipeActivity extends AppCompatActivity {
                     Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());
                     db.addIngredient(ing);
                 }
+            }*/
+
+        else {
+
+            if (imageMe == null) {
+                Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), re_time.getText().toString());
+                db.EditRecipe2(recipe,nameToEdit);
+            } else {
+                Recipes recipe = new Recipes(re_name.getText().toString().trim(), re_instructions.getText().toString(), imageMe, re_time.getText().toString());
+                db.EditRecipe2(recipe,nameToEdit);
             }
+
+            for (int i = 0; i < arr_in.size(); i++) {
+                Ingredient ing = new Ingredient(arr_in.get(i).get_amount(), arr_in.get(i).get_ingredient());
+                db.addIngredient(ing);
+            }
+        }
+
 
             Toast.makeText(EditRecipeActivity.this, "המתכון עודכן", Toast.LENGTH_LONG).show();
             Intent Go = new Intent(EditRecipeActivity.this, MyRecipesActivity.class);
             startActivity(Go);
-        }
+
     }
 }

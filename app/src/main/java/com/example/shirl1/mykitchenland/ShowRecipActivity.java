@@ -44,7 +44,6 @@ public class ShowRecipActivity extends AppCompatActivity {
     String in;
     Bitmap Myimage;
     List <Ingredient> ing;
-    boolean isImageFitToScreen;;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,11 +182,11 @@ public class ShowRecipActivity extends AppCompatActivity {
                     Shopping_list MyList =  db.getShopListByID(listName);
                     String id_list = MyList.get_list_id();
                     db.addIngregientByListId(ing,id_list);
+                    Toast.makeText(ShowRecipActivity.this,"המתכון נוסף לרשימה" + "\n" +  "'" + listName + "'", Toast.LENGTH_LONG).show();
                 }
             });
 
             list_shoplist.setAdapter(listAdapter);
-
             AlertDialog.Builder builder = new AlertDialog.Builder(ShowRecipActivity.this);
             builder.setCancelable(false);
             builder.setView(view)
@@ -202,6 +201,30 @@ public class ShowRecipActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
 
+    }
+
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "ראה אפשרויות נוספות בתפריט למעלה- מחיקה ועריכת מתכון" + "\n"
+                + "בחר ב'הוסף לרשימת קניות' כדי להוסיף את המצרכים ישירות לרשימה קיימת" + "\n"
+                +"לחץ על התמונה כדי לצפות בה על מסך מלא" + "\n";
+
+
+        View v = LayoutInflater.from(ShowRecipActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(ShowRecipActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 }
