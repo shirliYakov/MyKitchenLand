@@ -35,6 +35,7 @@
         <activity android:name=".splash_welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -79,7 +80,9 @@
         <activity
             android:name=".search_list"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".allow_delete_list"></activity>
+        <activity android:name=".allow_delete_list" />
+        <activity android:name=".viewShopList" />
+        <activity android:name=".ShowInventory"></activity>
     </application>
 
 </manifest>

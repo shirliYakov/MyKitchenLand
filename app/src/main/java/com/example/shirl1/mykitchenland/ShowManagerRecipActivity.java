@@ -92,7 +92,8 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
         return BitmapFactory.decodeByteArray(image, 0, image.length);
     }
 
-    public void addToShopList_On_Click(View v) {
+
+  /*  public void addToShopList_On_Click(View v) {
 
         View view = LayoutInflater.from(ShowManagerRecipActivity.this).inflate(R.layout.addrecipetolist, null);
         final ListView list_shoplist = (ListView) view.findViewById(R.id.list_shoplist);
@@ -136,7 +137,7 @@ public class ShowManagerRecipActivity extends AppCompatActivity{
 
 
 
-    }
+    }*/
 
     public void btn_back_On_Click(View v){
         Intent Go = new Intent(ShowManagerRecipActivity.this, MainMenu.class);

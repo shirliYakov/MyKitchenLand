@@ -3,4 +3,5 @@
     <color name="colorPrimary">#FFFFFF</color> <!--Background color for AppBar-->
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#921</color><!--color effects, EditText, RadioButtons...-->
+    <color name="green">#008000</color>
 </resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_inventory"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/p2"
+    tools:context="com.example.shirl1.mykitchenland.ShowInventory">
+
+    <Button
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/littleinfo2"
+        android:onClick="info_On_Click"
+        android:text="מידע כללי"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"/>
+
+    <TextView
+        android:text="מלאי ביתי"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
+        android:id="@+id/titelTv"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="13dp" />
+    <ScrollView
+        android:layout_width="300dp"
+        android:layout_height="303dp"
+        android:background="@drawable/border_style"
+        android:id="@+id/scrollView22"
+        android:layout_marginBottom="34dp"
+        android:layout_above="@+id/btn_back"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/products"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@+id/scrollView4"
+                android:layout_alignParentLeft="true"
+                android:textAlignment="center"
+                android:layout_alignParentStart="true">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/scrollView4">
+
+            </ScrollView>
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <Button
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/home"
+        android:background="@android:color/transparent"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14dp"
+        android:id="@+id/btn_back"
+        android:onClick="btn_back_On_Click"
+        android:text="חזור לתפריט הראשי"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="27dp" />
+
+
+
+
+</RelativeLayout>

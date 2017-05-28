@@ -179,8 +179,8 @@ public class WeeklyMenu extends AppCompatActivity {
                 +"ביציאה דרך 'חזרה לתפריט ראשי' יתעדכן התפריט" + "\n";
 
         View v = LayoutInflater.from(WeeklyMenu.this).inflate(R.layout.info, null);
-        final TextView info = (TextView)v.findViewById(R.id.txt_info);
-        info.setText(log);
+      //  final TextView info = (TextView)v.findViewById(R.id.txt_info);
+     //   info.setText(log);
 
         AlertDialog.Builder builder= new AlertDialog.Builder(WeeklyMenu.this);
         builder.setView(v)

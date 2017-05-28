@@ -67,7 +67,7 @@ public class ShopListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Intent intent = new Intent(ShopListActivity.this, ShowList.class);
+                Intent intent = new Intent(ShopListActivity.this, viewShopList.class);
                 intent.putExtra("Name", listView.getItemAtPosition(i).toString());
 
                 startActivity(intent);
@@ -100,6 +100,30 @@ public class ShopListActivity extends AppCompatActivity {
         return true;
     }
 
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "לחץ על שם הרשימה על מנת לצפות בה" + "\n";
+        //אפשר להוסיף לחיצה ארוכה שתוסיף הכל למלאי///
+
+
+
+
+        View v = LayoutInflater.from(ShopListActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(ShopListActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
 
     public boolean onOptionsItemSelected(MenuItem item) {
         final Context context = this;

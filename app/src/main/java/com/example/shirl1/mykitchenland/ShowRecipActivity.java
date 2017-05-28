@@ -158,7 +158,7 @@ public class ShowRecipActivity extends AppCompatActivity {
 
         }
 
-        if (id == R.id.send_recipe_ingre) {
+        /*if (id == R.id.send_recipe_ingre) {
 
             View view = LayoutInflater.from(ShowRecipActivity.this).inflate(R.layout.addrecipetolist, null);
             final ListView list_shoplist = (ListView) view.findViewById(R.id.list_shoplist);
@@ -198,7 +198,7 @@ public class ShowRecipActivity extends AppCompatActivity {
             AlertDialog alert = builder.create();
             alert.show();
         }
-
+*/
         return super.onOptionsItemSelected(item);
 
     }

@@ -12,6 +12,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.shirl1.mykitchenland.AddShopListActivity">
 
+    <Button
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawableTop="@drawable/littleinfo2"
+        android:onClick="info_On_Click"
+        android:text="מידע כללי"
+        android:textColor="@color/colorPrimary"
+        android:textSize="10sp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:id="@+id/list_name"
@@ -124,6 +137,7 @@
         android:textColor="@color/colorPrimary"
         android:background="@android:color/transparent"
         android:text="חזרה לתפריט הראשי"
+        android:onClick="btn_back_On_Click"
         android:gravity="center"
         android:layout_alignTop="@+id/btn_save"
         android:layout_alignParentRight="true"
@@ -151,7 +165,8 @@
         android:gravity="center"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></LinearLayout>
+        android:layout_alignParentStart="true"
+        android:id="@+id/linearLayout"></LinearLayout>
 
 
     <ScrollView

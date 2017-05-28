@@ -155,6 +155,34 @@ public class ShowList extends AppCompatActivity {
     }
 
 
+    public void info_On_Click(View view) {
+
+        String log = "\n" + "לחץ על הוסף מוצר כדי להוסיף את המצרך לרשימה" + "\n"
+                + "לחיצה על מתכון מתוך רשימת המתכונים,תוסיף את מצרכיו לרשימת הקניות שלך" + "\n"
+                + " תוכל תמיד להסיר מוצרים מהרשימה על ידי לחיצה על פח האשפה" + "\n";
+
+
+
+        View v = LayoutInflater.from(ShowList.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(ShowList.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+
+
+
     public void btn_save_On_Click(View v)
     {
         List<Item> items=mAdapter.getItems();
@@ -175,80 +203,7 @@ public class ShowList extends AppCompatActivity {
         }
     }
 
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.show_list_menu, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-    String name;
-        int id = item.getItemId();
-
-        if (id == R.id.delete_list)
-        {
-            final View view = LayoutInflater.from(ShowList.this).inflate(R.layout.activity_allow_delete_list, null);
-            AlertDialog.Builder builder= new AlertDialog.Builder(ShowList.this);
-
-            builder.setCancelable(false);
-
-            builder.setView(view)
-                    .setPositiveButton("מחק", new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            delete_table_on_click(view);
-                            Intent Go = new Intent(ShowList.this, ShopListActivity.class);
-                            startActivity(Go);
-                        }
-
-                    })
-                    .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            dialog.cancel();
-                        }
-                    });
-            AlertDialog alert = builder.create();
-            alert.show();
-
-        }
-        
-
-        if (id == R.id.send_to_email) 
-        {
-            String log = " ";
-            String email= MainMenu.myEmail;;
-                log = log + listname + " \n\n" ;
-            List <Item> items=mAdapter.getItems();
-            for (Item _item:items)
-            {
-                log+=_item.getItemName();
-                log+= "         ";
-                log+=_item.getAmount();
-                log+= "\n ";
-            }
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setData(Uri.parse("mailto:"));
-            String[] to = {email};
-            intent.putExtra(Intent.EXTRA_EMAIL, to);
-            intent.putExtra(Intent.EXTRA_SUBJECT, "רשימת קניות: "+ listname);
-            intent.putExtra(Intent.EXTRA_TEXT, log);
-            intent.setType("message/rfc822");
-            startActivity(Intent.createChooser(intent, "Send email..."));
-        
-        }
-
-        return super.onOptionsItemSelected(item);
 
 
-}
-
-   public void delete_table_on_click(View v)
-    {
-        db.delete_shoplist(listname);
-        Toast.makeText(this, "הרשימה נמחקה", Toast.LENGTH_LONG).show();
-        Intent Go = new Intent(this, ShopListActivity.class);
-        startActivity(Go);
-    }
 
 }

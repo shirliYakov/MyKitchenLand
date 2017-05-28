@@ -5,6 +5,12 @@
     tools:context="com.example.shirl1.mykitchenland.ShowList">
 
     <item
+        android:id="@+id/edit"
+        android:orderInCategory="1"
+        android:title="ערוך רשימה"
+        app:showAsAction="never"/>
+
+    <item
         android:id="@+id/send_to_email"
         android:orderInCategory="1"
         android:title="שלח לאימייל"

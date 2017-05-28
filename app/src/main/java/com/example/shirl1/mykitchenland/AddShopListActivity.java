@@ -1,11 +1,14 @@
 package com.example.shirl1.mykitchenland;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -20,6 +23,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -101,20 +105,23 @@ public class AddShopListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Item item=new Item();
-                if (item_name.getText().toString().isEmpty() ||((item_amount.getText().toString().isEmpty())))
+               if(item_name.getText().toString().isEmpty() && item_amount.getText().toString().isEmpty())
+                    Toast.makeText(AddShopListActivity.this, "לא ניתן להכניס מוצר ריק", Toast.LENGTH_LONG).show();
+
+                else if(item_name.getText().toString().isEmpty() && (!item_amount.getText().toString().isEmpty()))
+                    Toast.makeText(AddShopListActivity.this, "אנא הכנס את שם המוצר", Toast.LENGTH_LONG).show();
+
+                else if(item_amount.getText().toString().isEmpty() && (!item_name.getText().toString().isEmpty()))
+                    Toast.makeText(AddShopListActivity.this, "אנא הכנס כמות", Toast.LENGTH_LONG).show();
+
+             else
                 {
-                    if (item_name.getText().toString().isEmpty())
-                        item_name.setError("אין להשאיר שדה ריק");
-                    if (item_amount.getText().toString().isEmpty())
-                        item_amount.setError("אין להשאיר שדה ריק");
-                }
-                else
-                    {
                     item.setItemName(item_name.getText().toString());
                     item.setAmount(item_amount.getText().toString());
                     mAdapter.AddItem(item);
                     item_name.setText("");
                     item_amount.setText("");
+
                 }
             }
         });
@@ -128,7 +135,8 @@ public class AddShopListActivity extends AppCompatActivity {
     }
 
 
-    public void btn_back_On_Click(View v){
+    public void btn_back_On_Click(View v)
+    {
 
         Intent Go = new Intent(this, ShopListActivity.class);
         startActivity(Go);
@@ -143,9 +151,9 @@ public class AddShopListActivity extends AppCompatActivity {
         if (shoppingList!=null)
         {
             String list_id=shoppingList.get_list_id();
-        db.addItems(items);
-        db.close();
-        Toast.makeText(this, "הרשימה נוצרה בהצלחה", Toast.LENGTH_LONG).show();
+            db.addItems(items);
+            db.close();
+            Toast.makeText(this, "הרשימה נוצרה בהצלחה", Toast.LENGTH_LONG).show();
 
         Intent Go = new Intent(this, ShopListActivity.class);
        startActivity(Go);
@@ -153,28 +161,53 @@ public class AddShopListActivity extends AppCompatActivity {
     }
 
 
-    public Shopping_list create_List_And_get_list() {
+    public Shopping_list create_List_And_get_list()
+    {
+        int flag=0;
         Shopping_list shopList = new Shopping_list();
         shopList.set_listname(list_name.getText().toString());
 
-        if (db.addShopList(shopList) == 0)
+        if (list_name.getText().toString().isEmpty())
+        {
+            flag=1;
+            list_name.setError("אין להשאיר שדה ריק");
+            return null;
+        }
+        else if (db.addShopList(shopList) == 0)
         {
             list_name.setError("שם הרשימה תפוס,אנא הזן שם חדש");
-            db.close();
+            flag=1;
             return null;
         }
-        else if (list_name.getText().toString().isEmpty())
-        {
-            list_name.setError("אין להשאיר שדה ריק");
-
-            db.close();
-            return null;
-        }
-
         else
-        db.close();
-        return shopList;
+            db.close();
+        if (flag==0)
+            return shopList;
+        else
+            return null;
+        }
 
+
+    public void info_On_Click(View view)
+    {
+
+        String log = "\n" + "על מנת להוסיף, מוצר לרשימת הקניות,הוסף את פרטיו ולחץ על כפתור ה+" + "\n"+
+                "\n" + "לחיצה על פח האשפה תסיר את המוצר מרשימת הקניות הנוכחית" + "\n";
+        View v = LayoutInflater.from(AddShopListActivity.this).inflate(R.layout.info, null);
+        final TextView info = (TextView)v.findViewById(R.id.txt_info);
+        info.setText(log);
+
+        AlertDialog.Builder builder= new AlertDialog.Builder(AddShopListActivity.this);
+        builder.setView(v)
+                .setTitle("מידע כללי")
+                .setIcon(R.drawable.infopink)
+                .setNegativeButton("סגור", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
 

@@ -971,6 +971,35 @@ public class DBHandler extends SQLiteOpenHelper {
         addItemsByListId(items,list_id); //add items to specific list
     }
 
+    public List <Item> getItemsByListId(int list_id)
+    {
+        List <Item> items_list = new ArrayList <Item>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery("SELECT  * FROM " + TABLE_ITEMS + " WHERE "
+                + COLUMN_ID_LIST + " = " + list_id, null);
+
+        if (c.moveToFirst()) {
+            do {
+                Item item = new Item();
+                item.set_list_id(c.getInt((c.getColumnIndex(COLUMN_ID_LIST))));
+                item.setItemName(c.getString(c.getColumnIndex(COLUMN_ITEM_NAME)));
+                item.setAmount(c.getString(c.getColumnIndex(COLUMN_ITEM_AMOUNT)));
+                items_list.add(item);
+            } while (c.moveToNext());
+        }
+        db.close();
+        return items_list;
+    }
+
+
+    public Cursor getListOfItemsbyListId(int list_id)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String get="SELECT * FROM " + TABLE_ITEMS+ " WHERE "+ COLUMN_LITS_ID +" ="+ list_id;
+        Cursor c = db.rawQuery(get,null);
+        c.moveToFirst();
+        return c;
+    }
 
 }
 

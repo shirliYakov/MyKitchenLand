@@ -56,7 +56,7 @@ public class MainMenu extends AppCompatActivity {
 
     public void inventoryLayout(View view)
     {
-        Intent inventory = new Intent(this, Inventory.class);
+        Intent inventory = new Intent(this, ShowInventory.class);
         startActivity(inventory);
     }
 
