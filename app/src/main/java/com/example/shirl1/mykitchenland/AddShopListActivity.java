@@ -128,6 +128,7 @@ public class AddShopListActivity extends AppCompatActivity {
     }
 
 
+
     public void btn__On_Click(View v) {
 
         Intent Go = new Intent(this, Shopping_list.class);

@@ -66,11 +66,22 @@
         android:text="חזור לאוסף הרשימות"
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="21dp" />
+        android:layout_alignRight="@+id/items_list"
+        android:layout_alignEnd="@+id/items_list" />
+
+    <Button
+        android:id="@+id/addToInve"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="הוסף למלאי הביתי"
+        android:drawableTop="@drawable/addtoln"
+        android:textColor="@color/colorPrimary"
+        android:background="@android:color/transparent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp" />
 
 
-
-
-
-    </RelativeLayout>
+</RelativeLayout>

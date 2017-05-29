@@ -865,6 +865,15 @@ public class DBHandler extends SQLiteOpenHelper {
 
     }
 
+    public void addShopListToInventory(List<Item> items)
+    {
+        for (Item item : items)
+            addItemFromShoppingList(item.getItemName(),item.getAmount());
+
+
+    }
+
+
 
     public void addItemsToInventory(List<Item> items)
     {

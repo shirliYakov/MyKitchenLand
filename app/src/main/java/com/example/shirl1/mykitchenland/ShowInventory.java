@@ -56,7 +56,7 @@ public class ShowInventory extends AppCompatActivity {
 
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.show_list_menu, menu);
+        getMenuInflater().inflate(R.menu.inventory_menu, menu);
         return true;
     }
 

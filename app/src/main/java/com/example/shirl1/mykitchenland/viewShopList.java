@@ -29,14 +29,17 @@ import java.util.List;
 
 public class viewShopList extends AppCompatActivity {
     int listID;
+    Button add;
     TextView list_name;
     RecyclerView items;
+    List<Item> forInventoryList;
     DBHandler db;
     ShowItemAdapter mAdapter;
     String listname;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_shop_list);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -46,12 +49,14 @@ public class viewShopList extends AppCompatActivity {
         intent.getIntExtra("list_id", listID);
         list_name = (TextView) findViewById(R.id.list_name);
         items = (RecyclerView) findViewById(R.id.items_list);
+        add=(Button) findViewById(R.id.addToInve) ;
         items.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         db = new DBHandler(this);
         Bundle bundle = getIntent().getExtras();
         listname = bundle.getString("Name");
         ArrayList<String> list = new ArrayList<>();
         Shopping_list s = db.getShopListByID(listname);
+
         if (s == null) {
             Toast.makeText(this, "הרשימה לא קיימת", Toast.LENGTH_LONG).show();
             Intent goBack = new Intent(this, ShopListActivity.class);
@@ -64,6 +69,15 @@ public class viewShopList extends AppCompatActivity {
             items.setHasFixedSize(true);
 
         }
+        forInventoryList=mAdapter.getItems();
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                db.addShopListToInventory(forInventoryList);
+                Toast.makeText(viewShopList.this,"המוצרים התווספו למלאי הביתי",Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void btn_back_On_Click(View v) {
