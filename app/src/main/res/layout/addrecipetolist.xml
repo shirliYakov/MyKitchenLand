@@ -29,8 +29,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:background="@drawable/border_style" />
-
-
 </RelativeLayout>
 
 

@@ -134,10 +134,10 @@ public class AddRecActivity extends AppCompatActivity {
     }
 
     public void takePicture_on_click(View v) {
-
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);//PASS RESULT TO onactivityresult
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK){
@@ -150,7 +150,7 @@ public class AddRecActivity extends AppCompatActivity {
 
     public static byte[] getBytes(Bitmap bitmap) {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100 , stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0 , stream);
         return stream.toByteArray();
     }
 
